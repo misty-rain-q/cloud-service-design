@@ -7,11 +7,12 @@
       </div>
 
       <el-menu  class="aside-menu" 
-                default-active="1"
-                background-color="#171C3A">
+                background-color="#171C3A"
+                :default-active="this.$route.path"
+                router>
 
         <el-tooltip content="首页" placement="right">
-          <el-menu-item index="1">
+          <el-menu-item :class="[this.activeRoute=='/index'?'active':'']" index="/index">
             <i class="el-icon-s-home"></i>
           </el-menu-item>
         </el-tooltip>
@@ -101,6 +102,12 @@
       </div>
     </el-header>
   </el-container>
+
+  <el-container>
+    <el-main class="main">
+        <router-view></router-view>
+    </el-main>
+  </el-container>
 </div>
 </template>
 
@@ -111,9 +118,21 @@
       return {
         title_list: ['placehoder','首页','会话','访客','历史','客户','工单','统计','设置'], // 无退出
         title: '首页',
-        user_name: '客服七尾'
+        user_name: '客服七尾',
+        activeRoute: '/index'
       }
+    },
+    watch: {
+    $route() {
+      this.setRoute();
     }
+  },
+  computed: {},
+  methods: {
+    setRoute() {
+      this.activeRoute = this.$route.path;
+    }
+  },
     
   }
 </script>
@@ -215,6 +234,11 @@
   position: absolute;
   top: 3px;
   right: 113px;
+}
+
+.main{
+  position: relative;
+  left: 60px;
 }
 
 </style>
