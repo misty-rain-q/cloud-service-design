@@ -26,6 +26,13 @@
         </el-row>
         </div>
 
+        <div class="middle">
+        <div id="chart" ref="chart" style="width: 900px;height:400px;"></div>
+        <div class="portal">
+
+        </div>
+    
+        </div>
         <div class="spy">
             <span class="spy-txt">客服监控</span>
             <el-table :data="tableData" style="width: 100%">
@@ -125,6 +132,73 @@ export default {
                 }
             ]
         }
+    },
+    mounted(){
+    this.getEchartData1()  
+    },
+    methods: {
+        getEchartData1() {
+        const chart = this.$refs.chart;
+        if (chart) {
+            const myChart = this.$echarts.init(chart);
+            const option = {
+                title: {
+                    text: '访问量统计'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['总访问量', '总会话量', '有效会话量']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: [ '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00',
+                            '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+                            '17:00']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '总访问量',
+                        type: 'line',
+                        stack: '总量',
+                        data: [120, 132, 101, 134, 90, 230, 210, 182, 191, 234,201, 154,150,220, 182,]
+                    },
+                    {
+                        name: '总会话量',
+                        type: 'line',
+                        stack: '总量',
+                        data: [220, 182, 191, 234, 290, 330, 310,134, 90, 230,330, 410, 182,410, 182,]
+                    },
+                    {
+                        name: '有效会话量',
+                        type: 'line',
+                        stack: '总量',
+                        data: [150, 232, 201, 154, 190, 330, 410, 182, 191,134, 90, 230,234,201,230]
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener("resize", function() {
+            myChart.resize();
+            });
+            }
+        }
     }
 }
 </script>
@@ -196,5 +270,22 @@ export default {
 .spy{
     margin-top: 20px;
     background-color: #fff;
+}
+#chart{
+    background-color: white;
+    width: 900px;
+    height:400px;
+    
+}
+.middle{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.portal{
+    background-color: white;
+    width: 520px;
+    height: 400px;
+    margin-left: 10px;
 }
 </style>

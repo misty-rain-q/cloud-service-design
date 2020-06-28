@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Base from '@/components/base.vue'
 import Index from '@/components/pages/Index'
+import Dialog from '@/components/pages/Dialog'
+import Visitor from '@/components/pages/Visitor'
+import History from '@/components/pages/History'
+import Settings from '@/components/pages/Settings'
 
 Vue.use(Router)
 
@@ -16,8 +19,25 @@ export default new Router({
         path: '/',
         component: Base,
         children: [{
-            path: 'index',
-            component: Index
-        }]
+                path: 'index',
+                component: Index
+            },
+            {
+                path: 'dialog',
+                component: Dialog
+            },
+            {
+                path: 'visitor',
+                component: Visitor
+            },
+            {
+                path: 'history',
+                component: History
+            },
+            {
+                path: 'settings',
+                component: Settings
+            }
+        ]
     }]
 })

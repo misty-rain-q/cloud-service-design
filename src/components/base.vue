@@ -18,21 +18,21 @@
         </el-tooltip>
 
         <el-tooltip content="会话" placement="right">
-          <el-menu-item index="2">
+          <el-menu-item :class="[this.activeRoute=='/dialog'?'active':'']" index="dialog">
             <i class="el-icon-s-comment"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="访客" placement="right">
-          <el-menu-item index="3">
+          <el-menu-item :class="[this.activeRoute=='/visitor'?'active':'']" index="visitor">
             <i class="el-icon-s-custom"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="历史" placement="right">
-          <el-menu-item index="4">
+          <el-menu-item :class="[this.activeRoute=='/history'?'active':'']" index="history">
             <i class="el-icon-more"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -62,7 +62,7 @@
         <el-divider class="divider"></el-divider>
 
         <el-tooltip content="设置" placement="right">
-          <el-menu-item index="8">
+          <el-menu-item :class="[this.$route.activeRoute=='/settings'?'active':'']" index="settings">
             <i class="el-icon-s-tools"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -119,7 +119,7 @@
         title_list: ['placehoder','首页','会话','访客','历史','客户','工单','统计','设置'], // 无退出
         title: '首页',
         user_name: '客服七尾',
-        activeRoute: '/index'
+        // activeRoute: 'index'
       }
     },
     watch: {
@@ -139,7 +139,7 @@
 
 <style scoped>
 .aside-menu{
-  position: absolute;
+  position: fixed;
   top: 97px;
   left: 0;
   width: 64px;
@@ -147,7 +147,7 @@
 }
 
 .logo_bg {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #171C3A;
@@ -175,6 +175,7 @@
   width: 1470px;
   height: 64px;
   background-color: white;
+  z-index: 1;
 }
 
 .title{
