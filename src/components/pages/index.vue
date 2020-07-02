@@ -28,41 +28,94 @@
 
         <div class="middle">
         <div id="chart" ref="chart" style="width: 900px;height:400px;"></div>
+        
         <div class="portal">
+            <div class="portal-title">快捷入口</div>
+            <el-row :gutter="30" class="line">
+              <el-col :span="6"><div @click="tes" class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-blue" icon="el-icon-s-comment">
+              </el-avatar><br/>
+              <span class="portal-txt">当前会话</span>
+              </div></el-col>
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-red" icon="el-icon-s-custom">
+              </el-avatar><br/>
+              <span class="portal-txt">访客管理</span>
+              </div></el-col>
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-green" icon="el-icon-more">
+              </el-avatar><br/>
+              <span class="portal-txt">会话记录</span>
+              </div></el-col>
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-orange" icon="el-icon-s-check">
+              </el-avatar><br/>
+              <span class="portal-txt">客户管理</span>
+              </div></el-col>
+            </el-row>
+            
+            <el-row :gutter="30" class="line">
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-blue" icon="el-icon-s-order">
+              </el-avatar><br/>
+              <span class="portal-txt">工单中心</span>
+              </div></el-col>
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-red" icon="el-icon-s-data">
+              </el-avatar><br/>
+              <span class="portal-txt">数据报表</span>
+              </div></el-col>
+              <el-col :span="6"><div class="portal-div">
+              <br/>
+              <el-avatar :size="70" class="portal-gray" icon="el-icon-plus">
+              </el-avatar><br/>
+              <span class="portal-txt">编辑入口</span>
+              </div></el-col>
+            </el-row>
+              
+            
+        </div>
 
         </div>
-    
-        </div>
         <div class="spy">
-            <span class="spy-txt">客服监控</span>
-            <el-table :data="tableData" style="width: 100%">
+            <div class="spy-txt">客服监控</div>
+            <el-table :data="tableData" style="width: 100%" 
+                      :header-cell-style="{'background-color':'#e6f1ff','height':'62px'}"
+                      fit :cell-style="cellStyle"
+                      class="table"> 
                 <el-table-column  label="客服昵称"
-                                    prop="name"
-                                    width="180px">
+                                prop="name"
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="状态"
                                 prop="state"
-                                width="180px">
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="在线时长"
                                 prop="online_interval"
-                                width="180px">
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="会话数"
                                 prop="dialog_num"
-                                width="180px">
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="消息数"
                                 prop="msg_num"
-                                width="180px">
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="平均响应时长"
                                 prop="avg_response_time"
-                                width="180px">
+                                align="center">
                 </el-table-column>
                 <el-table-column  label="平均会话时长"
                                 prop="avg_dialog_time"
-                                width="180px">
+                                align="center">
                 </el-table-column>
             </el-table>
         </div>
@@ -137,6 +190,8 @@ export default {
     this.getEchartData1()  
     },
     methods: {
+        tes(){this.$router.replace('/dialog')},
+
         getEchartData1() {
         const chart = this.$refs.chart;
         if (chart) {
@@ -204,6 +259,9 @@ export default {
 </script>
 
 <style scoped>
+.index-container{
+    
+}
 .welcome{
     margin-right: 1250px;
     font-weight: 800;
@@ -211,9 +269,11 @@ export default {
 .spy-txt{
     margin-right: 1320px;
     margin-bottom: 30px;
+    padding-top: 20px;
 }
 .abstract{
     margin-top: 30px;
+    border-radius: 10px;
 }
 .card-title{
     font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
@@ -270,22 +330,62 @@ export default {
 .spy{
     margin-top: 20px;
     background-color: #fff;
+    border-radius: 10px
 }
 #chart{
     background-color: white;
     width: 900px;
     height:400px;
-    
+    border-radius: 10px;
+    padding: 4px;
 }
 .middle{
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    border-radius: 10px
 }
 .portal{
     background-color: white;
     width: 520px;
     height: 400px;
     margin-left: 10px;
+    border-radius: 10px
+}
+.portal-title{
+    margin-right: 400px;
+    margin-top: 30px;
+}
+.portal-div{
+    background-color: white;
+}
+.line{
+    margin: 30px -80px 20px 30px;
+    margin-left: 20px;
+}
+.portal-txt{
+    font-size: 14px;
+    text-align: left;
+    font-family: 'PingFangHK-Regular', 'PingFang HK', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.portal-blue{
+    background-color: rgb(0,110,255);
+}
+.portal-red{
+    background-color: rgb(255,98,98);
+}
+.portal-green{
+    background-color: rgb(46,212,119);
+}
+.portal-orange{
+    background-color: rgb(255,145,56);
+}
+.portal-gray{
+    background-color: rgb(228,228,228);
+}
+.table{
+    padding: 10px;
 }
 </style>

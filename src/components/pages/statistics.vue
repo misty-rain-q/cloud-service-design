@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-      <h1>This is Visitor</h1>
+      <h1>统计</h1>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Visitor',
+    name: 'Statistics',
     data(){
         return{
-            
+
         }
     }
 }
-</script>
+</script scoped>
 
-<style scoped>
+<style>
 
 </style>
