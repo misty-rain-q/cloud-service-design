@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-      <h1>This is Visitor</h1>
+      <h1>工单</h1>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Visitor',
+    name: 'Order',
     data(){
         return{
-            
+
         }
     }
 }

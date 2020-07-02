@@ -39,21 +39,21 @@
         </el-tooltip>
 
         <el-tooltip content="客户" placement="right">
-          <el-menu-item index="5">
+          <el-menu-item :class="[this.activeRoute=='/customer'?'active':'']" index="customer">
             <i class="el-icon-s-check"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="工单" placement="right">
-          <el-menu-item index="6">
+          <el-menu-item :class="[this.activeRoute=='/order'?'active':'']" index="order">
             <i class="el-icon-s-order"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="统计" placement="right">
-          <el-menu-item index="7">
+          <el-menu-item :class="[this.activeRoute=='statistics'?'active':'']" index="statistics">
             <i class="el-icon-s-data"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -69,7 +69,7 @@
         </el-tooltip>
 
         <el-tooltip content="退出" placement="right">
-          <el-menu-item index="9">
+          <el-menu-item @click="exit" index="login">
             <i class="el-icon-right"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -104,9 +104,9 @@
   </el-container>
 
   <el-container>
-    <el-main class="main">
+    <div class="main">
         <router-view></router-view>
-    </el-main>
+    </div>
   </el-container>
 </div>
 </template>
@@ -126,13 +126,22 @@
     $route() {
       this.setRoute();
     }
-  },
-  computed: {},
-  methods: {
-    setRoute() {
-      this.activeRoute = this.$route.path;
-    }
-  },
+    },
+    computed: {
+
+    },
+    methods: {
+      setRoute() {
+        this.activeRoute = this.$route.path;
+      },
+      exit(){
+        this.$message({
+          message: '已经安全退出',
+          type: 'success'
+        });
+        
+      }
+    },
     
   }
 </script>
@@ -144,6 +153,7 @@
   left: 0;
   width: 64px;
   height: 100%;
+  z-index: 1;
 }
 
 .logo_bg {
@@ -153,12 +163,14 @@
   background-color: #171C3A;
   height: 97px;
   width: 64px;
+  z-index: 1;
 }
 
 .logo_img{
   margin-top: 30px;
 }
 
+/* 此处有BUG, 待调试 */
 .el-menu-item.is-active{
   border-left: solid rgb(0,110,255) 4px;
 }
@@ -240,6 +252,9 @@
 .main{
   position: relative;
   left: 60px;
+  padding: 0;
+  width:1430px;
+  padding: 10px;
 }
 
 </style>
