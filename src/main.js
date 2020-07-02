@@ -5,11 +5,16 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import china from 'echarts/map/json/china.json'
+
 
 // VUE 使用echarts
 Vue.prototype.$echarts = echarts
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+
+// 引入中国地图
+echarts.registerMap('china', china)
 
 /* eslint-disable no-new */
 new Vue({

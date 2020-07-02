@@ -103,11 +103,11 @@
     </el-header>
   </el-container>
 
-  <el-container>
-    <div class="main">
-        <router-view></router-view>
-    </div>
-  </el-container>
+  
+  <div class="main">
+      <router-view></router-view>
+  </div>
+  
 </div>
 </template>
 
@@ -253,7 +253,7 @@
   position: relative;
   left: 60px;
   padding: 0;
-  width:1430px;
+  width:1420px;
   padding: 10px;
 }
 

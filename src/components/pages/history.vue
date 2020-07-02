@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-      <h1>This history</h1>
+      <h1>History</h1>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Histroy',
+    name: 'History',
     data(){
-        return {
+        return{
 
         }
     }
