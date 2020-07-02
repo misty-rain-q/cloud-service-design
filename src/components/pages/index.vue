@@ -187,7 +187,7 @@ export default {
         }
     },
     mounted(){
-    this.getEchartData1()  
+        this.getEchartData1();
     },
     methods: {
         tes(){this.$router.replace('/dialog')},
@@ -250,7 +250,7 @@ export default {
             };
             myChart.setOption(option);
             window.addEventListener("resize", function() {
-            myChart.resize();
+                myChart.resize();
             });
             }
         }
@@ -263,7 +263,7 @@ export default {
     
 }
 .welcome{
-    margin-right: 1250px;
+    margin-right: 1220px;
     font-weight: 800;
 }
 .spy-txt{
@@ -358,6 +358,7 @@ export default {
 }
 .portal-div{
     background-color: white;
+    cursor: pointer;
 }
 .line{
     margin: 30px -80px 20px 30px;
