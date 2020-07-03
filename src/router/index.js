@@ -7,9 +7,21 @@ import Visitor from '@/components/pages/Visitor'
 import History from '@/components/pages/History'
 import Settings from '@/components/pages/Settings'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
 import Customer from '@/components/pages/Customer'
 import Order from '@/components/pages/Order'
 import Statistics from '@/components/pages/Statistics'
+
+//settings
+import DialogRule from '@/components/pages/settings/DialogRule'
+import DistributionRule from '@/components/pages/settings/DistributionRule'
+
+//statistics
+import AccessStats from '@/components/pages/statistics/AccessStats'
+import WorkQualityStats from '@/components/pages/statistics/WorkQualityStats'
+import WorkQuantityStats from '@/components/pages/statistics/WorkQuantityStats'
+import { registerMap } from 'echarts'
+
 // import { component } from 'vue/types/umd'
 
 Vue.use(Router)
@@ -30,6 +42,10 @@ export default new Router({
             path: '/login',
             component: Login
         },
+        {
+            path: '/register',
+            component: Register
+        },
         // {
         //     path: '/register',
         //     component: Register
@@ -37,7 +53,8 @@ export default new Router({
         {
             path: '/',
             component: Base,
-            children: [{
+            children: [,
+                {
                     path: 'index',
                     component: Index
                 },
