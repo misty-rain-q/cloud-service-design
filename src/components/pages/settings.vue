@@ -17,8 +17,11 @@
 export default {
     name: 'Settings',
     data(){
-      form_data: '';
-      email: '11938898@163.com';
+      return {
+        form_data: 'd',
+        email: '11938898@163.com',
+      }
+      
     }
 }
 </script>

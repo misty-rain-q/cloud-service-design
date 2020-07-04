@@ -2,58 +2,56 @@
   <div>
   <el-container>
     <el-aside width="64px">
-      <div class="logo_bg">
-          <el-avatar class="logo_img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593320237430&di=6162b84f971b2172d4d995373b89786a&imgtype=0&src=http%3A%2F%2Fimg1.iyiou.com%2FCompany%2F2016-05-11%2Fcf-yichuangyunkefu.jpg"></el-avatar>
+      <div @click="logo_click" class="logo_bg">
+          <el-avatar  class="logo_img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593320237430&di=6162b84f971b2172d4d995373b89786a&imgtype=0&src=http%3A%2F%2Fimg1.iyiou.com%2FCompany%2F2016-05-11%2Fcf-yichuangyunkefu.jpg"></el-avatar>
       </div>
 
       <el-menu  class="aside-menu" 
                 background-color="#171C3A"
-                :default-active="this.$route.path"
                 router>
 
         <el-tooltip content="首页" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/index'?'active':'']" index="/index">
+          <el-menu-item @click="getTitle" index="/index">
             <i class="el-icon-s-home"></i>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="会话" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/dialog'?'active':'']" index="dialog">
+          <el-menu-item @click="getTitle" index="dialog">
             <i class="el-icon-s-comment"></i>
-            <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="访客" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/visitor'?'active':'']" index="visitor">
+          <el-menu-item  @click="getTitle" index="visitor">
             <i class="el-icon-s-custom"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="历史" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/history'?'active':'']" index="history">
+          <el-menu-item @click="getTitle" index="history">
             <i class="el-icon-more"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="客户" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/customer'?'active':'']" index="customer">
+          <el-menu-item @click="getTitle" index="customer">
             <i class="el-icon-s-check"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="工单" placement="right">
-          <el-menu-item :class="[this.activeRoute=='/order'?'active':'']" index="order">
+          <el-menu-item @click="getTitle" index="order">
             <i class="el-icon-s-order"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="统计" placement="right">
-          <el-menu-item :class="[this.activeRoute=='statistics'?'active':'']" index="statistics">
+          <el-menu-item @click="getTitle" index="statistics">
             <i class="el-icon-s-data"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -62,9 +60,8 @@
         <el-divider class="divider"></el-divider>
 
         <el-tooltip content="设置" placement="right">
-          <el-menu-item :class="[this.$route.activeRoute=='/settings'?'active':'']" index="settings">
+          <el-menu-item @click="getTitle" index="settings">
             <i class="el-icon-s-tools"></i>
-            <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
@@ -116,23 +113,45 @@
     name: 'Base',
     data(){
       return {
-        title_list: ['placehoder','首页','会话','访客','历史','客户','工单','统计','设置'], // 无退出
-        title: '首页',
-        user_name: '客服七尾',
-        // activeRoute: 'index'
+        
+        title: '404',
+        user_name: '客服七尾'
       }
     },
     watch: {
-    $route() {
-      this.setRoute();
-    }
+    
     },
     computed: {
 
     },
+    mounted(){
+      this.getTitle();
+    },
     methods: {
-      setRoute() {
-        this.activeRoute = this.$route.path;
+      getTitle(){
+        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置')
+        let index=this.$route.path;
+        if(index=='/index'){
+          this.title=title_list[1];
+        }else if(index=='/dialog'){
+          this.title=title_list[2];
+        }else if(index=='/visitor'){
+          this.title=title_list[3];
+        }else if(index=='/history'){
+          this.title=title_list[4];
+        }else if(index=='/customer'){
+          this.title=title_list[5];
+        }else if(index=='/order'){
+          this.title=title_list[6];
+        }else if(index=='/statistics'){
+          this.title=title_list[7];
+        }else if(index=='/settings'){
+          this.title=title_list[8];
+        }
+      },
+      logo_click(){
+        this.$router.push("/index");
+        
       },
       exit(){
         this.$message({
@@ -164,13 +183,13 @@
   height: 97px;
   width: 64px;
   z-index: 1;
+  cursor: pointer;
 }
 
 .logo_img{
   margin-top: 30px;
 }
 
-/* 此处有BUG, 待调试 */
 .el-menu-item.is-active{
   border-left: solid rgb(0,110,255) 4px;
 }
