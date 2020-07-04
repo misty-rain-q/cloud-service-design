@@ -22,6 +22,9 @@ import WorkQualityStats from '@/components/pages/statistics/WorkQualityStats'
 import WorkQuantityStats from '@/components/pages/statistics/WorkQuantityStats'
 import { registerMap } from 'echarts'
 
+//dialog iconfont import
+import '../assets/iconfont-d/iconfont.css'
+
 // import { component } from 'vue/types/umd'
 
 Vue.use(Router)
