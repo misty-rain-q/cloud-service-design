@@ -2,15 +2,17 @@
     <div class = "login">
       <div class = "container">
         <div class = "box">
-          <img src = "../assets/u41.svg" alt = "">
+          <img id="img" src = "https://ccs.it-doesnt.work/images/%E7%99%BB%E9%99%86/u2.svg" alt = "">
           <div class="form">
               <form action = "">
-                <h3>登录极客营客服云</h3>
-                <div class = "item"><label for = "">账号</label><input type = "text"></div>
-                <div class = "item"><label for = "">密码</label><input type = "password"></div>
-                <div class = "tip">忘记密码请联系客服</div>
+                <h3 class="h3">登录七尾客服云</h3>
+                <div class = "item"><label for = "">账号</label>
+                <input placeholder="请输入注册时填写的邮箱" type = "text"></div>
+                <div class = "item"><label for = "">密码</label><input placeholder="请输入密码"
+                type = "password"></div>
+                <div class = "tip">忘记密码请联系客服人员</div>
                 <el-row>
-                   <el-button class="item btn"
+                   <el-button class="item btn" type="warning"
                    @click="login">登录</el-button>
                 </el-row>
                 <div class="register">
@@ -44,33 +46,35 @@
   }
 </script>
 
-<style>
+<style scoped>
   .container{
     width: 1169px;
-    height: 864px;
+    height: 500px;
     margin:0 auto;
   }
   .box{
      margin-top: 160px;
      height: 507px;
   }
-  img{
+  #img{
     width: 600px;
     height: 479px;
   }
   .form{
     float:right;
     width:439px;
-    height:507px;
-
+    
   }
   form{
     background-color: rgb(0,110,255);
     padding:85px 40px;
     color: #fff;
-     }
-  h3{
+    border-radius: 5px;
+    height:350px;
+  }
+  .h3{
     text-align: left;
+    margin-top: 10px;
     font-family: PingFangSC-Semibold,"PingFang SC Semibold", "PingFang SC", sans-serif;
     font-size: 32px;
     font-weight: 650px;
@@ -107,7 +111,7 @@
      margin-bottom: 39px;
     }
     .item.btn{
-        background-color: rgb(225,145,56);
+        background-color: rgb(255,145,56);
         text-align: center;
      }
     .register{

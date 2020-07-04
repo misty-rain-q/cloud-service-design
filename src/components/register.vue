@@ -2,15 +2,18 @@
     <div class = "rigister">
       <div class = "container">
         <div class = "box">
-          <img src = "../assets/u41.svg" alt = "">
+          <img src = "https://ccs.it-doesnt.work/images/%E6%B3%A8%E5%86%8C/u41.svg" alt = "">
           <div class="form">
               <form action = "">
-                <h3>注册极客营客服云</h3>
-                <div class = "item"><label for = "">账号</label><input type = "text"></div>
-                <div class = "item"><label for = "">密码</label><input type = "password"></div>
-                <div class = "item"><label for = "">验证码</label><input type="number"></div>
+                <h3>注册七尾客服云</h3>
+                <div class = "item"><label for = "">账号</label>
+                <input placeholder="请输入邮箱或者手机号码" type = "text"></div>
+                <div class = "item"><label for = "">密码</label>
+                <input placeholder="请输入密码" type = "password"></div>
+                <div class = "item"><label for = "">验证码</label>
+                <input placeholder="请输入右侧图形验证码" type="text"></div>
                 <el-row>
-                   <el-button class="item btn"
+                   <el-button class="item btn" type="warning"
                    @click="register">注册</el-button>
                 </el-row>
                 <div class="login">
@@ -44,10 +47,10 @@
   }
 </script>
 
-<style>
+<style scoped>
   .container{
     width: 1169px;
-    height: 864px;
+    height: 500px;
     margin:0 auto;
   }
   .box{
@@ -68,7 +71,9 @@
     background-color: rgb(0,110,255);
     padding:85px 40px;
     color: #fff;
-     }
+    border-radius: 5px;
+    height:350px;
+}
   h3{
     text-align: left;
     font-family: PingFangSC-Semibold,"PingFang SC Semibold", "PingFang SC", sans-serif;
@@ -101,8 +106,9 @@
     outline-style: none;
    }
     .item.btn{
-        background-color: rgb(225,145,56);
+        background-color: rgb(255,145,56);
         text-align: center;
+        margin-top: 20px;
      }
     .login{
          color: white;
