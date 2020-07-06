@@ -12,6 +12,15 @@ import Customer from '@/components/pages/Customer'
 import Order from '@/components/pages/Order'
 import Statistics from '@/components/pages/Statistics'
 
+//order
+import AllOrder from '@/components/pages/order/components/AllOrder'
+import Waiting from '@/components/pages/order/components/Waiting'
+import Created from '@/components/pages/order/components/Created'
+import Copied from '@/components/pages/order/components/Copied'
+import Dealing from '@/components/pages/order/components/Dealing'
+import Finished from '@/components/pages/order/components/Finished'
+
+
 //settings
 import DialogRule from '@/components/pages/settings/DialogRule'
 import DistributionRule from '@/components/pages/settings/DistributionRule'
@@ -83,7 +92,33 @@ export default new Router({
                 },
                 {
                     path: 'order',
-                    component: Order
+                    component: Order,
+                    children: [,
+                      {
+                        path:'allOrder',
+                        component:AllOrder
+                      },
+                      {
+                        path:'waiting',
+                        component:Waiting
+                      },
+                      {
+                        path:'created',
+                        component:Created
+                      },
+                      {
+                        path:'copied',
+                        component:Copied
+                      },
+                      {
+                        path:'dealing',
+                        component:Dealing
+                      },
+                      {
+                        path:'finished',
+                        component:Finished
+                      },
+                    ]
                 },
                 {
                     path: 'statistics',
