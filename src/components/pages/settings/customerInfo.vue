@@ -1,0 +1,20 @@
+<template>
+  <div class="container">
+    客户信息
+  </div>
+</template>
+
+<script>
+export default {
+    name: '',
+    data(){
+        return{
+            
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+</style>
