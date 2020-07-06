@@ -63,15 +63,13 @@ export default {
 <style scoped>
 .container{
   position: fixed;
-  display:flex;
-  flex-direction: row;
 }
 .settings-menu{
-    width: 300px;
-    height: 650px;
-    text-align: left;
-    padding-top: 10px;
-    border-radius: 5px;
+  width: 300px;
+  height: 650px;
+  text-align: left;
+  padding-top: 10px;
+  border-radius: 5px;
 }
 .el-menu-item.is-active{
   border-left: solid rgb(0,110,255) 4px;
@@ -80,6 +78,11 @@ export default {
   border-radius: 5px;
   background-color: white;
   margin-left: 10px;
-  width: 1110px;
+  width: 1100px;
+  height: 100%;
+  position: absolute;
+  left: 300px;
+  top: 5px;
+  padding: 20px; 
 }
 </style>

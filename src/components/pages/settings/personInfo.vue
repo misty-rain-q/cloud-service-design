@@ -27,6 +27,15 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.info-title{
+  position: absolute;
+  left: 30px;
+  top: 15px;
+}
 .input-label{
   font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
   font-weight: 400;
