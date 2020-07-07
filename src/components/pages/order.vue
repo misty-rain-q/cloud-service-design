@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- 工单菜单 -->
     <el-menu class="order-menu" default-active="/order/allOrder" router>
       <el-menu-item-group>
         <template slot="title">工单</template>
@@ -12,6 +13,7 @@
       </el-menu-item-group>
     </el-menu>
 
+    <!-- 工单界面右上角按钮 -->
     <div class="topButton">
       <el-button class="addButton">添加工单</el-button>
       <el-button class="batchButton">批量修改状态</el-button>
@@ -63,12 +65,14 @@ export default {
   }
 
 
-  .el-button{
+  .batchButton,.exportButton{
     background-color: transparent;
     color: rgb(153,153,153);
   }
   .addButton{
     background-color: rgb(0,110,255);
-    color: #FFFFFF;
+    color:#FFFFFF;
   }
+
+
 </style>

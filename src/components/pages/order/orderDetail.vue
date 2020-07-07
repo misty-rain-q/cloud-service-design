@@ -1,7 +1,9 @@
 <template>
   <div class="orderDetail">
+    <!-- 六个选择下拉框 -->
+    <!-- 需注意，此处的显示为placeholder,并非默认选项 -->
     <div class="select">
-      <el-select class="firstRow" v-model="value" placeholder="全部状态" >
+      <el-select class="orderFirstRow" v-model="statusValue" placeholder="全部状态" >
         <el-option
           v-for="item in statusOptions"
           :key="item.value"
@@ -9,7 +11,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-select class="firstRow" v-model="value" placeholder="全部优先级">
+      <el-select class="orderFirstRow" v-model="priorityValue" placeholder="全部优先级">
         <el-option
           v-for="item in priorityOptions"
           :key="item.value"
@@ -17,7 +19,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-select class="firstRow" v-model="value" placeholder="全部分类">
+      <el-select class="orderFirstRow" v-model="categoryValue" placeholder="全部分类">
         <el-option
           v-for="item in categoryOptions"
           :key="item.value"
@@ -25,7 +27,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-select class="firstRow" v-model="value" placeholder="全部渠道">
+      <el-select class="orderFirstRow" v-model="channelValue" placeholder="全部渠道">
         <el-option
           v-for="item in channelOptions"
           :key="item.value"
@@ -33,7 +35,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-select class="firstRow" v-model="value" placeholder="全部客服组">
+      <el-select class="orderFirstRow" v-model="groupValue" placeholder="全部客服组">
         <el-option
           v-for="item in groupOptions"
           :key="item.value"
@@ -41,7 +43,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-select class="firstRow" v-model="value" placeholder="全部客服">
+      <el-select class="orderFirstRow" v-model="servicerValue" placeholder="全部客服">
         <el-option
           v-for="item in servicerOptions"
           :key="item.value"
@@ -50,7 +52,9 @@
         </el-option>
       </el-select>
     </div>
-    <div class="secondLine">
+    
+    <!-- 日期选择及关键字搜索 -->
+    <div class="orderSecondLine">
       <div class="clock">
         <el-date-picker
           v-model="value1"
@@ -59,7 +63,7 @@
         </el-date-picker>
         <div class="wave">~</div>
         <el-date-picker
-          v-model="value1"
+          v-model="value2"
           type="date"
           placeholder="请选择日期">
         </el-date-picker>
@@ -69,6 +73,8 @@
         <el-button class="searchButton">搜索</el-button>
       </div>
     </div>
+    
+    <!-- 工单表 -->
     <div class="orderTable">
        <router-view></router-view>
     </div>
@@ -200,15 +206,23 @@
               label: '大亮子'
             },
           ],
-          pickerOptions: {
-            disabledDate(time) {
-              return time.getTime() > Date.now();
-            }
-          },
-          input: ''
+          statusValue:'',
+          priorityValue:'',
+          categoryValue:'',
+          channelValue:'',
+          groupValue:'',
+          servicerValue:'',
+          value1:'',
+          value2:'',
+          input: '',
+          // created(){
+          //   this.value = this.statusOptions[0].label
+          // }
         }
     }
   }
+
+
 </script>
 
 <style>
@@ -227,19 +241,19 @@
     justify-content: space-between;
   }
 
-  .firstRow{
+  .orderFirstRow{
     margin-left: 5px;
     margin-right: 5px;
     width: 160px;
     height: 40px;
     border-radius: 2px;
   }
-  .firstRow .el-input__inner{
+  .orderFirstRow .el-input__inner{
       background-color: #F2F2F2;
       border: transparent;
   }
 
-  .second-line{
+  .orderSecondLine{
     display: flex;
   }
 

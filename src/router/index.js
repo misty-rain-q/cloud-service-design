@@ -27,6 +27,8 @@ import DistributionRule from '@/components/pages/settings/DistributionRule'
 
 //statistics
 import AccessStats from '@/components/pages/statistics/AccessStats'
+import CheckInStats from '@/components/pages/statistics/CheckInStats'
+import StatisticsOverall from '@/components/pages/statistics/StatisticsOverall'
 import WorkQualityStats from '@/components/pages/statistics/WorkQualityStats'
 import WorkQuantityStats from '@/components/pages/statistics/WorkQuantityStats'
 import { registerMap } from 'echarts'
@@ -93,7 +95,7 @@ export default new Router({
                 {
                     path: 'order',
                     component: Order,
-                    children: [,
+                    children: [
                       {
                         path:'allOrder',
                         component:AllOrder
@@ -122,7 +124,29 @@ export default new Router({
                 },
                 {
                     path: 'statistics',
-                    component: Statistics
+                    component: Statistics,
+                    children: [
+                      {
+                        path:'statisticsOverall',
+                        component:StatisticsOverall
+                      },
+                      {
+                        path:'workQuantityStats',
+                        component:WorkQuantityStats
+                      },
+                      {
+                        path:'workQualityStats',
+                        component:WorkQualityStats
+                      },
+                      {
+                        path:'checkInStats',
+                        component:CheckInStats
+                      },
+                      {
+                        path:'accessStats',
+                        component:AccessStats
+                      },
+                    ]
                 }
             ]
         }
