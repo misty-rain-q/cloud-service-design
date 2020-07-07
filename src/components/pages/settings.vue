@@ -23,7 +23,7 @@
           <el-menu-item index="/settings/autoReply">自动回复</el-menu-item>
           <el-menu-item index="/settings/dialogRule">对话规则</el-menu-item>
           <el-menu-item index="/settings/dialogComment">会话评价</el-menu-item>
-          <el-menu-item index="/settings/distributionRule">分配评价</el-menu-item>
+          <el-menu-item index="/settings/distributionRule">分配规则</el-menu-item>
           <el-menu-item index="/settings/customerInfo">客户信息</el-menu-item>
           <el-menu-item index="/settings/customerTag">客户标签</el-menu-item>
           <el-menu-item index="/settings/blacklist">黑名单</el-menu-item>
@@ -83,6 +83,6 @@ export default {
   position: absolute;
   left: 300px;
   top: 5px;
-  padding: 20px; 
+  text-align: left;
 }
 </style>

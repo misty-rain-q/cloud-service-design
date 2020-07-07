@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    客户标签
+    ->客户标签
   </div>
 </template>
 

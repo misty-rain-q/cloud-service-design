@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    客户信息
+    ->客户信息
   </div>
 </template>
 

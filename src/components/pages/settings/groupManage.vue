@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    分组管理
+    ->分组管理
   </div>
 </template>
 
