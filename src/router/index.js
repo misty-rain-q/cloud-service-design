@@ -94,6 +94,7 @@ export default new Router({
                 },
                 {
                     path: 'order',
+                    redirect: 'order/allorder',
                     component: Order,
                     children: [
                       {
@@ -124,6 +125,7 @@ export default new Router({
                 },
                 {
                     path: 'statistics',
+                    redirect: 'statistics/statisticsOverall',
                     component: Statistics,
                     children: [
                       {

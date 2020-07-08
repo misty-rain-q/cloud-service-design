@@ -6,6 +6,7 @@
           <el-avatar  class="logo_img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593320237430&di=6162b84f971b2172d4d995373b89786a&imgtype=0&src=http%3A%2F%2Fimg1.iyiou.com%2FCompany%2F2016-05-11%2Fcf-yichuangyunkefu.jpg"></el-avatar>
       </div>
 
+      <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
       <el-menu  class="aside-menu"
                 background-color="#171C3A"
                 default-active="/index"
@@ -45,14 +46,14 @@
         </el-tooltip>
 
         <el-tooltip content="工单" placement="right">
-          <el-menu-item @click="getTitle" index="/order/allOrder">
+          <el-menu-item @click="getTitle" index="/order">
             <i class="el-icon-s-order"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="统计" placement="right">
-          <el-menu-item @click="getTitle" index="/statistics/statisticsOverall">
+          <el-menu-item @click="getTitle" index="/statistics">
             <i class="el-icon-s-data"></i>
             <span slot="title"></span>
           </el-menu-item>

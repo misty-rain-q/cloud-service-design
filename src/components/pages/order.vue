@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <!-- 工单菜单 -->
+    <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
     <el-menu class="order-menu" default-active="/order/allOrder" router>
       <el-menu-item-group>
         <template slot="title">工单</template>
@@ -21,7 +22,6 @@
     </div>
 
     <orderDetail></orderDetail>
-
   </div>
 </template>
 

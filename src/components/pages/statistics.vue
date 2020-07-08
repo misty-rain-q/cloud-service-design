@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <!-- 统计页面菜单 -->
+    <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
     <el-menu class="statistics-menu" default-active="/statistics/statisticsOverall" router>
       <el-menu-item-group>
         <template slot="title">在线客服</template>
