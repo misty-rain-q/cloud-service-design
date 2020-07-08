@@ -51,9 +51,9 @@
         <div class="pageJump">
           <span>共100条</span>
           <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-          <el-select class="pageSelect" v-model="pageValue" placeholder="10条/页">
+          <el-select class="pageSelect" v-model="pageValue">
             <el-option
-              v-for="item in options"
+              v-for="item in pageOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -77,7 +77,7 @@
           groupOptions: [
             {
               value: '选项1',
-              label: '全部'
+              label: '全部客服组'
             },
             {
               value: '选项2',
@@ -196,7 +196,7 @@
               offlineTime:"1h"
             },
           ],
-          options: [
+          pageOptions: [
             {
               value: '选项1',
               label: '10条/页'
@@ -220,7 +220,13 @@
           ],
           pageValue:''
         }
-      }
+      },
+      created: function(){
+        this.groupValue = this.groupOptions[0].value;
+        this.servicerValue = this.servicerOptions[0].value;
+        this.pageValue = this.pageOptions[0].value;
+      },
+
   }
 </script>
 

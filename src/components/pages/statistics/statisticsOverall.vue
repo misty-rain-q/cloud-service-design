@@ -18,7 +18,7 @@
         </el-date-picker>
       </div>
       <div class="select">
-        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
+        <el-select class="selectBox" v-model="groupValue">
           <el-option
             v-for="item in groupOptions"
             :key="item.value"
@@ -26,7 +26,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
+        <el-select class="selectBox" v-model="servicerValue">
           <el-option
             v-for="item in servicerOptions"
             :key="item.value"
@@ -116,7 +116,7 @@ export default {
         groupOptions: [
           {
             value: '选项1',
-            label: '全部'
+            label: '全部客服组'
           },
           {
             value: '选项2',
@@ -154,6 +154,10 @@ export default {
         value1:'',
         value2:''
       }
+    },
+    created: function(){
+      this.groupValue = this.groupOptions[0].value;
+      this.servicerValue = this.servicerOptions[0].value;
     },
     mounted() {
         this.getEchartData1();
@@ -502,31 +506,31 @@ export default {
   }
 
   #dialog{
-      background-color: white;
-      border-radius: 10px;
-      margin-top:40px;
-      padding: 4px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top:40px;
+    padding: 4px;
   }
   #customerSrc{
-      background-color: white;
-      border-radius: 10px;
-      padding: 4px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 4px;
   }
   #comment{
-      background-color: white;
-      border-radius: 10px;
-      padding: 4px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 4px;
   }
   .pie{
-      margin-top: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
   }
   #region {
-      background-color: white;
-      border-radius: 10px;
-      padding: 4px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 4px;
   }
 
   .statsFirstRow{

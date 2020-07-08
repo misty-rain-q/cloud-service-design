@@ -60,19 +60,32 @@ export default {
     position: fixed;
     left: 1019px;
     display: flex;
-    flex-direction: row;
-    float: right;
   }
 
+  .addButton{
+    background-color: rgb(0,110,255);
+    color:#FFFFFF;
+  }
+  
+  .addButton:hover{
+    background-color: rgb(23,123,255);
+    color:#FFFFFF;
+  }
 
   .batchButton,.exportButton{
     background-color: transparent;
     color: rgb(153,153,153);
   }
-  .addButton{
-    background-color: rgb(0,110,255);
-    color:#FFFFFF;
+
+  .batchButton:hover,.exportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
   }
+
+
+
+
 
 
 </style>

@@ -70,7 +70,7 @@
 
     <!-- 浏览量 -->
     <div id="dialog" ref="dialog" style="width: 100%;height:400px;"></div>
-    
+
     <div class="accessTable">
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
@@ -81,7 +81,7 @@
         <el-table-column label="平均页面浏览时长" prop="averagePageTime" width="213" align="center"></el-table-column>
       </el-table>
     </div>
-    
+
     </el-scrollbar>
   </div>
 </template>
@@ -94,7 +94,7 @@ export default {
           groupOptions: [
             {
               value: '选项1',
-              label: '全部'
+              label: '全部客服组'
             },
             {
               value: '选项2',
@@ -176,6 +176,10 @@ export default {
             }
           ]
         }
+    },
+    created: function(){
+      this.groupValue = this.groupOptions[0].value;
+      this.servicerValue = this.servicerOptions[0].value;
     },
     mounted() {
         this.getEchartData1();
@@ -344,7 +348,7 @@ export default {
     line-height: 50px;
     font-feature-settings: "kern";
   }
-  
+
   .el-table{
     margin-top: 33px;
   }

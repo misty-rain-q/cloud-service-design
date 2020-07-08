@@ -68,7 +68,7 @@
         </el-tooltip>
 
         <el-tooltip content="退出" placement="right">
-          <el-menu-item @click="exit" index="login">
+          <el-menu-item @click="exit" index="/login">
             <i class="el-icon-right"></i>
             <span slot="title"></span>
           </el-menu-item>

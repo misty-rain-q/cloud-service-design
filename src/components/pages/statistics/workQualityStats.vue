@@ -84,7 +84,7 @@
     </div>
 
     <div class="workQualityTable">
-      <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
+      <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
         <el-table-column label="客服昵称" prop="servicerName" width="91" align="center"></el-table-column>
         <el-table-column label="有效会话数量" prop="validSessionNum" width="130" align="center"></el-table-column>
@@ -101,9 +101,9 @@
       <div class="pageJump">
         <span>共100条</span>
         <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-        <el-select class="pageSelect" v-model="pageValue" placeholder="10条/页">
+        <el-select class="pageSelect" v-model="pageValue">
           <el-option
-            v-for="item in options"
+            v-for="item in pageOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -127,7 +127,7 @@ export default {
           groupOptions: [
             {
               value: '选项1',
-              label: '全部'
+              label: '全部客服组'
             },
             {
               value: '选项2',
@@ -286,7 +286,7 @@ export default {
               noEvaluation:'50'
             }
           ],
-          options:[
+          pageOptions:[
             {
               value: '选项1',
               label: '10条/页'
@@ -310,7 +310,12 @@ export default {
           ],
           pageValue:''
         }
-        
+
+    },
+    created: function(){
+      this.groupValue = this.groupOptions[0].value;
+      this.servicerValue = this.servicerOptions[0].value;
+      this.pageValue = this.pageOptions[0].value;
     },
     mounted() {
         this.getEchartData1();

@@ -22,8 +22,26 @@ import Finished from '@/components/pages/order/components/Finished'
 
 
 //settings
+import PersonInfo from '@/components/pages/settings/PersonInfo'
+import SettingsNotice from '@/components/pages/settings/SettingsNotice'
+import CompanyInfo from '@/components/pages/settings/CompanyInfo'
+import ServicerManage from '@/components/pages/settings/ServicerManage'
+import GroupManage from '@/components/pages/settings/GroupManage'
+import RoleManage from '@/components/pages/settings/RoleManage'
+import CommonWords from '@/components/pages/settings/CommonWords'
+import AutoReply from '@/components/pages/settings/AutoReply'
 import DialogRule from '@/components/pages/settings/DialogRule'
+import DialogComment from '@/components/pages/settings/DialogComment'
 import DistributionRule from '@/components/pages/settings/DistributionRule'
+import CustomerInfo from '@/components/pages/settings/CustomerInfo'
+import CustomerTag from '@/components/pages/settings/CustomerTag'
+import Blacklist from '@/components/pages/settings/Blacklist'
+import BaseSettings from '@/components/pages/settings/BaseSettings'
+import OrderType from '@/components/pages/settings/OrderType'
+import OperationLog from '@/components/pages/settings/OperationLog'
+import MessageNotice from '@/components/pages/settings/MessageNotice'
+
+
 
 //statistics
 import AccessStats from '@/components/pages/statistics/AccessStats'
@@ -35,6 +53,7 @@ import { registerMap } from 'echarts'
 
 //dialog iconfont import
 import '../assets/iconfont-d/iconfont.css'
+// import { component } from 'vue/types/umd'
 
 // import { component } from 'vue/types/umd'
 
@@ -83,10 +102,6 @@ export default new Router({
                 {
                     path: 'history',
                     component: History
-                },
-                {
-                    path: 'settings',
-                    component: Settings
                 },
                 {
                     path: 'customer',
@@ -149,7 +164,85 @@ export default new Router({
                         component:AccessStats
                       },
                     ]
-                }
+                },
+                {
+                    path: 'settings',
+                    component: Settings,
+                    children: [,
+                        {
+                            path: 'personInfo',
+                            component: PersonInfo
+                        },
+                        {
+                            path: 'settingsNotice',
+                            component: SettingsNotice
+                        },
+                        {
+                            path: 'companyInfo',
+                            component: CompanyInfo
+                        },
+                        {
+                            path: 'servicerManage',
+                            component: ServicerManage
+                        },
+                        {
+                            path: 'groupManage',
+                            component: GroupManage
+                        },
+                        {
+                            path: 'roleManage',
+                            component: RoleManage
+                        },
+                        {
+                            path: 'commonWords',
+                            component: CommonWords
+                        },
+                        {
+                            path: 'autoReply',
+                            component: AutoReply
+                        },
+                        {
+                            path: 'dialogRule',
+                            component: DialogRule
+                        },
+                        {
+                            path: 'dialogComment',
+                            component: DialogComment
+                        },
+                        {
+                            path: 'distributionRule',
+                            component: DistributionRule
+                        },
+                        {
+                            path: 'customerInfo',
+                            component: CustomerInfo
+                        },
+                        {
+                            path: 'customerTag',
+                            component: CustomerTag
+                        },
+                        {
+                            path: 'blacklist',
+                            component: Blacklist
+                        },
+                        {
+                            path: 'baseSettings',
+                            component: BaseSettings
+                        },
+                        {
+                            path: 'orderType',
+                            component: OrderType
+                        },
+                        {
+                            path: 'operationLog',
+                            component: OperationLog
+                        },
+                        {
+                            path: 'messageNotice',
+                            component: MessageNotice
+                        }
+                    ]
+                },
             ]
         }
     ]

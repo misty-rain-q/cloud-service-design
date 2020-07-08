@@ -4,21 +4,34 @@
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
         <el-table-column type="selection" width="58" align="center"></el-table-column>
-        <el-table-column label="工单ID" prop="id" width="98" align="center"></el-table-column>
+        <el-table-column label="工单ID" prop="id" width="98" align="center">
+          <template slot-scope="scope">
+            <span class="toBeBlue">{{ scope.row.id }}</span>
+          </template>
+        </el-table-column>
         <el-table-column label="工单标题" prop="title" width="141" align="center"></el-table-column>
         <el-table-column label="工单渠道" prop="channel" width="141" align="center"></el-table-column>
-        <el-table-column label="工单状态" prop="status" width="141" align="center"></el-table-column>
+        <el-table-column label="工单状态" prop="status" width="141" align="center">
+          <template slot-scope="scope">
+            <el-tag type="danger" hit="true" style="width:64px;height:24px;
+                  border-radius:0px;top:9px;line-height: 24px;">{{ scope.row.status }}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="客户姓名" prop="servicerName" width="141" align="center"></el-table-column>
         <el-table-column label="最后更新时间" prop="latestTime" width="141" align="center"></el-table-column>
-        <el-table-column label="操作" prop="opration" width="141" align="center"></el-table-column>
+        <el-table-column label="操作" prop="opration" width="141" align="center">
+          <template slot-scope="scope">
+            <span class="toBeBlue">{{ scope.row.opration }}</span>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <div class="pageJump">
       <span>共100条</span>
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-      <el-select class="pageSelect" v-model="value" placeholder="10条/页">
+      <el-select class="pageSelect" v-model="pageValue">
         <el-option
-          v-for="item in options"
+          v-for="item in pageOptions"
           :key="item.value"
           :label="item.label"
           :value="item.value">
@@ -129,7 +142,7 @@
             opration: '查看详情  接单'
           }
         ],
-        options: [
+        pageOptions: [
           {
             value: '选项1',
             label: '10条/页'
@@ -150,11 +163,13 @@
             value: '选项5',
             label: '50条/页'
           }
-        ]
-
+        ],
+        pageValue:''
       }
+    },
+    created:function(){
+      this.pageValue = this.pageOptions[0].value;
     }
-
   }
 </script>
 
@@ -225,6 +240,10 @@
   .buttonJump span{
     text-align: center;
     line-height: 30px;
+  }
+
+  .toBeBlue{
+    color: rgb(0,110,255);
   }
 
 </style>

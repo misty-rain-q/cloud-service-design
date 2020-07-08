@@ -73,7 +73,7 @@
         <!-- 单会话时长统计 -->
         <div id="time" ref="time" style="width: 50%;height:400px;"></div>
       </div>
-      
+
       <div class="workQuantityTable">
         <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
                   :header-cell-style="{'background-color':'#e6f1ff'}">
@@ -89,9 +89,9 @@
         <div class="pageJump">
           <span>共100条</span>
           <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-          <el-select class="pageSelect" v-model="pageValue" placeholder="10条/页">
+          <el-select class="pageSelect" v-model="pageValue">
             <el-option
-              v-for="item in options"
+              v-for="item in pageOptions"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -115,7 +115,7 @@ export default {
         groupOptions: [
           {
             value: '选项1',
-            label: '全部'
+            label: '全部客服组'
           },
           {
             value: '选项2',
@@ -254,7 +254,7 @@ export default {
             averageSessionTime:'9m18s'
           }
         ],
-        options: [
+        pageOptions: [
           {
             value: '选项1',
             label: '10条/页'
@@ -278,6 +278,11 @@ export default {
         ],
         pageValue:''
       }
+    },
+    created: function(){
+      this.groupValue = this.groupOptions[0].value;
+      this.servicerValue = this.servicerOptions[0].value;
+      this.pageValue = this.pageOptions[0].value;
     },
     mounted() {
         this.getEchartData1();
@@ -507,17 +512,17 @@ export default {
     line-height: 50px;
     font-feature-settings: "kern";
   }
-  
+
   .el-table{
     margin-top: 10px;
   }
-  
+
   .pageJump{
     display: flex;
     margin-top: 26px;
     float: right;
   }
-  
+
   .pageJump span{
     text-align: center;
     line-height: 40px;
@@ -536,7 +541,7 @@ export default {
      border: 1px solid rgb(118, 118, 118);
      border-radius: 2px;
   }
-  
+
   .pageSelect .el-input__inner{
     background-color: #FFFFFF;
     height: 32px;
@@ -545,14 +550,14 @@ export default {
     color: #000000;
     border: transparent;
   }
-  
+
   .jumpNum{
     width: 48px;
     height: 30px;
     margin-top: 2px;
     box-sizing: border-box;
   }
-  
+
   .jumpNum .el-input__inner{
     width: 41px;
     height: 30px;
@@ -560,7 +565,7 @@ export default {
     border: 1px solid rgb(215, 215, 215);
     border-radius: 2px;
   }
-  
+
   .buttonJump{
     width: 48px;
     height: 30px;
@@ -569,11 +574,11 @@ export default {
     padding: 0;
     box-sizing: content-box;
   }
-  
+
   .buttonJump span{
     text-align: center;
     line-height: 30px;
   }
-  
-  
+
+
 </style>
