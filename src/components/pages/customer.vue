@@ -2,7 +2,7 @@
   <div class="container">
     <div class = "top"><!--TOP是顶部的设置栏-->
       <!--筛选客户等级-->
-      <el-select v-model="Setting" placeholder="客户等级">
+      <el-select v-model="Setting1" placeholder="客户等级">
         <el-option
           v-for="item in CustomerOptions"
           :key="item.value"
@@ -13,7 +13,7 @@
       </el-select>
 
        <!--筛选客户来源-->
-      <el-select v-model="Setting" placeholder="全部来源">
+      <el-select v-model="Setting2" placeholder="全部来源">
         <el-option
           v-for="item in SourceOptions"
           :key="item.value"
@@ -302,7 +302,8 @@ export default {
           }
         ],
         /*客户等级选项*/
-        Setting: "",
+        Setting1: "",
+        Setting2: "",
         searchKeyword:"",
         CustomerOptions: [{
           value: '选项1',
