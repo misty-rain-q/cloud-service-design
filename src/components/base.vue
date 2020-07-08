@@ -6,8 +6,9 @@
           <el-avatar  class="logo_img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593320237430&di=6162b84f971b2172d4d995373b89786a&imgtype=0&src=http%3A%2F%2Fimg1.iyiou.com%2FCompany%2F2016-05-11%2Fcf-yichuangyunkefu.jpg"></el-avatar>
       </div>
 
-      <el-menu  class="aside-menu" 
+      <el-menu  class="aside-menu"
                 background-color="#171C3A"
+                default-active="/index"
                 router>
 
         <el-tooltip content="首页" placement="right">
@@ -17,41 +18,41 @@
         </el-tooltip>
 
         <el-tooltip content="会话" placement="right">
-          <el-menu-item @click="getTitle" index="dialog">
+          <el-menu-item @click="getTitle" index="/dialog">
             <i class="el-icon-s-comment"></i>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="访客" placement="right">
-          <el-menu-item  @click="getTitle" index="visitor">
+          <el-menu-item  @click="getTitle" index="/visitor">
             <i class="el-icon-s-custom"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="历史" placement="right">
-          <el-menu-item @click="getTitle" index="history">
+          <el-menu-item @click="getTitle" index="/history">
             <i class="el-icon-more"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="客户" placement="right">
-          <el-menu-item @click="getTitle" index="customer">
+          <el-menu-item @click="getTitle" index="/customer">
             <i class="el-icon-s-check"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="工单" placement="right">
-          <el-menu-item @click="getTitle" index="order">
+          <el-menu-item @click="getTitle" index="/order/allOrder">
             <i class="el-icon-s-order"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="统计" placement="right">
-          <el-menu-item @click="getTitle" index="statistics">
+          <el-menu-item @click="getTitle" index="/statistics/statisticsOverall">
             <i class="el-icon-s-data"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -60,7 +61,7 @@
         <el-divider class="divider"></el-divider>
 
         <el-tooltip content="设置" placement="right">
-          <el-menu-item @click="getTitle" index="settings">
+          <el-menu-item @click="getTitle" index="/settings">
             <i class="el-icon-s-tools"></i>
           </el-menu-item>
         </el-tooltip>
@@ -79,7 +80,7 @@
   <el-container>
     <el-header class="header">
       <span class="title">{{title}}</span>
-        
+
       <div class="header-right">
         <div class="msg">
           <i class="el-icon-message-solid"></i>
@@ -100,11 +101,11 @@
     </el-header>
   </el-container>
 
-  
+
   <div class="main">
       <router-view></router-view>
   </div>
-  
+
 </div>
 </template>
 
@@ -113,13 +114,13 @@
     name: 'Base',
     data(){
       return {
-        
+
         title: '404',
         user_name: '客服七尾'
       }
     },
     watch: {
-    
+
     },
     computed: {
 
@@ -151,17 +152,17 @@
       },
       logo_click(){
         this.$router.push("/index");
-        
+
       },
       exit(){
         this.$message({
           message: '已经安全退出',
           type: 'success'
         });
-        
+
       }
     },
-    
+
   }
 </script>
 
