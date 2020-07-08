@@ -38,9 +38,50 @@
       <el-button class="statsExportButton">导出当前数据</el-button>
     </div>
 
+    <!-- 五个框框 -->
+    <div class="statsSecondRow">
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">浏览量 (PV)</div>
+        <div class="statsBoxTotalNum">2300</div>
+        <div class="statsBoxValidNum">平均浏览页面20</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">访客量 (UV)</div>
+        <div class="statsBoxTotalNum">30</div>
+        <div class="statsBoxValidNum">跳出率 20%</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">咨询会话数</div>
+        <div class="statsBoxTotalNum">208</div>
+        <div class="statsBoxValidNum">咨询会话率 50%</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总评价数</div>
+        <div class="statsBoxTotalNum">67</div>
+        <div class="statsBoxValidNum">客户评价率 80%</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">好评率</div>
+        <div class="statsBoxTotalNum">78%</div>
+        <div class="statsBoxValidNum">评价率 67%</div>
+      </div>
+    </div>
+
 
     <!-- 浏览量 -->
     <div id="dialog" ref="dialog" style="width: 100%;height:400px;"></div>
+    
+    <div class="accessTable">
+      <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
+                :header-cell-style="{'background-color':'#e6f1ff'}">
+        <el-table-column label="来源类型" prop="source" width="150" align="center"></el-table-column>
+        <el-table-column label="浏览量" prop="pageView" width="213" align="center"></el-table-column>
+        <el-table-column label="访客量" prop="visitorNum" width="213" align="center"></el-table-column>
+        <el-table-column label="访问次数" prop="visitNum" width="213" align="center"></el-table-column>
+        <el-table-column label="平均页面浏览时长" prop="averagePageTime" width="213" align="center"></el-table-column>
+      </el-table>
+    </div>
+    
     </el-scrollbar>
   </div>
 </template>
@@ -89,7 +130,51 @@ export default {
           groupValue:'',
           servicerValue:'',
           value1:'',
-          value2:''
+          value2:'',
+          tableData: [
+            {
+              source: '网页',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            },
+            {
+              source: '手机app',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            },
+            {
+              source: '微信公众号',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            },
+            {
+              source: '微信小程序',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            },
+            {
+              source: '微博',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            },
+            {
+              source: '头条号',
+              pageView: '5000',
+              visitorNum: '300',
+              visitNum: '3000',
+              averagePageTime: '1000',
+            }
+          ]
         }
     },
     mounted() {
@@ -157,13 +242,13 @@ export default {
 </script>
 
 <style scoped>
-#dialog{
-    background-color: white;
-    border-radius: 10px;
-    padding: 4px;
-}
+  #dialog{
+      background-color: white;
+      border-radius: 10px;
+      padding: 4px;
+  }
 
-.statsFirstRow{
+  .statsFirstRow{
     display:flex;
   }
 
@@ -211,6 +296,57 @@ export default {
     color:rgb(204, 204, 204);
     text-align: center;
     border-radius: 2px;
+  }
+
+  .statsSecondRow{
+    display:flex;
+    margin-bottom: 19px;
+  }
+  .statsBoxOverall{
+    width: 161px;
+    height: 178px;
+    margin-top:21px;
+    margin-right:9px;
+    padding-top:14px;
+    padding-left:6px;
+    background-color:rgb(240,245,252);
+    border:1px solid #E6F1FF;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .statsBoxName{
+    width: 149px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 50px;
+    font-feature-settings: "kern";
+  }
+
+  .statsBoxTotalNum{
+    width: 149px;
+    height: 50px;
+    font-size: 36px;
+    font-weight: 650;
+    color: rgba(0, 110, 255, 0.898);
+    line-height: 50px;
+    font-feature-settings: "kern";
+  }
+
+  .statsBoxValidNum{
+    width: 149px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999999;
+    line-height: 50px;
+    font-feature-settings: "kern";
+  }
+  
+  .el-table{
+    margin-top: 33px;
   }
 
 </style>

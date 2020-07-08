@@ -510,7 +510,6 @@ export default {
   
   .el-table{
     margin-top: 10px;
-    margin-left: 20px;
   }
   
   .pageJump{

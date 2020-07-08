@@ -571,7 +571,7 @@ export default {
     flex-direction: row;
 }
 
-.container{
+  .container{
     width: 1040px;
     height: 1869px;
   }
@@ -673,7 +673,6 @@ export default {
   }
   .el-table{
     margin-top: 10px;
-    margin-left: 20px;
   }
 
   .pageJump{
