@@ -5,7 +5,7 @@
                  active-color="rgb(0,110,255)"
                  inactive-color="rgb(204,204,204)">
       </el-switch>
-      <br/>
+      <br/><br/>      
       <span>超过</span>
       <el-input-number  v-model="auto_end_dialog_num" 
                         :min="0"
@@ -19,7 +19,7 @@
                  active-color="rgb(0,110,255)"
                  inactive-color="rgb(204,204,204)">
       </el-switch>
-      <br/>
+      <br/><br/>
       <span>访客离线超过</span>
       <el-input-number  v-model="offline_auto_over_num" 
                         :min="0"
@@ -33,9 +33,9 @@
                  active-color="rgb(0,110,255)"
                  inactive-color="rgb(204,204,204)">
       </el-switch>
-      <br/>
+      <br/><br/>
       <span class="little">正常对话过程中如顾客发送消息时客服已离线，则对话将被自动转接给在线的客服</span>
-      <br/>
+      <br/><br/>
       <span>访客发送消息后</span>
       <el-input-number  v-model="offline_auto_convert_num" 
                         :min="0"
@@ -49,7 +49,7 @@
                  active-color="rgb(0,110,255)"
                  inactive-color="rgb(204,204,204)">
       </el-switch>
-      <br/>
+      <br/><br/>
       <span>开启后顾客进入对话窗时客服就会立即接入对话，客服可以主动与顾客沟通。关闭则必须顾客发送首条消息时客服才接入对话。</span>
   </div>
 </template>
@@ -59,13 +59,13 @@ export default {
     name: 'DialogRule',
     data(){
         return {
-            auto_end_dialog: 'true',
+            auto_end_dialog: true,
             auto_end_dialog_num: '20',
-            offline_auto_over: 'true',
+            offline_auto_over: true,
             offline_auto_over_num: '20',
             offline_auto_convert: 'false',
             offline_auto_convert_num: '20',
-            window_instant_dialog: 'true'
+            window_instant_dialog: true
         }
     }
 }
@@ -73,7 +73,8 @@ export default {
 
 <style scoped>
 .container{
-    background-color: white;
+   text-align: left;
+   padding: 20px;
 }
 span{
     font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
@@ -85,13 +86,19 @@ span{
     font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
     font-weight: 400;
     font-style: normal;
-    line-height: 24px;
+    font-size: 13px;
+    line-height: 16px;
+}
+span{
+    font-size: 13px;
 }
 .start-span{
     font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
     font-weight: 400;
     font-style: normal;
-    line-height: 24px;
+    line-height: 20px;
     color: #333333;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 </style>
