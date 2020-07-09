@@ -2,7 +2,7 @@
   <div class="specificOutContainer">
     <!-- 上方按钮 -->
     <div class="specificOrderTopButton">
-      <el-button class="backButton">< 返回</el-button>
+      <el-button class="backButton" v-on:click='backToOrder'>< 返回</el-button>
       <el-button class="changeStatushButton">更改状态</el-button>
       <el-button class="passingButton">转交工单</el-button>
       <el-button class="editButton">编辑工单</el-button>
@@ -141,6 +141,11 @@
             replyContent:''
 
           }
+      },
+      methods:{
+        backToOrder(){
+          this.$router.go(-1);
+        }
       }
   }
 </script>

@@ -183,7 +183,7 @@
     },
     methods:{
       check(){
-        this.$router.replace('/specificOrder');
+        this.$router.push('/specificOrder');
       }
     }
   }
