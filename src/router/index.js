@@ -12,6 +12,18 @@ import Customer from '@/components/pages/Customer'
 import Order from '@/components/pages/Order'
 import Statistics from '@/components/pages/Statistics'
 
+//order
+import AllOrder from '@/components/pages/order/components/AllOrder'
+import Waiting from '@/components/pages/order/components/Waiting'
+import Created from '@/components/pages/order/components/Created'
+import Copied from '@/components/pages/order/components/Copied'
+import Dealing from '@/components/pages/order/components/Dealing'
+import Finished from '@/components/pages/order/components/Finished'
+import SpecificOrder from '@/components/pages/order/SpecificOrder'
+import ReplyContent from '@/components/pages/order/components/ReplyContent'
+import OperatingLog from '@/components/pages/order/components/OperatingLog'
+
+
 //settings
 import PersonInfo from '@/components/pages/settings/PersonInfo'
 import SettingsNotice from '@/components/pages/settings/SettingsNotice'
@@ -36,6 +48,8 @@ import MessageNotice from '@/components/pages/settings/MessageNotice'
 
 //statistics
 import AccessStats from '@/components/pages/statistics/AccessStats'
+import CheckInStats from '@/components/pages/statistics/CheckInStats'
+import StatisticsOverall from '@/components/pages/statistics/StatisticsOverall'
 import WorkQualityStats from '@/components/pages/statistics/WorkQualityStats'
 import WorkQuantityStats from '@/components/pages/statistics/WorkQuantityStats'
 import { registerMap } from 'echarts'
@@ -97,12 +111,77 @@ export default new Router({
                     component: Customer
                 },
                 {
+                  path:'specificOrder',
+                  redirect: 'specificOrder/replyContent',
+                  component:SpecificOrder,
+                  children:[
+                    {
+                      path:'replyContent',
+                      component: ReplyContent
+                    },
+                    {
+                      path:'operatingLog',
+                      component:OperatingLog
+                    }
+                  ]
+                },
+                {
                     path: 'order',
-                    component: Order
+                    redirect: 'order/allorder',
+                    component: Order,
+                    children: [
+                      {
+                        path:'allOrder',
+                        component:AllOrder
+                      },
+                      {
+                        path:'waiting',
+                        component:Waiting
+                      },
+                      {
+                        path:'created',
+                        component:Created
+                      },
+                      {
+                        path:'copied',
+                        component:Copied
+                      },
+                      {
+                        path:'dealing',
+                        component:Dealing
+                      },
+                      {
+                        path:'finished',
+                        component:Finished
+                      },
+                    ]
                 },
                 {
                     path: 'statistics',
-                    component: Statistics
+                    redirect: 'statistics/statisticsOverall',
+                    component: Statistics,
+                    children: [
+                      {
+                        path:'statisticsOverall',
+                        component:StatisticsOverall
+                      },
+                      {
+                        path:'workQuantityStats',
+                        component:WorkQuantityStats
+                      },
+                      {
+                        path:'workQualityStats',
+                        component:WorkQualityStats
+                      },
+                      {
+                        path:'checkInStats',
+                        component:CheckInStats
+                      },
+                      {
+                        path:'accessStats',
+                        component:AccessStats
+                      },
+                    ]
                 },
                 {
                     path: 'settings',
