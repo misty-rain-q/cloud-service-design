@@ -82,13 +82,13 @@
         
       <div class="header-right">
         <div class="msg">
-          <i class="el-icon-message-solid"></i>
+          <i @click="clickBell" id="bell" class="el-icon-message-solid"></i>
           <img class="has_new" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u101.svg">
         </div>
         <div class="my_info">
-          <el-avatar class="avatar" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u94.svg"></el-avatar>
+          <el-avatar class="avatar" :src="avatarUrl"></el-avatar>
           <img class="state_dot" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u95.svg">
-          <div class="user_name">{{user_name}}</div>
+          <div class="user_name">{{userName}}</div>
           <img class="pull_down" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u93.svg">
           <!-- TODO -->
           <el-dropdown>
@@ -113,9 +113,9 @@
     name: 'Base',
     data(){
       return {
-        
-        title: '404',
-        user_name: '客服七尾'
+        avatarUrl: '',
+        title: '处理界面',
+        userName: '',
       }
     },
     watch: {
@@ -126,6 +126,13 @@
     },
     mounted(){
       this.getTitle();
+    },
+    created(){
+      let jsUser=JSON.parse(localStorage.getItem("user")).result;
+      console.log(jsUser);
+      this.userName=jsUser.nickName;
+      this.avatarUrl=jsUser.avatar;
+      console.log(this.avatarUrl);
     },
     methods: {
       getTitle(){
@@ -151,7 +158,9 @@
       },
       logo_click(){
         this.$router.push("/index");
-        
+      },
+      clickBell(){
+        this.$router.push("/settings/messageNotice");
       },
       exit(){
         this.$message({
@@ -275,5 +284,7 @@
   width:1420px;
   padding: 10px;
 }
-
+#bell{
+  cursor: pointer;
+}
 </style>

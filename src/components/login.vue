@@ -49,6 +49,7 @@
                 .then(response=>{
                     console.log(response); 
                     if(response.data.success){
+                      localStorage.setItem("user",JSON.stringify(response.data));
                       this.$message({
                           message: '登陆成功',
                           type: 'success'
@@ -66,6 +67,9 @@
                     });
                 })              
           }
+    },
+    created(){
+      
     },
   }
 </script>
