@@ -21,7 +21,8 @@
         <el-table-column label="最后更新时间" prop="latestTime" width="141" align="center"></el-table-column>
         <el-table-column label="操作" prop="opration" width="141" align="center">
           <template slot-scope="scope">
-            <span class="toBeBlue">{{ scope.row.opration }}</span>
+            <el-button type="text" v-on:click='check' style="color: rgb(0,110,255);padding: 0px;">{{ scope.row.opration1 }}</el-button>
+            <el-button type="text" style="color: rgb(0,110,255);padding: 0px;">{{ scope.row.opration2 }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -58,7 +59,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -67,7 +69,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -76,7 +79,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -85,7 +89,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -94,7 +99,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -103,7 +109,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -112,7 +119,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -121,7 +129,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -130,7 +139,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           },
           {
             id: '32533819',
@@ -139,7 +149,8 @@
             status: '未分配',
             servicerName: '客服书记',
             latestTime:"2020/7/6 20:17",
-            opration: '查看详情  接单'
+            opration1: '查看详情',
+            opration2: '接单'
           }
         ],
         pageOptions: [
@@ -169,6 +180,11 @@
     },
     created:function(){
       this.pageValue = this.pageOptions[0].value;
+    },
+    methods:{
+      check(){
+        this.$router.replace('/specificOrder');
+      }
     }
   }
 </script>
@@ -245,5 +261,7 @@
   .toBeBlue{
     color: rgb(0,110,255);
   }
+
+
 
 </style>

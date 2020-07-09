@@ -1,85 +1,111 @@
 <template>
-  <div class="orderDetail">
-    <!-- 六个选择下拉框 -->
-    <!-- 需注意，此处的显示为placeholder,并非默认选项 -->
-    <div class="select">
-      <el-select class="orderFirstRow" v-model="statusValue">
-        <el-option
-          v-for="item in statusOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-select class="orderFirstRow" v-model="priorityValue">
-        <el-option
-          v-for="item in priorityOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-select class="orderFirstRow" v-model="categoryValue">
-        <el-option
-          v-for="item in categoryOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-select class="orderFirstRow" v-model="channelValue">
-        <el-option
-          v-for="item in channelOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-select class="orderFirstRow" v-model="groupValue">
-        <el-option
-          v-for="item in groupOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-select class="orderFirstRow" v-model="servicerValue">
-        <el-option
-          v-for="item in servicerOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+  <div class="container">
+    <!-- 工单菜单 -->
+    <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
+    <el-menu class="order-menu" default-active="/order/allOrder" router>
+      <el-menu-item-group>
+        <template slot="title">工单</template>
+        <el-menu-item class="orderMenuItem" index="/order/allOrder">全部工单(1000)</el-menu-item>
+        <el-menu-item class="orderMenuItem" index="/order/waiting">待我处理的(100)</el-menu-item>
+        <el-menu-item class="orderMenuItem" index="/order/created">我创建的(0)</el-menu-item>
+        <el-menu-item class="orderMenuItem" index="/order/copied">抄送我的(0)</el-menu-item>
+        <el-menu-item class="orderMenuItem" index="/order/dealing">我处理的(0)</el-menu-item>
+        <el-menu-item class="orderMenuItem" index="/order/finished">我解决的(0)</el-menu-item>
+      </el-menu-item-group>
+    </el-menu>
+
+    <!-- 工单界面右上角按钮 -->
+    <div class="orderTopButton">
+      <el-button class="addButton">添加工单</el-button>
+      <el-button class="batchButton">批量修改状态</el-button>
+      <el-button class="exportButton">导出工单</el-button>
     </div>
 
-    <!-- 日期选择及关键字搜索 -->
-    <div class="orderSecondLine">
-      <div class="clock">
-        <el-date-picker
-          v-model="value1"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-        <div class="wave">~</div>
-        <el-date-picker
-          v-model="value2"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
+    <div class="orderDetail">
+
+      <!-- 六个选择下拉框 -->
+      <div class="select">
+        <el-select class="orderFirstRow" v-model="statusValue">
+          <el-option
+            v-for="item in statusOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="orderFirstRow" v-model="priorityValue">
+          <el-option
+            v-for="item in priorityOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="orderFirstRow" v-model="categoryValue">
+          <el-option
+            v-for="item in categoryOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="orderFirstRow" v-model="channelValue">
+          <el-option
+            v-for="item in channelOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="orderFirstRow" v-model="groupValue">
+          <el-option
+            v-for="item in groupOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="orderFirstRow" v-model="servicerValue">
+          <el-option
+            v-for="item in servicerOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
-      <div class="search">
-        <el-input class="searchContent" v-model="input" placeholder="请输入关键词搜索"></el-input>
-        <el-button class="searchButton">搜索</el-button>
+
+      <!-- 日期选择及关键字搜索 -->
+      <div class="orderSecondLine">
+        <div class="clock">
+          <el-date-picker
+            v-model="value1"
+            type="date"
+            placeholder="请选择日期">
+          </el-date-picker>
+          <div class="wave">~</div>
+          <el-date-picker
+            v-model="value2"
+            type="date"
+            placeholder="请选择日期">
+          </el-date-picker>
+        </div>
+        <div class="search">
+          <el-input class="searchContent" v-model="input" placeholder="请输入关键词搜索"></el-input>
+          <el-button class="searchButton">搜索</el-button>
+        </div>
       </div>
-    </div>
 
-    <!-- 工单表 -->
-    <div class="orderTable">
-       <router-view></router-view>
-    </div>
+      <!-- 工单表 -->
+      <div class="orderTable">
+         <router-view></router-view>
+      </div>
 
+    </div>
   </div>
+
+
+
 </template>
 
 <script>
@@ -213,7 +239,8 @@
           groupValue:'',
           servicerValue:'',
           value1:'',
-          value2:''
+          value2:'',
+          input:''
         }
     },
     created: function(){
@@ -230,6 +257,49 @@
 </script>
 
 <style>
+  .container{
+  position: fixed;
+  display:flex;
+  flex-direction: row;
+  }
+  .order-menu{
+    width: 240px;
+    height: 892px;
+    text-align: left;
+    padding-top: 10px;
+  }
+
+  .orderMenuItem .is-active{
+  border-left: solid rgb(0,110,255) 4px;
+  }
+
+  .orderTopButton{
+    position: fixed;
+    left: 1019px;
+    display: flex;
+  }
+
+  .addButton{
+    background-color: rgb(0,110,255);
+    color:#FFFFFF;
+  }
+
+  .addButton:hover{
+    background-color: rgb(23,123,255);
+    color:#FFFFFF;
+  }
+
+  .batchButton,.exportButton{
+    background-color: transparent;
+    color: rgb(153,153,153);
+  }
+
+  .batchButton:hover,.exportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
+  }
+
   .orderDetail{
     border-radius: 5px;
     background-color: white;

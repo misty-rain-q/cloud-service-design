@@ -13,47 +13,47 @@
                 router>
 
         <el-tooltip content="首页" placement="right">
-          <el-menu-item @click="getTitle" index="/index">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/index">
             <i class="el-icon-s-home"></i>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="会话" placement="right">
-          <el-menu-item @click="getTitle" index="/dialog">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/dialog">
             <i class="el-icon-s-comment"></i>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="访客" placement="right">
-          <el-menu-item  @click="getTitle" index="/visitor">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/visitor">
             <i class="el-icon-s-custom"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="历史" placement="right">
-          <el-menu-item @click="getTitle" index="/history">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/history">
             <i class="el-icon-more"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="客户" placement="right">
-          <el-menu-item @click="getTitle" index="/customer">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/customer">
             <i class="el-icon-s-check"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="工单" placement="right">
-          <el-menu-item @click="getTitle" index="/order">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/order">
             <i class="el-icon-s-order"></i>
             <span slot="title"></span>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="统计" placement="right">
-          <el-menu-item @click="getTitle" index="/statistics">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/statistics">
             <i class="el-icon-s-data"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -62,13 +62,13 @@
         <el-divider class="divider"></el-divider>
 
         <el-tooltip content="设置" placement="right">
-          <el-menu-item @click="getTitle" index="/settings">
+          <el-menu-item class="indexMenuItem" @click="getTitle" index="/settings">
             <i class="el-icon-s-tools"></i>
           </el-menu-item>
         </el-tooltip>
 
         <el-tooltip content="退出" placement="right">
-          <el-menu-item @click="exit" index="/login">
+          <el-menu-item class="indexMenuItem" @click="exit" index="/login">
             <i class="el-icon-right"></i>
             <span slot="title"></span>
           </el-menu-item>
@@ -131,7 +131,7 @@
     },
     methods: {
       getTitle(){
-        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置')
+        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情')
         let index=this.$route.path;
         if(index=='/index'){
           this.title=title_list[1];
@@ -143,13 +143,16 @@
           this.title=title_list[4];
         }else if(index=='/customer'){
           this.title=title_list[5];
-        }else if(index=='/order'){
+        }else if(index=='/order/allorder'){
           this.title=title_list[6];
         }else if(index=='/statistics'){
           this.title=title_list[7];
         }else if(index=='/settings'){
           this.title=title_list[8];
+        }else if(index=='/specificOrder/replyContent'){
+          this.title=title_list[9];
         }
+        
       },
       logo_click(){
         this.$router.push("/index");
@@ -192,7 +195,7 @@
   margin-top: 30px;
 }
 
-.el-menu-item.is-active{
+.indexMenuItem.is-active{
   border-left: solid rgb(0,110,255) 4px;
 }
 

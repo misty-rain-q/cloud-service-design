@@ -19,6 +19,9 @@ import Created from '@/components/pages/order/components/Created'
 import Copied from '@/components/pages/order/components/Copied'
 import Dealing from '@/components/pages/order/components/Dealing'
 import Finished from '@/components/pages/order/components/Finished'
+import SpecificOrder from '@/components/pages/order/SpecificOrder'
+import ReplyContent from '@/components/pages/order/components/ReplyContent'
+import OperatingLog from '@/components/pages/order/components/OperatingLog'
 
 
 //settings
@@ -106,6 +109,21 @@ export default new Router({
                 {
                     path: 'customer',
                     component: Customer
+                },
+                {
+                  path:'specificOrder',
+                  redirect: 'specificOrder/replyContent',
+                  component:SpecificOrder,
+                  children:[
+                    {
+                      path:'replyContent',
+                      component: ReplyContent
+                    },
+                    {
+                      path:'operatingLog',
+                      component:OperatingLog
+                    }
+                  ]
                 },
                 {
                     path: 'order',
