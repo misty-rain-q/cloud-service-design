@@ -1,71 +1,70 @@
 <template>
-  <div class="container">
-    <el-scrollbar style="height:100%">
+  <div class="innerContainer">
 
-      <!-- 日期选择，客服选择，导出按钮等 -->
-      <div class="statsFirstRow">
-        <div class="clock">
-          <el-date-picker
-            v-model="value1"
-            type="date"
-            placeholder="请选择日期">
-          </el-date-picker>
-          <div class="wave">~</div>
-          <el-date-picker
-            v-model="value2"
-            type="date"
-            placeholder="请选择日期">
-          </el-date-picker>
-        </div>
-        <div class="select">
-          <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
-            <el-option
-              v-for="item in groupOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
-            <el-option
-              v-for="item in servicerOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </div>
-        <el-button class="statsExportButton">导出当前数据</el-button>
+    <!-- 日期选择，客服选择，导出按钮等 -->
+    <div class="statsFirstRow">
+      <div class="clock">
+        <el-date-picker
+          v-model="value1"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
+        <div class="wave">~</div>
+        <el-date-picker
+          v-model="value2"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
       </div>
+      <div class="select">
+        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
+          <el-option
+            v-for="item in groupOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
+          <el-option
+            v-for="item in servicerOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <el-button class="statsExportButton">导出当前数据</el-button>
+    </div>
 
-      <div class="checkInTable">
-        <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
-                  :header-cell-style="{'background-color':'#e6f1ff'}">
-          <el-table-column label="客服昵称" prop="servicerName" width="129" align="center"></el-table-column>
-          <el-table-column label="登陆时长" prop="loginTime" width="184" align="center"></el-table-column>
-          <el-table-column label="空闲时长" prop="freeTime" width="184" align="center"></el-table-column>
-          <el-table-column label="忙碌时长" prop="busyTime" width="184" align="center"></el-table-column>
-          <el-table-column label="在线时长" prop="onlineTime" width="184" align="center"></el-table-column>
-          <el-table-column label="离线时长" prop="offlineTime" width="138" align="center"></el-table-column>
-        </el-table>
-        <div class="pageJump">
-          <span>共100条</span>
-          <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-          <el-select class="pageSelect" v-model="pageValue">
-            <el-option
-              v-for="item in pageOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <span>到第</span>
-          <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
-          <span>页</span>
-          <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
-        </div>
+    <div class="checkInTable">
+      <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
+                :header-cell-style="{'background-color':'#e6f1ff'}">
+        <el-table-column label="客服昵称" prop="servicerName" width="129" align="center"></el-table-column>
+        <el-table-column label="登陆时长" prop="loginTime" width="184" align="center"></el-table-column>
+        <el-table-column label="空闲时长" prop="freeTime" width="184" align="center"></el-table-column>
+        <el-table-column label="忙碌时长" prop="busyTime" width="184" align="center"></el-table-column>
+        <el-table-column label="在线时长" prop="onlineTime" width="184" align="center"></el-table-column>
+        <el-table-column label="离线时长" prop="offlineTime" width="138" align="center"></el-table-column>
+      </el-table>
+      <div class="pageJump">
+        <span>共100条</span>
+        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+        <el-select class="pageSelect" v-model="pageValue">
+          <el-option
+            v-for="item in pageOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <span>到第</span>
+        <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
+        <span>页</span>
+        <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
       </div>
-    </el-scrollbar>
+    </div>
+
   </div>
 </template>
 
@@ -231,9 +230,17 @@
 </script>
 
 <style>
-  .container{
+  .innerContainer{
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 10px;
     width: 1040px;
-    height: 100%;
+    height:100%;
+    position: absolute;
+    left: 244px;
+    top: 5px;
+    padding: 20px;
+    overflow:auto;
   }
 
   .statsFirstRow{
@@ -277,7 +284,6 @@
 
   .statsExportButton{
     margin-left: 143px;
-    width: 120px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);

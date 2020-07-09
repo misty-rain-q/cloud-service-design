@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-
-    <el-scrollbar style="height:100%">
+  <div class="innerContainer">
 
     <!-- 日期选择，客服选择，导出按钮等 -->
     <div class="statsFirstRow">
@@ -115,7 +113,6 @@
         <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
       </div>
     </div>
-    </el-scrollbar>
   </div>
 </template>
 
@@ -576,9 +573,17 @@ export default {
     flex-direction: row;
 }
 
-  .container{
+  .innerContainer{
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 10px;
     width: 1040px;
-    height: 1869px;
+    height:100%;
+    position: absolute;
+    left: 244px;
+    top: 5px;
+    padding: 20px;
+    overflow:auto;
   }
 
 .statsFirstRow{
@@ -622,7 +627,6 @@ export default {
 
   .statsExportButton{
     margin-left: 143px;
-    width: 120px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
@@ -705,7 +709,7 @@ export default {
      border-radius: 2px;
   }
 
-  .pageSelect .el-input__inner{
+  .pageSelect>>>.el-input__inner{
     background-color: #FFFFFF;
     height: 32px;
     padding: 0px;
@@ -742,5 +746,6 @@ export default {
     text-align: center;
     line-height: 30px;
   }
+
 
 </style>

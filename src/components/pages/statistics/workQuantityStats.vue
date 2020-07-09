@@ -1,109 +1,108 @@
 <template>
-  <div class="container">
-    <el-scrollbar style="height:100%">
+  <div class="innerContainer">
 
-      <!-- 日期选择，客服选择，导出按钮等 -->
-      <div class="statsFirstRow">
-        <div class="clock">
-          <el-date-picker
-            v-model="value1"
-            type="date"
-            placeholder="请选择日期">
-          </el-date-picker>
-          <div class="wave">~</div>
-          <el-date-picker
-            v-model="value2"
-            type="date"
-            placeholder="请选择日期">
-          </el-date-picker>
-        </div>
-        <div class="select">
-          <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
-            <el-option
-              v-for="item in groupOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
-            <el-option
-              v-for="item in servicerOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </div>
-        <el-button class="statsExportButton">导出当前数据</el-button>
+    <!-- 日期选择，客服选择，导出按钮等 -->
+    <div class="statsFirstRow">
+      <div class="clock">
+        <el-date-picker
+          v-model="value1"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
+        <div class="wave">~</div>
+        <el-date-picker
+          v-model="value2"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
       </div>
+      <div class="select">
+        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
+          <el-option
+            v-for="item in groupOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
+          <el-option
+            v-for="item in servicerOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <el-button class="statsExportButton">导出当前数据</el-button>
+    </div>
 
-      <!-- 五个框框 -->
-      <div class="statsSecondRow">
-        <div class="statsBoxOverall">
-          <div class="statsBoxName">总消息数</div>
-          <div class="statsBoxTotalNum">230</div>
-          <div class="statsBoxValidNum">有效消息数200</div>
-        </div>
-        <div class="statsBoxOverall">
-          <div class="statsBoxName">总会话量</div>
-          <div class="statsBoxTotalNum">30</div>
-          <div class="statsBoxValidNum">结束会话数20</div>
-        </div>
-        <div class="statsBoxOverall">
-          <div class="statsBoxName">单会话平均消息数</div>
-          <div class="statsBoxTotalNum">8</div>
-          <div class="statsBoxValidNum">单会话最大消息数50</div>
-        </div>
-        <div class="statsBoxOverall">
-          <div class="statsBoxName">总会话时长</div>
-          <div class="statsBoxTotalNum">60m</div>
-          <div class="statsBoxValidNum">最大会话时长5m2s</div>
-        </div>
-        <div class="statsBoxOverall">
-          <div class="statsBoxName">平均会话时长</div>
-          <div class="statsBoxTotalNum">9m3s</div>
-          <div class="statsBoxValidNum">最大会话时长5m2s</div>
-        </div>
+    <!-- 五个框框 -->
+    <div class="statsSecondRow">
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总消息数</div>
+        <div class="statsBoxTotalNum">230</div>
+        <div class="statsBoxValidNum">有效消息数200</div>
       </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总会话量</div>
+        <div class="statsBoxTotalNum">30</div>
+        <div class="statsBoxValidNum">结束会话数20</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">单会话平均消息数</div>
+        <div class="statsBoxTotalNum">8</div>
+        <div class="statsBoxValidNum">单会话最大消息数50</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总会话时长</div>
+        <div class="statsBoxTotalNum">60m</div>
+        <div class="statsBoxValidNum">最大会话时长5m2s</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">平均会话时长</div>
+        <div class="statsBoxTotalNum">9m3s</div>
+        <div class="statsBoxValidNum">最大会话时长5m2s</div>
+      </div>
+    </div>
 
-      <div class="barChart">
-        <!-- 单会话消息数统计 -->
-        <div id="message" ref="message" style="width: 50%;height:400px;"></div>
-        <!-- 单会话时长统计 -->
-        <div id="time" ref="time" style="width: 50%;height:400px;"></div>
-      </div>
+    <div class="barChart">
+      <!-- 单会话消息数统计 -->
+      <div id="message" ref="message" style="width: 50%;height:400px;"></div>
+      <!-- 单会话时长统计 -->
+      <div id="time" ref="time" style="width: 50%;height:400px;"></div>
+    </div>
 
-      <div class="workQuantityTable">
-        <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
-                  :header-cell-style="{'background-color':'#e6f1ff'}">
-          <el-table-column label="客服昵称" prop="servicerName" width="91" align="center"></el-table-column>
-          <el-table-column label="消息总量" prop="allMsgNum" width="130" align="center"></el-table-column>
-          <el-table-column label="会话总量" prop="allSessionNum" width="130" align="center"></el-table-column>
-          <el-table-column label="有效会话数量" prop="validSessionNum" width="130" align="center"></el-table-column>
-          <el-table-column label="结束会话数量" prop="finishedSessionNum" width="130" align="center"></el-table-column>
-          <el-table-column label="会话总时长" prop="allSessionTime" width="130" align="center"></el-table-column>
-          <el-table-column label="单会话平均消息数" prop="averageSessionNum" width="130" align="center"></el-table-column>
-          <el-table-column label="单会话平均时长" prop="averageSessionTime" width="130" align="center"></el-table-column>
-        </el-table>
-        <div class="pageJump">
-          <span>共100条</span>
-          <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-          <el-select class="pageSelect" v-model="pageValue">
-            <el-option
-              v-for="item in pageOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-          <span>到第</span>
-          <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
-          <span>页</span>
-          <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
-        </div>
+    <div class="workQuantityTable">
+      <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
+                :header-cell-style="{'background-color':'#e6f1ff'}">
+        <el-table-column label="客服昵称" prop="servicerName" width="91" align="center"></el-table-column>
+        <el-table-column label="消息总量" prop="allMsgNum" width="130" align="center"></el-table-column>
+        <el-table-column label="会话总量" prop="allSessionNum" width="130" align="center"></el-table-column>
+        <el-table-column label="有效会话数量" prop="validSessionNum" width="130" align="center"></el-table-column>
+        <el-table-column label="结束会话数量" prop="finishedSessionNum" width="130" align="center"></el-table-column>
+        <el-table-column label="会话总时长" prop="allSessionTime" width="130" align="center"></el-table-column>
+        <el-table-column label="单会话平均消息数" prop="averageSessionNum" width="130" align="center"></el-table-column>
+        <el-table-column label="单会话平均时长" prop="averageSessionTime" width="130" align="center"></el-table-column>
+      </el-table>
+      <div class="pageJump">
+        <span>共100条</span>
+        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+        <el-select class="pageSelect" v-model="pageValue">
+          <el-option
+            v-for="item in pageOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <span>到第</span>
+        <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
+        <span>页</span>
+        <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
       </div>
-    </el-scrollbar>
+    </div>
+
   </div>
 </template>
 
@@ -412,9 +411,17 @@ export default {
     flex-direction: row;
 }
 
-.container{
+.innerContainer{
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 10px;
     width: 1040px;
-    height: 100%;
+    height:100%;
+    position: absolute;
+    left: 244px;
+    top: 5px;
+    padding: 20px;
+    overflow:auto;
   }
 
   .statsFirstRow{
@@ -458,7 +465,6 @@ export default {
 
   .statsExportButton{
     margin-left: 143px;
-    width: 120px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
@@ -542,7 +548,7 @@ export default {
      border-radius: 2px;
   }
 
-  .pageSelect .el-input__inner{
+  .pageSelect>>> .el-input__inner{
     background-color: #FFFFFF;
     height: 32px;
     padding: 0px;
@@ -579,6 +585,7 @@ export default {
     text-align: center;
     line-height: 30px;
   }
+
 
 
 </style>

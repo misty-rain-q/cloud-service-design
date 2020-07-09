@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <el-scrollbar style="height:1869px">
+  <div class="innerContainer">
 
     <!-- 日期选择，客服选择，导出按钮等 -->
     <div class="statsFirstRow">
@@ -101,10 +100,10 @@
       <!-- 评价占比 -->
       <div id="comment" ref="comment" style="width: 50%;height:400px;"></div>
     </div>
-    
+
     <!-- 区域分布 -->
     <div id="region" ref="region" style="width: 100%;height:800px;"></div>
-    </el-scrollbar>
+
   </div>
 </template>
 
@@ -500,9 +499,17 @@ export default {
 </script scoped>
 
 <style scoped>
-  .container{
+  .innerContainer{
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 10px;
     width: 1040px;
-    height: 1869px;
+    height:100%;
+    position: absolute;
+    left: 244px;
+    top: 5px;
+    padding: 20px;
+    overflow:auto;
   }
 
   #dialog{
@@ -574,14 +581,13 @@ export default {
 
   .statsExportButton{
     margin-left: 143px;
-    width: 120px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
     color:rgb(204, 204, 204);
-    text-align: center;
     border-radius: 2px;
   }
+
 
   .statsSecondRow,.statsThirdRow{
     display:flex;
@@ -635,7 +641,5 @@ export default {
     line-height: 50px;
     font-feature-settings: "kern";
   }
-
-
 
 </style>

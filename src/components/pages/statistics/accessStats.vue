@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <el-scrollbar style="height:100%">
+  <div class="innerContainer">
 
     <!-- 日期选择，客服选择，导出按钮等 -->
     <div class="statsFirstRow">
@@ -82,7 +81,6 @@
       </el-table>
     </div>
 
-    </el-scrollbar>
   </div>
 </template>
 
@@ -249,7 +247,19 @@ export default {
   #dialog{
       background-color: white;
       border-radius: 10px;
-      padding: 4px;
+  }
+
+  .innerContainer{
+    border-radius: 5px;
+    background-color: white;
+    margin-left: 10px;
+    width: 1041px;
+    height:100%;
+    position: absolute;
+    left: 244px;
+    top: 5px;
+    padding: 20px;
+    overflow:auto;
   }
 
   .statsFirstRow{
@@ -293,7 +303,6 @@ export default {
 
   .statsExportButton{
     margin-left: 143px;
-    width: 120px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
