@@ -7,12 +7,12 @@
               <form action = "">
                 <h3>注册七尾客服云</h3>
                 <div class = "item"><label for = "">账号</label>
-                <input placeholder="请输入邮箱或者手机号码" type = "text"></div>
+                <input v-model="phone" placeholder="请输入手机号码" type = "text"></div>
                 <div class = "item"><label for = "">密码</label>
-                <input placeholder="请输入密码" type = "password"></div>
+                <input v-model="password" placeholder="请输入密码" type = "password"></div>
 
                 <div class = "verItem"><label for = "">验证码</label>
-                <input id="verInput" placeholder="请输入右侧图形验证码" type="text">
+                <input v-model="veriCodes" id="verInput" placeholder="请输入右侧图形验证码" type="text">
                 <canvas id="canvas" 
                         width="100px" 
                         height="40px" 
@@ -40,17 +40,37 @@
       name: 'register',
       data(){
           return{
-              comfirm: ''
+              comfirm: '',
+              phone: '138',
+              password: '138',
+              veriCodes: 'CRUD',
           }
       },
       methods: {
         // 登陆
         register(){
-            this.$message({
-                message: '注册成功',
-                type: 'success'
-            });
-            this.$router.replace('/login');
+          let phone=this.phone;
+          let password=this.password;
+          let nickName="默认昵称";
+          let realName="真实姓名";
+          let data={phone,password,nickName,realName};
+          this.$axios
+            .post('/servicer/register', data)
+              .then(response=>{
+                console.log(response);
+                this.$message({
+                    message: '注册成功',
+                    type: 'success'
+                });
+                this.$router.replace('/login');
+              })
+                .catch(err=>{
+                  console.log(err)
+                  this.$message({
+                    message: '注册失败',
+                    type: 'error'
+                  })
+                })
         },
           // 登陆可能会用到验证码
         randomNum(min, max) {
