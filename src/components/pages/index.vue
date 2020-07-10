@@ -1,7 +1,7 @@
 <template>
     <div class="index-container">
         <span class="welcome">{{userName}}, 欢迎回来</span>
-        <el-carousel :interval="4000" type="card" height="400px">
+        <el-carousel :interval="2500" type="card" height="400px">
         <el-carousel-item v-for="item in carousel" :key="item">
             <el-image :src="item"></el-image>
         </el-carousel-item>
@@ -145,8 +145,6 @@ export default {
             today_msg_percent: '10',
             carousel: [
                 'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/carousel_1.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_2.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_3.jpg',
                 'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_4.jpg',
                 'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_5.jpg',
                 'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_6.jpg',
