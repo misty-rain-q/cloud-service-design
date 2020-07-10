@@ -322,7 +322,7 @@
     height: 40px;
     border-radius: 2px;
   }
-  .orderFirstRow .el-input__inner{
+  .orderFirstRow>>>.el-input__inner{
       background-color: #F2F2F2;
       border: transparent;
   }
@@ -341,7 +341,7 @@
     border-radius: 2px;
   }
 
-  .el-input--prefix .el-input__inner{
+  .el-input--prefix>>>.el-input__inner{
     background-color: transparent;
     line-height: 40px;
     border: transparent;
@@ -364,7 +364,7 @@
     border-radius: 2px;
   }
 
-  .searchContent .el-input__inner{
+  .searchContent>>>.el-input__inner{
     background-color: #F2F2F2;
     border: transparent;
   }

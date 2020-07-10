@@ -255,7 +255,7 @@
     border-radius: 2px;
   }
 
-  .el-input--prefix .el-input__inner{
+  .el-input--prefix>>>.el-input__inner{
     background-color: transparent;
     line-height: 40px;
     border: transparent;
@@ -276,7 +276,7 @@
     height:40px;
   }
 
-  .selectBox .el-input__inner{
+  .selectBox>>>.el-input__inner{
       background-color: #F2F2F2;
       border: transparent;
   }
@@ -321,7 +321,7 @@
      border-radius: 2px;
   }
 
-  .pageSelect .el-input__inner{
+  .pageSelect>>>.el-input__inner{
     background-color: #FFFFFF;
     height: 32px;
     padding: 0px;
@@ -337,7 +337,7 @@
     box-sizing: border-box;
   }
 
-  .jumpNum .el-input__inner{
+  .jumpNum>>>.el-input__inner{
     width: 41px;
     height: 30px;
     background-color: #FFFFFF ;

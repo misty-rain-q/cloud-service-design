@@ -564,7 +564,7 @@ export default {
     box-sizing: border-box;
   }
 
-  .jumpNum .el-input__inner{
+  .jumpNum>>>.el-input__inner{
     width: 41px;
     height: 30px;
     background-color: #FFFFFF ;
