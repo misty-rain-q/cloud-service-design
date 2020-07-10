@@ -1,5 +1,15 @@
 <template>
   <div class="container">
+    <el-tabs v-model="source">
+      <el-tab-pane label="网页端" name="website">
+        
+      </el-tab-pane>
+      <el-tab-pane label="手机APP" name="app"></el-tab-pane>
+      <el-tab-pane label="微信小程序" name="wxapp"></el-tab-pane>
+      <el-tab-pane label="微博" name="weibo"></el-tab-pane>
+      <el-tab-pane label="手机站" name="phone"></el-tab-pane>
+      <el-tab-pane label="移动网站" name="mobile"></el-tab-pane>
+    </el-tabs>
   <el-scrollbar style="height:100%">
     <span class="start-span">欢迎消息</span>
     <el-switch v-model="welcome"
@@ -76,13 +86,14 @@ export default {
     data(){
         return{
             welcome: true,
-            welcomeArea: '',
+            welcomeArea: '注意哈, 上面的el-tabs只是做个样子, 回头对接口的时候搞一下',
             noResponse: true,
             noResponseArea: '',
             noResponseNum: 20,
             dialogOver: true,
             servicerOver: '',
             sysOver: '',
+            source: 'website'
         }
     }
 }
