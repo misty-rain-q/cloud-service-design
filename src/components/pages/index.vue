@@ -92,7 +92,7 @@
             <div class="spy-txt">客服监控</div>
             <el-table :data="tableData" style="width: 100%" 
                       :header-cell-style="{'background-color':'#e6f1ff','height':'62px'}"
-                      fit :cell-style="cellStyle"
+                      fit 
                       class="table"> 
                 <el-table-column  label="客服昵称"
                                 prop="name"
@@ -134,7 +134,7 @@ export default {
 
     data(){
         return{
-            userName: '客服七尾',
+            userName: '',
             total_dialog: '230',
             processing_dialog: '200',
             online_servicer: '30',
@@ -267,6 +267,11 @@ export default {
             });
             }
         }
+    },
+    created(){
+        let jsUser=JSON.parse(localStorage.getItem("user")).result;
+        console.log(jsUser);
+        this.userName=jsUser.nickName;
     }
 }
 </script>
