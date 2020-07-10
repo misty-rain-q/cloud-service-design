@@ -437,7 +437,7 @@
                         <span class="row-two">2020/06/09 20:09</span>
                       </div>
                       <div class="his-order-view">
-                        <span class="view-button">
+                        <span class="view-button" @click="viewWorkOrderDetails">
                           <span>查看工单详情</span>
                           <i class="el-icon-arrow-right"></i>
                         </span>
@@ -845,6 +845,10 @@ export default {
       editCusInfo() {
         this.visibleA.customerInfoVisible = true;
       },
+      viewWorkOrderDetails() {
+        this.$router.push('/specificOrder');
+        // this.$router.push('/dialog')
+      },
 
       // 弹窗
       resetForm(formName) {
@@ -1076,6 +1080,7 @@ export default {
 
 .s-c-img{
   width: 40px;
+  min-width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;

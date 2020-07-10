@@ -505,7 +505,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0;
 }
 
 /* 主体区域 */
@@ -515,7 +515,7 @@
   padding: 0;
 /* 是否留白 */
   /* padding-right: 100px; */
-  margin: auto auto;
+  margin: 0 auto;
 }
 
 /* 聊天区域头部 */
@@ -600,6 +600,7 @@
 
 .s-c-img{
   width: 40px;
+  min-width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;
