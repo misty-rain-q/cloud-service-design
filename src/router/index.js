@@ -8,6 +8,7 @@ import History from '@/components/pages/History'
 import Settings from '@/components/pages/Settings'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Gate from '@/components/Gate'
 import Customer from '@/components/pages/Customer'
 import Order from '@/components/pages/Order'
 import Statistics from '@/components/pages/Statistics'
@@ -82,10 +83,10 @@ export default new Router({
             path: '/register',
             component: Register
         },
-        // {
-        //     path: '/register',
-        //     component: Register
-        // },
+        {
+            path: '/gate',
+            component: Gate
+        },
         {
             path: '/',
             component: Base,

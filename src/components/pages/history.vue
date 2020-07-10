@@ -823,7 +823,7 @@ export default {
       },
 
       turnOn() {
-        this.$router.replace('/dialog');
+        this.$route.path('/dialog')
       },
 
       getinfo: function (indexT) {

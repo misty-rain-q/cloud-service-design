@@ -71,6 +71,23 @@
                   </div>
                 </div>
 
+                <div class="s-msg customer">
+                  <div class="s-c-img">
+                    <i class="el-icon-chat-dot-round"></i>
+                  </div>
+                  <div class="s-c-info">
+                    <div class="s-c-i-title">
+                      <span class="title-name">北京客户</span>
+                      <span class="title time">2020/06/09 12:10</span>
+                    </div>
+                    <div class="s-c-i-content">
+                      <span style="">
+                        您好，请问有什么可以帮助您呢？
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="s-msg servicer">
                   <div class="s-c-img">
                     <i class="el-icon-chat-dot-round"></i>
@@ -453,8 +470,9 @@
               <el-form-item class="wo-form-item" label="工单描述" :label-width="woFormLabelWidth" prop="desc">
                 <el-input type="textarea" width="314px" :rows="6" resize="none" class="ftextarea wo-form-item-in" v-model="workOrderForm.desc" placeholder="请输入工单描述"></el-input>
               </el-form-item>
-              <el-upload action="#" class="el-icon-paperclip wo-upload" >添加附件（最多上传5个附件，单个文件最大20M）</el-upload>
+              <el-upload action="#" class="wo-upload" >&nbsp;&nbsp;<i class="el-icon-paperclip"></i>添加附件（最多上传5个附件，单个文件最大20M）</el-upload>
               <el-form-item class="wo-form-item" label="抄送人" :label-width="woFormLabelWidth" prop="cclist">
+                <label slot="label">&nbsp;&nbsp;抄送人</label>
                 <el-select class="wo-form-item-in" v-model="workOrderForm.cclist" placeholder="请选择抄送人">
                   <div class="search">
                     <el-input placeholder="搜索" prefix-icon="el-icon-search"></el-input>
@@ -465,6 +483,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="优先级" :label-width="woFormLabelWidth" prop="priority">
+                <label slot="label">&nbsp;&nbsp;优先级</label>
                 <el-radio-group class="wo-form-item-in" v-model="workOrderForm.priority">
                   <el-radio label="低"></el-radio>
                   <el-radio label="中"></el-radio>
@@ -473,6 +492,7 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item class="wo-form-item" label="工单状态" :label-width="woFormLabelWidth" prop="workOrderState">
+                <label slot="label">&nbsp;&nbsp;工单状态</label>
                 <el-select class="wo-form-item-in" v-model="workOrderForm.workOrderState" placeholder="请选择工单状态">
                   <el-option label="未分配" value="#1"></el-option>
                   <el-option label="带处理" value="#2"></el-option>
@@ -482,6 +502,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="受理客服组" :label-width="woFormLabelWidth" prop="serviceGroup">
+                <label slot="label">&nbsp;&nbsp;受理客服组</label>
                 <el-select class="wo-form-item-in" v-model="workOrderForm.serviceGroup" placeholder="请选择受理客服组">
                   <div class="search">
                     <el-input placeholder="搜索" prefix-icon="el-icon-search"></el-input>
@@ -492,6 +513,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="受理客服" :label-width="woFormLabelWidth" prop="acceptServer">
+                <label slot="label">&nbsp;&nbsp;受理客服</label>
                 <el-select class="wo-form-item-in" v-model="workOrderForm.acceptServer" placeholder="请选择受理客服">
                   <div class="search">
                     <el-input placeholder="搜索" prefix-icon="el-icon-search"></el-input>
@@ -502,6 +524,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="所属客服" :label-width="woFormLabelWidth" prop="belongServer">
+                <label slot="label">&nbsp;&nbsp;所属客服</label>
                 <el-select class="wo-form-item-in" v-model="workOrderForm.belongServer" placeholder="请选择所属客服">
                   <div class="search">
                     <el-input placeholder="搜索" prefix-icon="el-icon-search"></el-input>
@@ -574,21 +597,27 @@
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.nickName" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="真实姓名" :label-width="woFormLabelWidth" prop="realName">
+                <label slot="label">&nbsp;&nbsp;真实姓名</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.realName" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户电话" :label-width="woFormLabelWidth" prop="phone">
+                <label slot="label">&nbsp;&nbsp;客户电话</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.phone" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户邮箱" :label-width="woFormLabelWidth" prop="email">
+                <label slot="label">&nbsp;&nbsp;客户邮箱</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.email" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户公司" :label-width="woFormLabelWidth" prop="company">
+                <label slot="label">&nbsp;&nbsp;抄送人</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.company" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户地址" :label-width="woFormLabelWidth" prop="address">
+                <label slot="label">&nbsp;&nbsp;客户地址</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.address" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客服等级" :label-width="woFormLabelWidth" prop="level">
+                <label slot="label">&nbsp;&nbsp;客服等级</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.level" placeholder="请选择">
                   <el-option label="普通客户" value="#1"></el-option>
                   <el-option label="VIP客户" value="#2"></el-option>
@@ -596,18 +625,21 @@
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户来源" :label-width="woFormLabelWidth" prop="source">
+                <label slot="label">&nbsp;&nbsp;客户来源</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.source" placeholder="请选择">
                   <el-option label="客户录入" value="#1"></el-option>
                   <el-option label="网页介入" value="#2"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="选择标签" :label-width="woFormLabelWidth" prop="tag">
+                <label slot="label">&nbsp;&nbsp;选择标签</label>
                 <el-checkbox-group class="wo-form-item-in" v-model="customerInfoForm.tag">
                   <el-checkbox label="latent" name="latent"><span class="row-two-tag">潜在客户</span></el-checkbox>
                   <el-checkbox label="compa" name="latent"><span class="row-two-tag">上市公司</span></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户备注" :label-width="woFormLabelWidth" prop="remarks">
+                <label slot="label">&nbsp;&nbsp;客户备注</label>
                 <el-input type="textarea" width="314px" :rows="6" resize="none" class="ftextarea wo-form-item-in" v-model="customerInfoForm.remarks" placeholder="请输入原因"></el-input>
               </el-form-item>
             </el-form>
@@ -744,7 +776,7 @@ export default {
             },
             customerInfoRules: {
               nickName: [
-                { required: true, message: '请输入原因', trigger: 'change' }
+                { required: true, message: '请输入名称', trigger: 'change' }
               ]
             }
 
@@ -858,6 +890,7 @@ export default {
   /* margin-top: 10px; */
 }
 
+/* 左侧客户列表 */
 .d-aside{
   display: flex;
 }
@@ -945,6 +978,7 @@ export default {
   border-right: 2px solid blue;
 }
 
+/* 主体区域 */
 .d-body{
   height: 700px;
   width: 1040px;
@@ -960,6 +994,7 @@ export default {
   margin-left: 10px;
 }
 
+/* 聊天区域头部 */
 .d-header{
   height: 53px;
   display: flex;
@@ -1088,10 +1123,12 @@ export default {
 
 .customer .s-c-img{
   margin-right: 8px;
+  /* width: 57px; */
 }
 .servicer .s-c-img{
     /* margin-left: 20px; */
     margin-left: 8px;
+    /* width: 57px; */
 }
 
 .servicer .s-c-i-title{
