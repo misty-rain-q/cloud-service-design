@@ -1,12 +1,13 @@
 <template>
-  <div class="container">
-      <h1>工单</h1>
-  </div>
+  <orderDetail></orderDetail>
 </template>
 
 <script>
+import orderDetail from './order/orderDetail.vue'
+
 export default {
-    name: 'Order',
+    name: 'order',
+    components:{orderDetail},
     data(){
         return{
 
