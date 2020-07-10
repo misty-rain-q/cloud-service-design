@@ -183,13 +183,13 @@
     },
     methods:{
       check(){
-        this.$router.replace('/specificOrder');
+        this.$router.push('/specificOrder');
       }
     }
   }
 </script>
 
-<style>
+<style scoped>
   .el-table{
     margin-top: 10px;
     margin-left: 20px;
@@ -220,7 +220,7 @@
      border-radius: 2px;
   }
 
-  .pageSelect .el-input__inner{
+  .pageSelect>>>.el-input__inner{
     background-color: #FFFFFF;
     height: 32px;
     padding: 0px;
@@ -236,7 +236,7 @@
     box-sizing: border-box;
   }
 
-  .jumpNum .el-input__inner{
+  .jumpNum>>>.el-input__inner{
     width: 41px;
     height: 30px;
     background-color: #FFFFFF ;

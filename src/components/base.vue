@@ -131,7 +131,7 @@
     },
     methods: {
       getTitle(){
-        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情')
+        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情','客户详情')
         let index=this.$route.path;
         if(index=='/index'){
           this.title=title_list[1];
@@ -151,8 +151,10 @@
           this.title=title_list[8];
         }else if(index=='/specificOrder/replyContent'){
           this.title=title_list[9];
+        }else if(index=='/customerDetail'){
+          this.title=title_list[10];
         }
-        
+
       },
       logo_click(){
         this.$router.push("/index");

@@ -2,7 +2,7 @@
   <div class="specificOutContainer">
     <!-- 上方按钮 -->
     <div class="specificOrderTopButton">
-      <el-button class="backButton">< 返回</el-button>
+      <el-button class="backButton" v-on:click='backToOrder'>< 返回</el-button>
       <el-button class="changeStatushButton">更改状态</el-button>
       <el-button class="passingButton">转交工单</el-button>
       <el-button class="editButton">编辑工单</el-button>
@@ -26,9 +26,9 @@
         </div>
 
         <!-- 导航菜单 -->
-        <el-menu default-active="/specificOrder/replyContent" mode="horizontal" style="margin-bottom: 5px;" router>
-          <el-menu-item index="/specificOrder/replyContent">回复记录</el-menu-item>
-          <el-menu-item index="/specificOrder/operatingLog">操作日志</el-menu-item>
+        <el-menu default-active="111" mode="horizontal" style="margin-bottom: 5px;">
+          <el-menu-item index="111"  class="specificMenuItem" v-on:click="loadRouter('/specificOrder/replyContent')">回复记录</el-menu-item>
+          <el-menu-item index="222"   class="specificMenuItem" v-on:click="loadRouter('/specificOrder/operatingLog')">操作日志</el-menu-item>
         </el-menu>
 
         <router-view></router-view>
@@ -141,11 +141,20 @@
             replyContent:''
 
           }
+      },
+      methods:{
+        backToOrder(){
+          this.$router.go(-1);
+        },
+
+        loadRouter(path){
+          this.$router.replace(path);
+        }
       }
   }
 </script>
 
-<style>
+<style scoped>
   .specificOutContainer{
     position: fixed;
     height:100%;
@@ -217,13 +226,14 @@
     text-align: left;
   }
 
-  .replyBox .el-textarea__inner{
+  .replyBox>>>.el-textarea__inner{
     width: 891px;
     height: 211px;
+    padding-top: 14px;
     background-color: #F2F2F2;
+    border: transparent;
     border-radius: 2px;
   }
-
 
   .specificOrderRight{
     width: 340px;

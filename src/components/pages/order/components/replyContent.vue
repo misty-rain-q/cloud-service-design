@@ -34,7 +34,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 
   .servicer{
     width: 892px;
