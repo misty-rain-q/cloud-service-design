@@ -14,7 +14,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .null{
     width: 530px;
     height: 63px;

@@ -150,7 +150,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .specificOutContainer{
     position: fixed;
     height:100%;

@@ -256,7 +256,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .container{
   position: fixed;
   display:flex;

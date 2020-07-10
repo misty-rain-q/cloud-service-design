@@ -229,7 +229,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .innerContainer{
     border-radius: 5px;
     background-color: white;
