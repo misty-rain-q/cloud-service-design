@@ -13,7 +13,8 @@
         <el-table-column label="工单渠道" prop="channel" width="141" align="center"></el-table-column>
         <el-table-column label="工单状态" prop="status" width="141" align="center">
           <template slot-scope="scope">
-            <el-tag type="danger" hit="true" style="width:64px;height:24px;
+            <!-- hit="true" -->
+            <el-tag type="danger"  style="width:64px;height:24px;
                   border-radius:0px;top:9px;line-height: 24px;">{{ scope.row.status }}</el-tag>
           </template>
         </el-table-column>
@@ -175,7 +176,8 @@
             label: '50条/页'
           }
         ],
-        pageValue:''
+        pageValue:'',
+        input: "",
       }
     },
     created:function(){
