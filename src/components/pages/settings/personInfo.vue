@@ -83,7 +83,7 @@
         <el-row :gutter="25">
           <el-col :span="2"></el-col>
           <el-col :span="4"><span class="input-label">客服手机号码:</span></el-col>
-          <el-col :span="10"><el-input v-model="tele" placeholder="请输入"></el-input></el-col>
+          <el-col :span="10"><el-input v-model="phone" placeholder="请输入"></el-input></el-col>
         </el-row>
         <el-divider></el-divider>
         <el-row :gutter="25">
@@ -95,7 +95,7 @@
         <el-row :gutter="25">
           <el-col :span="2"></el-col>
           <el-col :span="4"><span class="input-label">原密码:</span></el-col>
-          <el-col :span="10"><el-input v-model="originPassword" placeholder="请输入原密码"></el-input></el-col>
+          <el-col :span="10"><el-input v-model="password" placeholder="请输入原密码"></el-input></el-col>
         </el-row>
         <br/>
         <el-row :gutter="25">
@@ -131,8 +131,8 @@ export default {
         nickName: '客服小妹',
         realName: '杜宇',
         servicerId: 0,
-        tele: '',
-        originPassword: '',
+        phone: '',
+        password: '',
         newPassword: null,
         confirmPassword: null,
       }
@@ -150,16 +150,17 @@ export default {
         let phone=this.phone;
         if(this.newPassword!=null){
           console.log('更改密码了!')
-          let password=this.newPassword;
+          var password=this.newPassword;
         }else{
           console.log('密码没有动!')
-          let password=this.password;
+          var password=this.password;
         }
         let data={email,nickName,realName,phone,password};
+        console.log(this.servicerId)
         this.$axios
-              .put(`/servicer/${this.servicerId}`,data)
+              .put('/servicer/'+this.servicerId,data)
               .then(response=>{
-
+                console.log(response)
                 this.$message({
                   type: 'success',
                   message: '已成功更新您的个人信息',
@@ -187,8 +188,8 @@ export default {
       this.nickName=jsUser.nickName;
       this.realName=jsUser.realName;
       this.servicerId=jsUser.customerServiceId;
-      this.tele=jsUser.phone;
-      this.originPassword=jsUser.password;
+      this.phone=jsUser.phone;
+      this.password=jsUser.password;
     }
 
 }
