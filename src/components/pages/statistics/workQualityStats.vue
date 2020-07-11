@@ -84,16 +84,17 @@
     <div class="workQualityTable">
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
-        <el-table-column label="客服昵称" prop="servicerName" width="91" align="center"></el-table-column>
-        <el-table-column label="有效会话数量" prop="validSessionNum" width="130" align="center"></el-table-column>
+        <el-table-column label="客服昵称" prop="nickName" width="91" align="center"></el-table-column>
+        <el-table-column label="有效会话数量" prop="effectiveSessionCount" width="130" align="center"></el-table-column>
+        <!-- 下面两个字段通过计算得到 -->
         <el-table-column label="首次平均响应时长" prop="firstAverageTime" width="130" align="center"></el-table-column>
         <el-table-column label="平均响应时长" prop="averageTime" width="130" align="center"></el-table-column>
-        <el-table-column label="已解决" prop="finished" width="65" align="center"></el-table-column>
-        <el-table-column label="未解决" prop="unfinished" width="65" align="center"></el-table-column>
-        <el-table-column label="好评" prop="goodEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="中评" prop="midEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="差评" prop="badEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="未评" prop="noEvaluation" width="98" align="center"></el-table-column>
+        <el-table-column label="已解决" prop="resolved" width="65" align="center"></el-table-column>
+        <el-table-column label="未解决" prop="unsolved" width="65" align="center"></el-table-column>
+        <el-table-column label="好评" prop="goodReview" width="98" align="center"></el-table-column>
+        <el-table-column label="中评" prop="mediumReview" width="98" align="center"></el-table-column>
+        <el-table-column label="差评" prop="badReview" width="98" align="center"></el-table-column>
+        <el-table-column label="未评" prop="noReview" width="98" align="center"></el-table-column>
 
       </el-table>
       <div class="pageJump">
@@ -161,128 +162,7 @@ export default {
           servicerValue:'',
           value1:'',
           value2:'',
-          tableData: [
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            }
-          ],
+          tableData: JSON.parse(localStorage.getItem("workQualityData")).result.WorkQualityStatistics,
           pageOptions:[
             {
               value: '选项1',
@@ -308,6 +188,19 @@ export default {
           pageValue:''
         }
 
+    },
+    beforeCreate:function() {
+      console.log("--->begin");
+      this.$axios
+          .get('/workQualityStatistics/')
+          .then(response=>{
+              console.log(response);
+              if(response.data.success){
+                localStorage.setItem("workQualityData",JSON.stringify(response.data));
+              }else{
+                this.$mesasage.error("获取数据错误")
+              }
+          })
     },
     created: function(){
       this.groupValue = this.groupOptions[0].value;

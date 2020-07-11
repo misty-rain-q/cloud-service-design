@@ -38,9 +38,9 @@
     </div>
 
     <div class="checkInTable">
-      <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
+      <el-table :data="page.list" tooltip-effect="dark" style="width: 1003px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
-        <el-table-column label="客服昵称" prop="servicerName" width="129" align="center"></el-table-column>
+        <el-table-column label="客服昵称" prop="nickName" width="129" align="center"></el-table-column>
         <el-table-column label="登陆时长" prop="loginTime" width="184" align="center"></el-table-column>
         <el-table-column label="空闲时长" prop="freeTime" width="184" align="center"></el-table-column>
         <el-table-column label="忙碌时长" prop="busyTime" width="184" align="center"></el-table-column>
@@ -48,20 +48,18 @@
         <el-table-column label="离线时长" prop="offlineTime" width="138" align="center"></el-table-column>
       </el-table>
       <div class="pageJump">
-        <span>共100条</span>
-        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-        <el-select class="pageSelect" v-model="pageValue">
-          <el-option
-            v-for="item in pageOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <span>到第</span>
-        <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
-        <span>页</span>
-        <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
+        <el-pagination v-if="page"
+                       background
+                       layout="total, prev, pager, next,sizes, jumper"
+                       :total="page.total"
+                       :page-size="page.pageSize"
+                       :page-sizes="[10, 20, 30, 40,50]"
+                       :current-page="page.currentPage"
+                       @current-change="currentChange"
+                       @prev-click="prevChange"
+                       @next-click="nextChange"
+                       @size-change="handleSizeChange">
+        </el-pagination>
       </div>
     </div>
 
@@ -113,118 +111,66 @@
           servicerValue:'',
           value1:'',
           value2:'',
-          tableData: [
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-            {
-              servicerName: '客服书记',
-              loginTime: '12h',
-              freeTime: '3h',
-              busyTime: '8h',
-              onlineTime: '7h',
-              offlineTime:"1h"
-            },
-          ],
-          pageOptions: [
-            {
-              value: '选项1',
-              label: '10条/页'
-            },
-            {
-              value: '选项2',
-              label: '20条/页'
-            },
-            {
-              value: '选项3',
-              label: '30条/页'
-            },
-            {
-              value: '选项4',
-              label: '40条/页'
-            },
-            {
-              value: '选项5',
-              label: '50条/页'
-            }
-          ],
-          pageValue:''
+          // tableData:
+          // [
+          //   {
+          //     nickName: '客服书记',
+          //     loginTime: '12h',
+          //     freeTime: '3h',
+          //     busyTime: '8h',
+          //     onlineTime: '7h',
+          //     offlineTime:"1h"
+          //   },
+          // ],
+          page:null,
+          currentPage:1,
+          pageSize:10
         }
       },
+      watch:{
+        currentPage:function(){
+          this.$axios
+          .get(`/attendance_stats/page?currentPage=${this.currentPage}&pageSize=${this.pageSize}`)
+          .then(response=>{
+            this.page=response.data
+          })
+        },
+        pageSize:function(){
+          this.$axios
+          .get(`/attendance_stats/page?pageSize=${this.pageSize}`)
+          .then(response=>{
+            this.page=response.data
+          })
+        }
+      },
+      beforeCreate:function() {
+        console.log("--->begin");
+        this.$axios
+            .get('/attendance_stats/page')
+            .then(response=>{
+                this.page=response.data
+            })
+      },
+
       created: function(){
         this.groupValue = this.groupOptions[0].value;
         this.servicerValue = this.servicerOptions[0].value;
         this.pageValue = this.pageOptions[0].value;
       },
+      methods:{
+        currentChange(event){
+          this.currentPage = event;
+        },
+        prevChange(event){
+          this.currentPage = event;
+        },
+        nextChange(event){
+          this.currentPage = event;
+        },
+        handleSizeChange(event){
+          this.pageSize = event;
+        },
+      }
 
   }
 </script>
@@ -295,6 +241,10 @@
   .el-table{
     margin-top: 19px;
   }
+  
+  .el-pagination{
+    margin-right: 35px;
+  }
 
   .pageJump{
     display: flex;
@@ -340,6 +290,8 @@
   .jumpNum>>>.el-input__inner{
     width: 41px;
     height: 30px;
+    padding: 0px;
+    text-align: center;
     background-color: #FFFFFF ;
     border: 1px solid rgb(215, 215, 215);
     border-radius: 2px;

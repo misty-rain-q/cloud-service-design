@@ -73,10 +73,11 @@
     <div class="accessTable">
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
-        <el-table-column label="来源类型" prop="source" width="150" align="center"></el-table-column>
+        <el-table-column label="来源类型" prop="type" width="150" align="center"></el-table-column>
         <el-table-column label="浏览量" prop="pageView" width="213" align="center"></el-table-column>
         <el-table-column label="访客量" prop="visitorNum" width="213" align="center"></el-table-column>
-        <el-table-column label="访问次数" prop="visitNum" width="213" align="center"></el-table-column>
+        <el-table-column label="访问次数" prop="visitorCount" width="213" align="center"></el-table-column>
+        <!-- 此字段通过计算得到 -->
         <el-table-column label="平均页面浏览时长" prop="averagePageTime" width="213" align="center"></el-table-column>
       </el-table>
     </div>
@@ -129,51 +130,21 @@ export default {
           servicerValue:'',
           value1:'',
           value2:'',
-          tableData: [
-            {
-              source: '网页',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '手机app',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微信公众号',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微信小程序',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微博',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '头条号',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            }
-          ]
+          tableData:JSON.parse(localStorage.getItem("viewStatisticsData")).result.ViewStatistics,
         }
+    },
+    beforeCreate:function() {
+      console.log("--->begin");
+      this.$axios
+          .get('/view_statistics/')
+          .then(response=>{
+              console.log(response);
+              if(response.data.success){
+                localStorage.setItem("viewStatisticsData",JSON.stringify(response.data));
+              }else{
+                this.$mesasage.error("获取数据错误")
+              }
+          })
     },
     created: function(){
       this.groupValue = this.groupOptions[0].value;
