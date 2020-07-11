@@ -1,6 +1,11 @@
 <template>
     <div class="index-container">
         <span class="welcome">{{userName}}, 欢迎回来</span>
+        <el-carousel :interval="2500" type="card" height="400px">
+        <el-carousel-item v-for="item in carousel" :key="item">
+            <el-image :src="item"></el-image>
+        </el-carousel-item>
+        </el-carousel>
         <div class="abstract">
         <el-row class="abstract-el-row" :gutter="20">
           <el-col :span="6"><el-card class="card-color" shadow="hover">
@@ -87,7 +92,7 @@
             <div class="spy-txt">客服监控</div>
             <el-table :data="tableData" style="width: 100%" 
                       :header-cell-style="{'background-color':'#e6f1ff','height':'62px'}"
-                      fit :cell-style="cellStyle"
+                      fit 
                       class="table"> 
                 <el-table-column  label="客服昵称"
                                 prop="name"
@@ -119,6 +124,7 @@
                 </el-table-column>
             </el-table>
         </div>
+        <el-backtop ></el-backtop>
     </div>
 </template>
 
@@ -128,7 +134,7 @@ export default {
 
     data(){
         return{
-            userName: '客服七尾',
+            userName: '',
             total_dialog: '230',
             processing_dialog: '200',
             online_servicer: '30',
@@ -137,6 +143,13 @@ export default {
             processing_dialog_percent: '10',
             online_servicer_percent: '10',
             today_msg_percent: '10',
+            carousel: [
+                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/carousel_1.jpg',
+                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_4.jpg',
+                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_5.jpg',
+                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_6.jpg',
+                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_8.jpg',
+            ],
             tableData: [
                 {
                     name: '客服家伟',
@@ -254,6 +267,11 @@ export default {
             });
             }
         }
+    },
+    created(){
+        let jsUser=JSON.parse(localStorage.getItem("user")).result;
+        console.log(jsUser);
+        this.userName=jsUser.nickName;
     }
 }
 </script>

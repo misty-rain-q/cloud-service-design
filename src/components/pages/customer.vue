@@ -389,7 +389,11 @@ export default {
       /*创建新工单*/
       CreateOrder(index, tableData) {
           this.addDialogVisible = true;
+      },
+      GetMore(index, tableData){
+        this.$router.push('/customerDetail');
       }
+
     },
   };
 </script>

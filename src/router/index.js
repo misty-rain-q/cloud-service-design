@@ -13,6 +13,9 @@ import Customer from '@/components/pages/Customer'
 import Order from '@/components/pages/Order'
 import Statistics from '@/components/pages/Statistics'
 
+// customer
+import CustomerDetail from '@/components/pages/customer/CustomerDetail'
+
 //order
 import AllOrder from '@/components/pages/order/components/AllOrder'
 import Waiting from '@/components/pages/order/components/Waiting'
@@ -109,7 +112,11 @@ export default new Router({
                 },
                 {
                     path: 'customer',
-                    component: Customer
+                    component: Customer,
+                },
+                {
+                    path:'customerDetail',
+                    component:CustomerDetail
                 },
                 {
                   path:'specificOrder',

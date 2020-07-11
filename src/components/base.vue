@@ -84,13 +84,13 @@
 
       <div class="header-right">
         <div class="msg">
-          <i class="el-icon-message-solid"></i>
+          <i @click="clickBell" id="bell" class="el-icon-message-solid"></i>
           <img class="has_new" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u101.svg">
         </div>
         <div class="my_info">
-          <el-avatar class="avatar" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u94.svg"></el-avatar>
+          <el-avatar class="avatar" :src="avatarUrl"></el-avatar>
           <img class="state_dot" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u95.svg">
-          <div class="user_name">{{user_name}}</div>
+          <div class="user_name">{{userName}}</div>
           <img class="pull_down" src="https://ccs.it-doesnt.work/images/%E9%A6%96%E9%A1%B5/u93.svg">
           <!-- TODO -->
           <el-dropdown>
@@ -116,8 +116,9 @@
     data(){
       return {
         activePage: '/index',
-        title: '404',
-        user_name: '客服七尾'
+        avatarUrl: '',
+        title: '处理界面',
+        userName: '',
       }
     },
     watch: {
@@ -129,9 +130,16 @@
     mounted(){
       this.getTitle();
     },
+    created(){
+      let jsUser=JSON.parse(localStorage.getItem("user")).result;
+      console.log(jsUser);
+      this.userName=jsUser.nickName;
+      this.avatarUrl=jsUser.avatar;
+      console.log(this.avatarUrl);
+    },
     methods: {
       getTitle(){
-        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情')
+        let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情','客户详情')
         let index=this.$route.path;
         let first = '/'+index.split('/')[1];
         // console.log(first);
@@ -148,20 +156,24 @@
           this.title=title_list[5];
         }else if(index=='/order/allorder'){
           this.title=title_list[6];
-        }else if(index=='/statistics'){
+        }else if(index=='/statistics/statisticsOverall'){
           this.title=title_list[7];
         }else if(index=='/settings'){
           this.title=title_list[8];
         }else if(index=='/specificOrder/replyContent'){
           first = '/order';
           this.title=title_list[9];
+        }else if(index=='/customerDetail'){
+          this.title=title_list[10];
         }
         this.activePage = first;
 
       },
       logo_click(){
         this.$router.push("/index");
-
+      },
+      clickBell(){
+        this.$router.push("/settings/messageNotice");
       },
       exit(){
         this.$message({
@@ -285,5 +297,7 @@
   width:1420px;
   padding: 10px;
 }
-
+#bell{
+  cursor: pointer;
+}
 </style>

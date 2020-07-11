@@ -7,10 +7,10 @@
               <form action = "">
                 <h3 class="h3">登录七尾客服云</h3>
                 <div class = "item"><label for = "">账号</label>
-                <input placeholder="请输入注册时填写的邮箱" type = "text"></div>
-                <div class = "item"><label for = "">密码</label><input placeholder="请输入密码"
-                type = "password"></div>
-                <div class = "tip">忘记密码请联系客服人员</div>
+                <input v-model="phone" placeholder="请输入注册时填写的邮箱" type = "text"></div>
+                <div class = "item"><label for = "">密码</label>
+                <input v-model="password" placeholder="请输入密码" type = "password"></div>
+                <div  class = "tip">忘记密码请联系客服人员</div>
                 <el-row>
                    <el-button class="item btn" type="warning"
                    @click="login">登录</el-button>
@@ -30,39 +30,46 @@
       name: 'Login',
       data(){
           return{
-              comfirm: ''
+              comfirm: '',
+              phone: '123456',
+              password: '123456',
           }
       },
       methods: {
           // 登陆
           login(){
-            // console.log("---")
-            // console.log(data);
-            // console.log("---")
-            // this.$axios.
-            //     // 由于login的界面和后端controller未写.. 此处blacklist做前后端接口对接测试
-            //     post('/servicer/login',data) // 注意理解此处 data: data (ES6机制)
-            //     .then(response=>{
-            //         console.log(response); 
-            //         this.$message({
-            //             message: '登陆成功',
-            //             type: 'success'
-            //         });
-            //         this.$router.push('/index');
-            //     })
-            //     .catch(err=>{ 
-            //         console.log(err);
-            //         this.$message({
-            //             message: '登陆失败',
-            //             type: 'error'
-            //         });
-            //     })              
-              this.$message({
-                  message: '登陆成功',
-                  type: 'success'
-              });
-              this.$router.replace('/index');
+            let phone=this.phone;
+            let password=this.password;
+            let data = {phone, password}
+            console.log("Data-> ")
+            console.log(data);
+            console.log("---")
+            this.$axios.
+                post('/servicer/login',data) // 注意理解此处 data: data (ES6机制)
+                .then(response=>{
+                    console.log(response); 
+                    if(response.data.success){
+                      localStorage.setItem("user",JSON.stringify(response.data));
+                      this.$message({
+                          message: '登陆成功',
+                          type: 'success'
+                      });
+                      this.$router.push('/index');
+                    }else{
+                      this.$mesasage.error("账号或密码错误")
+                    }
+                })
+                .catch(err=>{ 
+                    console.log(err);
+                    this.$message({
+                        message: '登陆失败',
+                        type: 'error'
+                    });
+                })              
           }
+    },
+    created(){
+      
     },
   }
 </script>
