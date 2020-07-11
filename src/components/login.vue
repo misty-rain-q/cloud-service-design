@@ -56,7 +56,7 @@
                       });
                       this.$router.push('/index');
                     }else{
-                      this.$mesasage.error("账号或密码错误")
+                      this.$message.error("账号或密码错误")
                     }
                 })
                 .catch(err=>{ 

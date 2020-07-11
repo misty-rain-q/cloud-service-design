@@ -77,7 +77,7 @@
         <el-row :gutter="25">
           <el-col :span="2"></el-col>
           <el-col :span="4"><span class="input-label">客服工号:</span></el-col>
-          <el-col :span="10"><el-input v-model="servicerId" placeholder="请输入"></el-input></el-col>
+          <el-col :span="10"><el-input disabled="" v-model="servicerId" placeholder="请输入"></el-input></el-col>
         </el-row>
         <br/>
         <el-row :gutter="25">
@@ -107,11 +107,11 @@
         <el-row :gutter="25">
           <el-col :span="2"></el-col>
           <el-col :span="4"><span class="input-label">确认新密码:</span></el-col>
-          <el-col :span="10"><el-input v-model="newPassword" placeholder="请再次输入密码"></el-input></el-col>
+          <el-col :span="10"><el-input v-model="confirmPassword" placeholder="请再次输入密码"></el-input></el-col>
         </el-row>
       </form>
       <el-divider></el-divider>
-      <el-button type="primary" class="btn">保存</el-button>
+      <el-button type="primary" @click="save" class="btn">保存</el-button>
       <br/><br/><br/><br/><br/><br/><br/>
     </div>
   </el-scrollbar>   
@@ -130,15 +130,46 @@ export default {
         email: '11938898@163.com',
         nickName: '客服小妹',
         realName: '杜宇',
-        servicerId: '',
+        servicerId: 0,
         tele: '',
         originPassword: '',
-        newPassword: '',
-        confirmPassword: '',
+        newPassword: null,
+        confirmPassword: null,
       }
       
     },
     methods: {
+      save(){
+        if(this.newPassword!=this.confirmPassword){
+          this.$message.error('两次密码不一致! 请确认一致');
+          return;
+        }
+        let email=this.email;
+        let nickName=this.nickName;
+        let realName=this.realName;
+        let phone=this.phone;
+        if(this.newPassword!=null){
+          console.log('更改密码了!')
+          let password=this.newPassword;
+        }else{
+          console.log('密码没有动!')
+          let password=this.password;
+        }
+        let data={email,nickName,realName,phone,password};
+        this.$axios
+              .put(`/servicer/${this.servicerId}`,data)
+              .then(response=>{
+
+                this.$message({
+                  type: 'success',
+                  message: '已成功更新您的个人信息',
+                });
+              })
+              .catch(err=>{
+                console.log(err);
+              })
+        
+      },
       handleRemove(file) {
         console.log(file);
       },
@@ -149,7 +180,17 @@ export default {
       handleDownload(file) {
         console.log(file);
       }
+    },
+    created(){
+      let jsUser=JSON.parse( localStorage.getItem("user") ).result;
+      this.email=jsUser.email;
+      this.nickName=jsUser.nickName;
+      this.realName=jsUser.realName;
+      this.servicerId=jsUser.customerServiceId;
+      this.tele=jsUser.phone;
+      this.originPassword=jsUser.password;
     }
+
 }
 </script>
 
