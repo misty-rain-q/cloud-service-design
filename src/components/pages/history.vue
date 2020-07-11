@@ -23,7 +23,7 @@
             @current-change="handleCurrentChange" -->
           <el-pagination class="morePage"
             background :page="page"  :page-size="pagesize"
-            current-page="currentPage"
+            :current-page="currentPage"
             layout="prev, pager, next"
             :total="total">
           </el-pagination>
@@ -68,9 +68,9 @@
                       <span class="title time">2020/06/09 12:10</span>
                     </div>
                     <div class="s-c-i-content">
-                      <span style="">
+                      <div style="">
                         您好，请问有什么可以帮助您呢？请问有什么可以帮助您呢请问有什么可以帮助您呢请问有什么可以帮助您呢请问有什么可以帮助您呢
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -823,7 +823,8 @@ export default {
       },
 
       turnOn() {
-        this.$router.replace('/dialog');
+        this.$router.push('/dialog')
+
       },
 
       getinfo: function (indexT) {
@@ -1087,6 +1088,7 @@ export default {
 
 .s-c-img{
   width: 40px;
+  min-width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;

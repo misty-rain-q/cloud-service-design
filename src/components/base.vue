@@ -9,7 +9,7 @@
       <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
       <el-menu  class="aside-menu"
                 background-color="#171C3A"
-                default-active="/index"
+                :default-active="activePage"
                 router>
 
         <el-tooltip content="首页" placement="right">
@@ -115,13 +115,14 @@
     name: 'Base',
     data(){
       return {
+        activePage: '/index',
         avatarUrl: '',
         title: '处理界面',
         userName: '',
       }
     },
     watch: {
-
+      "$route": "getTitle"
     },
     computed: {
 
@@ -140,6 +141,9 @@
       getTitle(){
         let title_list=new Array('placehoder','首页','会话','访客','历史','客户','工单','统计','设置','工单详情','客户详情')
         let index=this.$route.path;
+        let first = '/'+index.split('/')[1];
+        // console.log(first);
+        
         if(index=='/index'){
           this.title=title_list[1];
         }else if(index=='/dialog'){
@@ -152,15 +156,17 @@
           this.title=title_list[5];
         }else if(index=='/order/allorder'){
           this.title=title_list[6];
-        }else if(index=='/statistics'){
+        }else if(index=='/statistics/statisticsOverall'){
           this.title=title_list[7];
         }else if(index=='/settings'){
           this.title=title_list[8];
         }else if(index=='/specificOrder/replyContent'){
+          first = '/order';
           this.title=title_list[9];
         }else if(index=='/customerDetail'){
           this.title=title_list[10];
         }
+        this.activePage = first;
 
       },
       logo_click(){
