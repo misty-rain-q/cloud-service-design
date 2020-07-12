@@ -473,6 +473,12 @@ export default {
     text-align: center;
     border-radius: 2px;
   }
+  
+  .statsExportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
+  }
 
   .statsSecondRow{
     display:flex;

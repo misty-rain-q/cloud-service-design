@@ -169,6 +169,40 @@ export default {
         }
 
     },
+    watch:{
+      currentPage:function(){
+        this.$axios
+        .get(`/workQualityStatistics/page?currentPage=${this.currentPage}&pageSize=${this.pageSize}`)
+        .then(response=>{
+          this.page=response.data
+        })
+      },
+      pageSize:function(){
+        this.$axios
+        .get(`/workQualityStatistics/page?pageSize=${this.pageSize}`)
+        .then(response=>{
+          this.page=response.data
+        })
+      },
+      servicerValue:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          console.log("servicerPage-->");
+          console.log(response);
+          this.page=response.data
+        })
+      },
+      groupValue:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          console.log("groupPage-->");
+          console.log(response);
+          this.page=response.data
+        })
+      },
+    },
     beforeCreate:function() {
       console.log("--->begin");
       this.$axios
@@ -515,6 +549,12 @@ export default {
     color:rgb(204, 204, 204);
     text-align: center;
     border-radius: 2px;
+  }
+  
+  .statsExportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
   }
 
   .statsSecondRow{

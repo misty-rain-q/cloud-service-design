@@ -144,7 +144,7 @@
         },
         servicerValue:function(){
           this.$axios
-          .get(`/attendance_stats/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+          .get(`/attendance_stats/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
           .then(response=>{
             console.log("servicerPage-->");
             console.log(response);
@@ -153,7 +153,7 @@
         },
         groupValue:function(){
           this.$axios
-          .get(`/attendance_stats/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+          .get(`/attendance_stats/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
           .then(response=>{
             console.log("groupPage-->");
             console.log(response);
@@ -253,6 +253,12 @@
     color:rgb(204, 204, 204);
     text-align: center;
     border-radius: 2px;
+  }
+  
+  .statsExportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
   }
 
   .el-table{
