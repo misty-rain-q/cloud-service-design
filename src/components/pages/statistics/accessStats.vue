@@ -1,42 +1,6 @@
 <template>
   <div class="innerContainer">
 
-    <!-- 日期选择，客服选择，导出按钮等 -->
-    <div class="statsFirstRow">
-      <div class="clock">
-        <el-date-picker
-          v-model="value1"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-        <div class="wave">~</div>
-        <el-date-picker
-          v-model="value2"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-      </div>
-      <div class="select">
-        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
-          <el-option
-            v-for="item in groupOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
-          <el-option
-            v-for="item in servicerOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
-      <el-button class="statsExportButton">导出当前数据</el-button>
-    </div>
-
     <!-- 五个框框 -->
     <div class="statsSecondRow">
       <div class="statsBoxOverall">
@@ -73,10 +37,11 @@
     <div class="accessTable">
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
                 :header-cell-style="{'background-color':'#e6f1ff'}">
-        <el-table-column label="来源类型" prop="source" width="150" align="center"></el-table-column>
+        <el-table-column label="来源类型" prop="type" width="150" align="center"></el-table-column>
         <el-table-column label="浏览量" prop="pageView" width="213" align="center"></el-table-column>
         <el-table-column label="访客量" prop="visitorNum" width="213" align="center"></el-table-column>
-        <el-table-column label="访问次数" prop="visitNum" width="213" align="center"></el-table-column>
+        <el-table-column label="访问次数" prop="visitorCount" width="213" align="center"></el-table-column>
+        <!-- 此字段通过计算得到 -->
         <el-table-column label="平均页面浏览时长" prop="averagePageTime" width="213" align="center"></el-table-column>
       </el-table>
     </div>
@@ -89,91 +54,21 @@ export default {
     name: 'AccessStats',
     data() {
         return{
-          groupOptions: [
-            {
-              value: '选项1',
-              label: '全部客服组'
-            },
-            {
-              value: '选项2',
-              label: '客服组一'
-            },
-            {
-              value: '选项3',
-              label: '客服组二'
-            },
-            {
-              value: '选项4',
-              label: '客服组三'
-            },
-          ],
-          servicerOptions: [
-            {
-              value: '选项1',
-              label: '全部客服'
-            },
-            {
-              value: '选项2',
-              label: '李书记'
-            },
-            {
-              value: '选项3',
-              label: '大锐子'
-            },
-            {
-              value: '选项4',
-              label: '大亮子'
-            }
-          ],
-          groupValue:'',
-          servicerValue:'',
-          value1:'',
-          value2:'',
-          tableData: [
-            {
-              source: '网页',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '手机app',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微信公众号',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微信小程序',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '微博',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            },
-            {
-              source: '头条号',
-              pageView: '5000',
-              visitorNum: '300',
-              visitNum: '3000',
-              averagePageTime: '1000',
-            }
-          ]
+          tableData:JSON.parse(localStorage.getItem("viewStatisticsData")).result.ViewStatistics,
         }
+    },
+    beforeCreate:function() {
+      console.log("--->begin");
+      this.$axios
+          .get('/view_statistics/')
+          .then(response=>{
+              console.log(response);
+              if(response.data.success){
+                localStorage.setItem("viewStatisticsData",JSON.stringify(response.data));
+              }else{
+                this.$mesasage.error("获取数据错误")
+              }
+          })
     },
     created: function(){
       this.groupValue = this.groupOptions[0].value;

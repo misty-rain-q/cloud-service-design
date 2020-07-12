@@ -1,42 +1,6 @@
 <template>
   <div class="innerContainer">
 
-    <!-- 日期选择，客服选择，导出按钮等 -->
-    <div class="statsFirstRow">
-      <div class="clock">
-        <el-date-picker
-          v-model="value1"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-        <div class="wave">~</div>
-        <el-date-picker
-          v-model="value2"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-      </div>
-      <div class="select">
-        <el-select class="selectBox" v-model="groupValue">
-          <el-option
-            v-for="item in groupOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select class="selectBox" v-model="servicerValue">
-          <el-option
-            v-for="item in servicerOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
-      <el-button class="statsExportButton">导出当前数据</el-button>
-    </div>
-
     <!-- 六个框框 -->
     <div class="statsSecondRow">
       <div class="statsBoxOverall">

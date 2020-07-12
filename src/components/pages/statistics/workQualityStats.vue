@@ -1,41 +1,6 @@
 <template>
   <div class="innerContainer">
 
-    <!-- 日期选择，客服选择，导出按钮等 -->
-    <div class="statsFirstRow">
-      <div class="clock">
-        <el-date-picker
-          v-model="value1"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-        <div class="wave">~</div>
-        <el-date-picker
-          v-model="value2"
-          type="date"
-          placeholder="请选择日期">
-        </el-date-picker>
-      </div>
-      <div class="select">
-        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
-          <el-option
-            v-for="item in groupOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
-          <el-option
-            v-for="item in servicerOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
-      <el-button class="statsExportButton">导出当前数据</el-button>
-    </div>
 
     <!-- 五个框框 -->
     <div class="statsSecondRow">
@@ -81,36 +46,72 @@
       <div id="forth" ref="forth" style="width: 50%;height:400px;"></div>
     </div>
 
-    <div class="workQualityTable">
-      <el-table :data="tableData" tooltip-effect="dark" style="width: 1003px"
-                :header-cell-style="{'background-color':'#e6f1ff'}">
-        <el-table-column label="客服昵称" prop="servicerName" width="91" align="center"></el-table-column>
-        <el-table-column label="有效会话数量" prop="validSessionNum" width="130" align="center"></el-table-column>
-        <el-table-column label="首次平均响应时长" prop="firstAverageTime" width="130" align="center"></el-table-column>
-        <el-table-column label="平均响应时长" prop="averageTime" width="130" align="center"></el-table-column>
-        <el-table-column label="已解决" prop="finished" width="65" align="center"></el-table-column>
-        <el-table-column label="未解决" prop="unfinished" width="65" align="center"></el-table-column>
-        <el-table-column label="好评" prop="goodEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="中评" prop="midEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="差评" prop="badEvaluation" width="98" align="center"></el-table-column>
-        <el-table-column label="未评" prop="noEvaluation" width="98" align="center"></el-table-column>
-
-      </el-table>
-      <div class="pageJump">
-        <span>共100条</span>
-        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-        <el-select class="pageSelect" v-model="pageValue">
+    <!-- 日期选择，客服选择，导出按钮等 -->
+    <div class="statsFirstRow">
+      <div class="clock">
+        <el-date-picker
+          v-model="value1"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
+        <div class="wave">~</div>
+        <el-date-picker
+          v-model="value2"
+          type="date"
+          placeholder="请选择日期">
+        </el-date-picker>
+      </div>
+      <div class="select">
+        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
           <el-option
-            v-for="item in pageOptions"
+            v-for="item in groupOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
         </el-select>
-        <span>到第</span>
-        <el-input class="jumpNum" v-model="input" placeholder="1"></el-input>
-        <span>页</span>
-        <el-button type="primary" plain class="buttonJump"><span>确定</span></el-button>
+        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
+          <el-option
+            v-for="item in servicerOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      <el-button class="statsExportButton">导出当前数据</el-button>
+    </div>
+
+
+    <div class="workQualityTable">
+      <el-table :data="page.list" tooltip-effect="dark" style="width: 1003px"
+                :header-cell-style="{'background-color':'#e6f1ff'}">
+        <el-table-column label="客服昵称" prop="nickName" width="91" align="center"></el-table-column>
+        <el-table-column label="有效会话数量" prop="effectiveSessionCount" width="130" align="center"></el-table-column>
+        <!-- 下面两个字段通过计算得到 -->
+        <el-table-column label="首次平均响应时长" prop="firstAverageTime" width="130" align="center"></el-table-column>
+        <el-table-column label="平均响应时长" prop="averageTime" width="130" align="center"></el-table-column>
+        <el-table-column label="已解决" prop="resolved" width="65" align="center"></el-table-column>
+        <el-table-column label="未解决" prop="unsolved" width="65" align="center"></el-table-column>
+        <el-table-column label="好评" prop="goodReview" width="98" align="center"></el-table-column>
+        <el-table-column label="中评" prop="mediumReview" width="98" align="center"></el-table-column>
+        <el-table-column label="差评" prop="badReview" width="98" align="center"></el-table-column>
+        <el-table-column label="未评" prop="noReview" width="98" align="center"></el-table-column>
+
+      </el-table>
+      <div class="pageJump">
+        <el-pagination v-if="page"
+                       background
+                       layout="total, prev, pager, next,sizes, jumper"
+                       :total="page.total"
+                       :page-size="page.pageSize"
+                       :page-sizes="[10, 20, 30, 40,50]"
+                       :current-page="page.currentPage"
+                       @current-change="currentChange"
+                       @prev-click="prevChange"
+                       @next-click="nextChange"
+                       @size-change="handleSizeChange">
+        </el-pagination>
       </div>
     </div>
   </div>
@@ -123,202 +124,70 @@ export default {
         return {
           groupOptions: [
             {
-              value: '选项1',
+              value: '全部客服组',
               label: '全部客服组'
             },
             {
-              value: '选项2',
+              value: '客服组一',
               label: '客服组一'
             },
             {
-              value: '选项3',
+              value: '客服组二',
               label: '客服组二'
             },
             {
-              value: '选项4',
+              value: '客服组三',
               label: '客服组三'
             },
           ],
           servicerOptions: [
             {
-              value: '选项1',
+              value: '全部客服',
               label: '全部客服'
             },
             {
-              value: '选项2',
-              label: '李书记'
+              value: '李自成',
+              label: '李自成'
             },
             {
-              value: '选项3',
-              label: '大锐子'
+              value: '嘎巴伟',
+              label: '嘎巴伟'
             },
             {
-              value: '选项4',
-              label: '大亮子'
+              value: '秦副班长',
+              label: '秦副班长'
             }
           ],
           groupValue:'',
           servicerValue:'',
           value1:'',
           value2:'',
-          tableData: [
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            },
-            {
-              servicerName: '客服书记',
-              validSessionNum: '300',
-              firstAverageTime: '26s',
-              averageTime: '18s',
-              finished: '10',
-              unfinished:"10",
-              goodEvaluation: '50',
-              midEvaluation:'40',
-              badEvaluation:'5',
-              noEvaluation:'50'
-            }
-          ],
-          pageOptions:[
-            {
-              value: '选项1',
-              label: '10条/页'
-            },
-            {
-              value: '选项2',
-              label: '20条/页'
-            },
-            {
-              value: '选项3',
-              label: '30条/页'
-            },
-            {
-              value: '选项4',
-              label: '40条/页'
-            },
-            {
-              value: '选项5',
-              label: '50条/页'
-            }
-          ],
-          pageValue:''
+          // tableData: JSON.parse(localStorage.getItem("workQualityData")).result.WorkQualityStatistics,
+          page:null,
+          currentPage:1,
+          pageSize:10
         }
 
+    },
+    beforeCreate:function() {
+      console.log("--->begin");
+      this.$axios
+          .get('/workQualityStatistics/page')
+          .then(response=>{
+              this.page=response.data
+          })
     },
     created: function(){
       this.groupValue = this.groupOptions[0].value;
       this.servicerValue = this.servicerOptions[0].value;
-      this.pageValue = this.pageOptions[0].value;
     },
-    mounted() {
+    updated() {
         this.getEchartData1();
         this.getEchartData2();
         this.getEchartData3();
         this.getEchartData4();
+
+
     },
     methods: {
         getEchartData1() {
@@ -535,6 +404,19 @@ export default {
             });
             }
         },
+
+        currentChange(event){
+          this.currentPage = event;
+        },
+        prevChange(event){
+          this.currentPage = event;
+        },
+        nextChange(event){
+          this.currentPage = event;
+        },
+        handleSizeChange(event){
+          this.pageSize = event;
+        },
     }
 }
 </script>
@@ -626,7 +508,7 @@ export default {
 
 
   .statsExportButton{
-    margin-left: 143px;
+    margin-left: 235px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
@@ -688,6 +570,10 @@ export default {
     display: flex;
     margin-top: 26px;
     float: right;
+  }
+
+  .el-pagination{
+    margin-right: 35px;
   }
 
   .pageJump span{
