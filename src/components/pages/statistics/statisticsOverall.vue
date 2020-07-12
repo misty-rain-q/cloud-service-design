@@ -323,7 +323,7 @@ export default {
                     legend: {
                         orient: 'vertical',
                         left: 'right',
-                        data:['iphone']
+                        data:['浏览量']
                     },
                     visualMap: {
                         min: 0,
@@ -347,7 +347,7 @@ export default {
                     },
                     series : [
                         {
-                            name: 'iphone',
+                            name: '浏览量',
                             type: 'map',
                             mapType: 'china',
                             roam: false,
