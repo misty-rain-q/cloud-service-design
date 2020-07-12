@@ -17,7 +17,7 @@
         </el-date-picker>
       </div>
       <div class="select">
-        <el-select class="selectBox" v-model="groupValue" placeholder="全部客服组">
+        <el-select class="selectBox" v-model="groupValue" >
           <el-option
             v-for="item in groupOptions"
             :key="item.value"
@@ -25,7 +25,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <el-select class="selectBox" v-model="servicerValue" placeholder="全部客服">
+        <el-select class="selectBox" v-model="servicerValue" >
           <el-option
             v-for="item in servicerOptions"
             :key="item.value"
@@ -71,42 +71,42 @@
       name: 'StatisticsOverall',
       data(){
         return{
-          groupOptions: [
-            {
-              value: '全部客服组',
-              label: '全部客服组'
-            },
-            {
-              value: '客服组一',
-              label: '客服组一'
-            },
-            {
-              value: '客服组二',
-              label: '客服组二'
-            },
-            {
-              value: '客服组三',
-              label: '客服组三'
-            },
-          ],
-          servicerOptions: [
-            {
-              value: '全部客服',
-              label: '全部客服'
-            },
-            {
-              value: '李自成',
-              label: '李自成'
-            },
-            {
-              value: '嘎巴伟',
-              label: '嘎巴伟'
-            },
-            {
-              value: '秦副班长',
-              label: '秦副班长'
-            }
-          ],
+          // groupOptions: [
+          //   {
+          //     value: '全部客服组',
+          //     label: '全部客服组'
+          //   },
+          //   {
+          //     value: '客服组一',
+          //     label: '客服组一'
+          //   },
+          //   {
+          //     value: '客服组二',
+          //     label: '客服组二'
+          //   },
+          //   {
+          //     value: '客服组三',
+          //     label: '客服组三'
+          //   },
+          // ],
+          // servicerOptions: [
+          //   {
+          //     value: '全部客服',
+          //     label: '全部客服'
+          //   },
+          //   {
+          //     value: '李自成',
+          //     label: '李自成'
+          //   },
+          //   {
+          //     value: '嘎巴伟',
+          //     label: '嘎巴伟'
+          //   },
+          //   {
+          //     value: '秦副班长',
+          //     label: '秦副班长'
+          //   }
+          // ],
           groupValue:'',
           servicerValue:'',
           value1:'',
@@ -124,7 +124,9 @@
           // ],
           page:null,
           currentPage:1,
-          pageSize:10
+          pageSize:10,
+          servicerOptions:null,
+          groupOptions:null,
         }
       },
       watch:{
@@ -169,11 +171,27 @@
                 console.log(response);
                 this.page=response.data
             })
+        this.$axios
+            .get('/attendance_stats/servicerOptions')
+            .then(response=>{
+              console.log("servicerOptions-->");
+              console.log(response.data.result.ElOption);
+              this.servicerOptions=response.data.result.ElOption;
+              this.servicerValue = response.data.result.ElOption[0].value;
+            })
+        this.$axios
+            .get('/attendance_stats/groupOptions')
+            .then(response=>{
+              console.log("-->groupOptions");
+              console.log(response.data.result.ElOption);
+              this.groupOptions=response.data.result.ElOption;
+              this.groupValue = response.data.result.ElOption[0].value;
+            })
       },
 
       created: function(){
-        this.groupValue = this.groupOptions[0].value;
-        this.servicerValue = this.servicerOptions[0].value;
+        // this.groupValue = this.groupOptions[0].value;
+        // this.servicerValue = this.servicerOptions[0].value;
       },
       methods:{
         currentChange(event){
