@@ -130,14 +130,14 @@
       watch:{
         currentPage:function(){
           this.$axios
-          .get(`/attendance_stats/page?currentPage=${this.currentPage}&pageSize=${this.pageSize}`)
+          .get(`/attendance_stats/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
           .then(response=>{
             this.page=response.data
           })
         },
         pageSize:function(){
           this.$axios
-          .get(`/attendance_stats/page?pageSize=${this.pageSize}`)
+          .get(`/attendance_stats/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
           .then(response=>{
             this.page=response.data
           })
@@ -166,6 +166,7 @@
         this.$axios
             .get('/attendance_stats/page')
             .then(response=>{
+                console.log(response);
                 this.page=response.data
             })
       },
@@ -254,7 +255,7 @@
     text-align: center;
     border-radius: 2px;
   }
-  
+
   .statsExportButton:hover{
     background-color: transparent;
     color: rgb(0,110,255);
