@@ -152,7 +152,7 @@
           this.title=title_list[5];
         }else if(index=='/order/allorder'){
           this.title=title_list[6];
-        }else if(index=='/statistics'){
+        }else if(index=='/statistics/statisticsOverall'){
           this.title=title_list[7];
         }else if(index=='/settings'){
           this.title=title_list[8];

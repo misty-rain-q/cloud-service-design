@@ -73,38 +73,38 @@
         return{
           groupOptions: [
             {
-              value: '选项1',
+              value: '全部客服组',
               label: '全部客服组'
             },
             {
-              value: '选项2',
+              value: '客服组一',
               label: '客服组一'
             },
             {
-              value: '选项3',
+              value: '客服组二',
               label: '客服组二'
             },
             {
-              value: '选项4',
+              value: '客服组三',
               label: '客服组三'
             },
           ],
           servicerOptions: [
             {
-              value: '选项1',
+              value: '全部客服',
               label: '全部客服'
             },
             {
-              value: '选项2',
-              label: '李书记'
+              value: '李自成',
+              label: '李自成'
             },
             {
-              value: '选项3',
-              label: '大锐子'
+              value: '嘎巴伟',
+              label: '嘎巴伟'
             },
             {
-              value: '选项4',
-              label: '大亮子'
+              value: '秦副班长',
+              label: '秦副班长'
             }
           ],
           groupValue:'',
@@ -141,7 +141,25 @@
           .then(response=>{
             this.page=response.data
           })
-        }
+        },
+        servicerValue:function(){
+          this.$axios
+          .get(`/attendance_stats/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+          .then(response=>{
+            console.log("servicerPage-->");
+            console.log(response);
+            this.page=response.data
+          })
+        },
+        groupValue:function(){
+          this.$axios
+          .get(`/attendance_stats/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+          .then(response=>{
+            console.log("groupPage-->");
+            console.log(response);
+            this.page=response.data
+          })
+        },
       },
       beforeCreate:function() {
         console.log("--->begin");
@@ -155,7 +173,6 @@
       created: function(){
         this.groupValue = this.groupOptions[0].value;
         this.servicerValue = this.servicerOptions[0].value;
-        this.pageValue = this.pageOptions[0].value;
       },
       methods:{
         currentChange(event){
@@ -229,7 +246,7 @@
 
 
   .statsExportButton{
-    margin-left: 143px;
+    margin-left: 235px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);
@@ -241,7 +258,7 @@
   .el-table{
     margin-top: 19px;
   }
-  
+
   .el-pagination{
     margin-right: 35px;
   }
