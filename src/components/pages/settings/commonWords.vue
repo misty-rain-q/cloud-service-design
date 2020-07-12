@@ -70,9 +70,9 @@ export default {
             commonWords: false,
             classficationName: '',
             dynamicTags: [
-              '你好，请问有什么可以帮您？',
-              '你好, 紫拔伟',
-              '你好, 秦锐醒了吗'
+              '您好，请问有什么可以帮您？',
+              '您好, 请问您的问题得以解决了吗',
+              '再见, 祝您生活愉快, 工作顺利',
             ],
             inputVisible: false,
             inputValue: ''
@@ -99,6 +99,17 @@ export default {
         this.inputValue = '';
       }
  
+    },
+    created(){
+      
+      this.$axios
+            .get('/commonword')
+            .then(response=>{
+              console.log(response)
+            })
+            .catch(err=>{
+              console.log(err);
+            })
     }
 }
 </script>
