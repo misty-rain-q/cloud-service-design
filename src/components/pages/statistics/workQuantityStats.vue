@@ -1,6 +1,42 @@
 <template>
   <div class="innerContainer">
 
+    <!-- 五个框框 -->
+    <div class="statsSecondRow">
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总消息数</div>
+        <div class="statsBoxTotalNum">230</div>
+        <div class="statsBoxValidNum">有效消息数200</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总会话量</div>
+        <div class="statsBoxTotalNum">30</div>
+        <div class="statsBoxValidNum">结束会话数20</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">单会话平均消息数</div>
+        <div class="statsBoxTotalNum">8</div>
+        <div class="statsBoxValidNum">单会话最大消息数50</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">总会话时长</div>
+        <div class="statsBoxTotalNum">60m</div>
+        <div class="statsBoxValidNum">最大会话时长5m2s</div>
+      </div>
+      <div class="statsBoxOverall">
+        <div class="statsBoxName">平均会话时长</div>
+        <div class="statsBoxTotalNum">9m3s</div>
+        <div class="statsBoxValidNum">最大会话时长5m2s</div>
+      </div>
+    </div>
+
+    <div class="barChart">
+      <!-- 单会话消息数统计 -->
+      <div id="message" ref="message" style="width: 50%;height:400px;"></div>
+      <!-- 单会话时长统计 -->
+      <div id="time" ref="time" style="width: 50%;height:400px;"></div>
+    </div>
+
     <!-- 日期选择，客服选择，导出按钮等 -->
     <div class="statsFirstRow">
       <div class="clock">
@@ -37,41 +73,6 @@
       <el-button class="statsExportButton">导出当前数据</el-button>
     </div>
 
-    <!-- 五个框框 -->
-    <div class="statsSecondRow">
-      <div class="statsBoxOverall">
-        <div class="statsBoxName">总消息数</div>
-        <div class="statsBoxTotalNum">230</div>
-        <div class="statsBoxValidNum">有效消息数200</div>
-      </div>
-      <div class="statsBoxOverall">
-        <div class="statsBoxName">总会话量</div>
-        <div class="statsBoxTotalNum">30</div>
-        <div class="statsBoxValidNum">结束会话数20</div>
-      </div>
-      <div class="statsBoxOverall">
-        <div class="statsBoxName">单会话平均消息数</div>
-        <div class="statsBoxTotalNum">8</div>
-        <div class="statsBoxValidNum">单会话最大消息数50</div>
-      </div>
-      <div class="statsBoxOverall">
-        <div class="statsBoxName">总会话时长</div>
-        <div class="statsBoxTotalNum">60m</div>
-        <div class="statsBoxValidNum">最大会话时长5m2s</div>
-      </div>
-      <div class="statsBoxOverall">
-        <div class="statsBoxName">平均会话时长</div>
-        <div class="statsBoxTotalNum">9m3s</div>
-        <div class="statsBoxValidNum">最大会话时长5m2s</div>
-      </div>
-    </div>
-
-    <div class="barChart">
-      <!-- 单会话消息数统计 -->
-      <div id="message" ref="message" style="width: 50%;height:400px;"></div>
-      <!-- 单会话时长统计 -->
-      <div id="time" ref="time" style="width: 50%;height:400px;"></div>
-    </div>
 
     <div class="workQuantityTable">
       <el-table :data="tableData" tooltip-effect="dark" style="width: 1002px"
@@ -464,7 +465,7 @@ export default {
 
 
   .statsExportButton{
-    margin-left: 143px;
+    margin-left: 235px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(204, 204, 204);

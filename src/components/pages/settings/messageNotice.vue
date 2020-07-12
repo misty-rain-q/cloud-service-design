@@ -119,6 +119,16 @@ export default {
         // TODO
         this.$message.success("已清空所有!");
       }
+    },
+    created(){
+      this.$axios
+          .get('/notice')
+          .then(response=>{
+            console.log("这里: "+response);
+          })
+          .catch(err=>{
+            console.log(err);
+          })
     }
 }
 </script>
