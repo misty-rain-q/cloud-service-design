@@ -13,7 +13,7 @@
               <div class="tile">
                 <div class="now">
                   <span class="name">北京客户</span>
-                  <span class="time">12:10</span>
+                  <span class="time">2020.7.11 21:49</span>
                 </div>
                 <div class="u-msg">您好，我想咨询一下</div>
               </div>
@@ -340,48 +340,30 @@
                     <el-input placeholder="搜索常用语" prefix-icon="el-icon-search"></el-input>
                   </div>
                   <div v-if="comNum == 0" class="commen-use person">
-                      <el-menu>
-                        <el-submenu index="1">
+                      <el-menu index="1">
+                        <el-submenu :key="cwsin" :index="'1-' + cwsin + 1" v-for="(cws, cwsin) in cwmy">
                           <template slot="title">
 
-                            <span>我的常用语分类一</span>
+                            <span>我的常用语分类{{cwsin+1}}</span>
                           </template>
-                          <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                          <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
+                          <el-menu-item v-for="(cw, csin) in cws.data" :index="csin + 1" :key="csin">{{cw.content}}</el-menu-item>
+                          <!-- <el-menu-item index="1-1">你好</el-menu-item> -->
                         </el-submenu>
                       </el-menu>
-                      <el-menu>
-                        <el-submenu index="2">
-                          <template slot="title">
 
-                            <span>我的常用语分类二</span>
-                          </template>
-                          <el-menu-item index="2-1">你好，请问有什么可以帮您？</el-menu-item>
-                          <el-menu-item index="2-2">你好，请问有什么可以帮您？</el-menu-item>
-                        </el-submenu>
-                      </el-menu>
                   </div>
                   <div v-else class="commen-use public">
-                    <el-menu>
-                      <el-submenu>
+                    <el-menu index="2">
+                      <el-submenu v-for="(pubcws, pubcwsin) in pubcwmy" :index="'2-' +pubcwsin+1" :key="pubcwsin">
                         <template slot="title">
-
-                          <span>公共常用语分类一</span>
+                          <span>公共常用语分类{{pubcwsin+1}}</span>
                         </template>
-                        <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                        <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
-                      </el-submenu>
-                    </el-menu>
-                    <el-menu>
-                      <el-submenu>
-                        <template slot="title">
+                        <el-menu-item v-for="(pubcw, pubcsin) in pubcws.data" :index="pubcsin+2" :key="pubcsin">{{pubcw.content}}</el-menu-item>
 
-                          <span>公共常用语分类二</span>
-                        </template>
-                        <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                        <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
                       </el-submenu>
+
                     </el-menu>
+
                   </div>
 
                 </div>
@@ -665,8 +647,19 @@
 <script>
 export default {
     name: 'Dialog',
+	// props: ["type", "sessionList"],
+    // props: ["cws"],
     data(){
         return {
+            cwmy: [
+
+            ],
+            pubcwmy: [
+
+            ],
+            // cwlib: [
+
+            // ],
             isActive: 0,
             message: "hello",
             TActive: 0,
@@ -783,7 +776,75 @@ export default {
         }
     },
 
-   methods: {
+    created(){
+      this.getcw(1);
+      this.getcw(2);
+    },
+
+    methods: {
+
+      getcw(libs) {
+        this.$axios.
+        get('/commonword/onelib', {
+          params: {
+            lib: libs,
+          }
+        })
+        .then(resp => {
+            let {
+              data
+            } = resp;
+
+            var com_w= data.common_word;
+            console.log(com_w);
+            if(libs == 1){
+              this.cwmy = this.getbycut(com_w, 'type');
+            }
+            else{
+              this.pubcwmy = this.getbycut(com_w, 'type');
+            }
+            // console.log(this.cwmy);
+            // for(var i = 0; i < libcw.length; i++){
+            //   libcw[i] = this.getbycut(libcw[i], 'type');
+            //   console.log("libcw[i]");
+            //   console.log(libcw[i]);
+            // }
+            // console.log(libcw);
+            // this.sessions = data.result;
+          })
+          .catch(err=>{
+              console.log(err);
+              this.$message({
+                  message: '查询常用语',
+                  type: 'error'
+              });
+          })
+      },
+      getbycut(cws, col) {
+        // col = 'lib';
+        var map = {},
+            dest = [];
+        for(var i = 0; i < cws.length; i++){
+            var ai = cws[i];
+            if(!map[ai[col]]){
+                dest.push({
+                    [col]: ai[col],
+                    data: [ai]
+                });
+                map[ai[col]] = ai;
+            }else{
+                for(var j = 0; j < dest.length; j++){
+                    var dj = dest[j];
+                    if(dj[col] == ai[col]){
+                        dj.data.push(ai);
+                        break;
+                    }
+                }
+            }
+        }
+        // console.log(dest);
+        return dest;
+      },
       greet: function (index) {
 
         this.isActive = index;
@@ -828,6 +889,7 @@ export default {
 
       comPubOrPer: function (comIn) {
         this.comNum = comIn;
+
       },
 
       moremsg() {
