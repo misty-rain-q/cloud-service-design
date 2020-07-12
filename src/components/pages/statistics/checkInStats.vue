@@ -71,57 +71,10 @@
       name: 'StatisticsOverall',
       data(){
         return{
-          // groupOptions: [
-          //   {
-          //     value: '全部客服组',
-          //     label: '全部客服组'
-          //   },
-          //   {
-          //     value: '客服组一',
-          //     label: '客服组一'
-          //   },
-          //   {
-          //     value: '客服组二',
-          //     label: '客服组二'
-          //   },
-          //   {
-          //     value: '客服组三',
-          //     label: '客服组三'
-          //   },
-          // ],
-          // servicerOptions: [
-          //   {
-          //     value: '全部客服',
-          //     label: '全部客服'
-          //   },
-          //   {
-          //     value: '李自成',
-          //     label: '李自成'
-          //   },
-          //   {
-          //     value: '嘎巴伟',
-          //     label: '嘎巴伟'
-          //   },
-          //   {
-          //     value: '秦副班长',
-          //     label: '秦副班长'
-          //   }
-          // ],
           groupValue:'',
           servicerValue:'',
           value1:'',
           value2:'',
-          // tableData:
-          // [
-          //   {
-          //     nickName: '客服书记',
-          //     loginTime: '12h',
-          //     freeTime: '3h',
-          //     busyTime: '8h',
-          //     onlineTime: '7h',
-          //     offlineTime:"1h"
-          //   },
-          // ],
           page:null,
           currentPage:1,
           pageSize:10,
@@ -189,10 +142,6 @@
             })
       },
 
-      created: function(){
-        // this.groupValue = this.groupOptions[0].value;
-        // this.servicerValue = this.servicerOptions[0].value;
-      },
       methods:{
         currentChange(event){
           this.currentPage = event;
