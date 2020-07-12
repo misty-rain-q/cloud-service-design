@@ -122,47 +122,12 @@ export default {
     name: 'WorkQualityStats',
     data(){
         return {
-          groupOptions: [
-            {
-              value: '全部客服组',
-              label: '全部客服组'
-            },
-            {
-              value: '客服组一',
-              label: '客服组一'
-            },
-            {
-              value: '客服组二',
-              label: '客服组二'
-            },
-            {
-              value: '客服组三',
-              label: '客服组三'
-            },
-          ],
-          servicerOptions: [
-            {
-              value: '全部客服',
-              label: '全部客服'
-            },
-            {
-              value: '李自成',
-              label: '李自成'
-            },
-            {
-              value: '嘎巴伟',
-              label: '嘎巴伟'
-            },
-            {
-              value: '秦副班长',
-              label: '秦副班长'
-            }
-          ],
+          groupOptions: null,
+          servicerOptions: null,
           groupValue:'',
           servicerValue:'',
           value1:'',
           value2:'',
-          // tableData: JSON.parse(localStorage.getItem("workQualityData")).result.WorkQualityStatistics,
           page:null,
           currentPage:1,
           pageSize:10
@@ -172,21 +137,21 @@ export default {
     watch:{
       currentPage:function(){
         this.$axios
-        .get(`/workQualityStatistics/page?currentPage=${this.currentPage}&pageSize=${this.pageSize}`)
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
         .then(response=>{
           this.page=response.data
         })
       },
       pageSize:function(){
         this.$axios
-        .get(`/workQualityStatistics/page?pageSize=${this.pageSize}`)
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
         .then(response=>{
           this.page=response.data
         })
       },
       servicerValue:function(){
         this.$axios
-        .get(`/workQualityStatistics/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
         .then(response=>{
           console.log("servicerPage-->");
           console.log(response);
@@ -195,7 +160,7 @@ export default {
       },
       groupValue:function(){
         this.$axios
-        .get(`/workQualityStatistics/selectPage?nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
         .then(response=>{
           console.log("groupPage-->");
           console.log(response);
@@ -210,10 +175,22 @@ export default {
           .then(response=>{
               this.page=response.data
           })
-    },
-    created: function(){
-      this.groupValue = this.groupOptions[0].value;
-      this.servicerValue = this.servicerOptions[0].value;
+      this.$axios
+          .get('/workQualityStatistics/servicerOptions')
+          .then(response=>{
+            console.log("servicerOptions-->");
+            console.log(response.data.result.ElOption);
+            this.servicerOptions=response.data.result.ElOption;
+            this.servicerValue = response.data.result.ElOption[0].value;
+          })
+      this.$axios
+          .get('/workQualityStatistics/groupOptions')
+          .then(response=>{
+            console.log("-->groupOptions");
+            console.log(response.data.result.ElOption);
+            this.groupOptions=response.data.result.ElOption;
+            this.groupValue = response.data.result.ElOption[0].value;
+          })
     },
     updated() {
         this.getEchartData1();
