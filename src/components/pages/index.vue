@@ -144,11 +144,11 @@ export default {
             online_servicer_percent: '10',
             today_msg_percent: '10',
             carousel: [
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/carousel_1.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_4.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_5.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_6.jpg',
-                'http://cloudservice-archives.oss-cn-beijing.aliyuncs.com/Cishenn/servicer_8.jpg',
+                'http://customer-service-backend.oss-cn-hangzhou.aliyuncs.com/assets/carousel_1.jpg',
+                'http://customer-service-backend.oss-cn-hangzhou.aliyuncs.com/assets/servicer_4.jpg',
+                'http://customer-service-backend.oss-cn-hangzhou.aliyuncs.com/assets/servicer_5.jpg',
+                'http://customer-service-backend.oss-cn-hangzhou.aliyuncs.com/assets/servicer_6.jpg',
+                'http://customer-service-backend.oss-cn-hangzhou.aliyuncs.com/assets/servicer_8.jpg',
             ],
             tableData: [
                 {
