@@ -7,7 +7,7 @@
       <div class="statsBoxOverall">
         <div class="statsBoxName">平均首次响应时长</div>
         <div class="statsBoxTotalNum">30s</div>
-        <div class="statsBoxValidNum">转接后平均首次响应时长40s</div>
+        <div class="statsBoxValidNum" style="line-height: 25px;">转接后平均首次响应时长40s</div>
       </div>
       <div class="statsBoxOverall">
         <div class="statsBoxName">平均响应时长</div>
@@ -527,7 +527,7 @@ export default {
     text-align: center;
     border-radius: 2px;
   }
-  
+
   .statsExportButton:hover{
     background-color: transparent;
     color: rgb(0,110,255);
