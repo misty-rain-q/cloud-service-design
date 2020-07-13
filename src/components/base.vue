@@ -154,13 +154,41 @@
           this.title=title_list[4];
         }else if(index=='/customer'){
           this.title=title_list[5];
-        }else if(index=='/order/allorder'){
+        }else if(index=='/order/allorder'
+                 || index=='/order/waiting'
+                 || index=='/order/created'
+                 || index=='/order/copied'
+                 || index=='/order/dealing'
+                 || index=='/order/finished'){
           this.title=title_list[6];
-        }else if(index=='/statistics/statisticsOverall'){
+        }else if(index=='/statistics/statisticsOverall'
+                 || index=='/statistics/workQuantityStats'
+                 || index=='/statistics/workQualityStats'
+                 || index=='/statistics/checkInStats'
+                 || index=='/statistics/accessStats'){
           this.title=title_list[7];
-        }else if(index=='/settings'){
+        }else if(index=='/settings'
+                 || index=='/settings/personInfo'
+                 || index=='/settings/settingsNotice'
+                 || index=='/settings/companyInfo'
+                 || index=='/settings/servicerManage'
+                 || index=='/settings/groupManage'
+                 || index=='/settings/roleManage'
+                 || index=='/settings/commonWords'
+                 || index=='/settings/autoReply'
+                 || index=='/settings/dialogRule'
+                 || index=='/settings/dialogComment'
+                 || index=='/settings/distributionRule'
+                 || index=='/settings/customerInfo'
+                 || index=='/settings/customerTag'
+                 || index=='/settings/blacklist'
+                 || index=='/settings/baseSettings'
+                 || index=='/settings/orderType'
+                 || index=='/settings/operationLog'
+                 || index=='/settings/messageNotice'){
           this.title=title_list[8];
-        }else if(index=='/specificOrder/replyContent'){
+        }else if(index=='/specificOrder/replyContent'
+                 || index=='/specificOrder/operatingLog'){
           first = '/order';
           this.title=title_list[9];
         }else if(index=='/customerDetail'){

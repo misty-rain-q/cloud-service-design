@@ -7,7 +7,7 @@
       <div class="statsBoxOverall">
         <div class="statsBoxName">平均首次响应时长</div>
         <div class="statsBoxTotalNum">30s</div>
-        <div class="statsBoxValidNum">转接后平均首次响应时长40s</div>
+        <div class="statsBoxValidNum" style="line-height: 25px;">转接后平均首次响应时长40s</div>
       </div>
       <div class="statsBoxOverall">
         <div class="statsBoxName">平均响应时长</div>
@@ -122,52 +122,51 @@ export default {
     name: 'WorkQualityStats',
     data(){
         return {
-          groupOptions: [
-            {
-              value: '全部客服组',
-              label: '全部客服组'
-            },
-            {
-              value: '客服组一',
-              label: '客服组一'
-            },
-            {
-              value: '客服组二',
-              label: '客服组二'
-            },
-            {
-              value: '客服组三',
-              label: '客服组三'
-            },
-          ],
-          servicerOptions: [
-            {
-              value: '全部客服',
-              label: '全部客服'
-            },
-            {
-              value: '李自成',
-              label: '李自成'
-            },
-            {
-              value: '嘎巴伟',
-              label: '嘎巴伟'
-            },
-            {
-              value: '秦副班长',
-              label: '秦副班长'
-            }
-          ],
+          groupOptions: null,
+          servicerOptions: null,
           groupValue:'',
           servicerValue:'',
           value1:'',
           value2:'',
-          // tableData: JSON.parse(localStorage.getItem("workQualityData")).result.WorkQualityStatistics,
           page:null,
           currentPage:1,
           pageSize:10
         }
 
+    },
+    watch:{
+      currentPage:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          this.page=response.data
+        })
+      },
+      pageSize:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          this.page=response.data
+        })
+      },
+      servicerValue:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          console.log("servicerPage-->");
+          console.log(response);
+          this.page=response.data
+        })
+      },
+      groupValue:function(){
+        this.$axios
+        .get(`/workQualityStatistics/selectPage?currentPage=${this.currentPage}&pageSize=${this.pageSize}&nickName=${this.servicerValue}&serviceGroup=${this.groupValue}`)
+        .then(response=>{
+          console.log("groupPage-->");
+          console.log(response);
+          this.page=response.data
+        })
+      },
     },
     beforeCreate:function() {
       console.log("--->begin");
@@ -176,10 +175,22 @@ export default {
           .then(response=>{
               this.page=response.data
           })
-    },
-    created: function(){
-      this.groupValue = this.groupOptions[0].value;
-      this.servicerValue = this.servicerOptions[0].value;
+      this.$axios
+          .get('/workQualityStatistics/servicerOptions')
+          .then(response=>{
+            console.log("servicerOptions-->");
+            console.log(response.data.result.ElOption);
+            this.servicerOptions=response.data.result.ElOption;
+            this.servicerValue = response.data.result.ElOption[0].value;
+          })
+      this.$axios
+          .get('/workQualityStatistics/groupOptions')
+          .then(response=>{
+            console.log("-->groupOptions");
+            console.log(response.data.result.ElOption);
+            this.groupOptions=response.data.result.ElOption;
+            this.groupValue = response.data.result.ElOption[0].value;
+          })
     },
     updated() {
         this.getEchartData1();
@@ -515,6 +526,12 @@ export default {
     color:rgb(204, 204, 204);
     text-align: center;
     border-radius: 2px;
+  }
+
+  .statsExportButton:hover{
+    background-color: transparent;
+    color: rgb(0,110,255);
+    border: 1px solid rgb(0,110,255);
   }
 
   .statsSecondRow{
