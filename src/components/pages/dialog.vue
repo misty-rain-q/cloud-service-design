@@ -13,7 +13,7 @@
               <div class="tile">
                 <div class="now">
                   <span class="name">北京客户</span>
-                  <span class="time">12:10</span>
+                  <span class="time">2020.7.11 21:49</span>
                 </div>
                 <div class="u-msg">您好，我想咨询一下</div>
               </div>
@@ -265,7 +265,7 @@
                        </div>
                        <div class="row">
                          <span class="row-one">浏览器</span>
-                         <span class="row-two">Chrome 81.0.4044.138</span>
+                         <span class="row-two">unknown</span>
                        </div>
                        <div class="row">
                          <span class="row-one">屏幕尺寸</span>
@@ -286,44 +286,44 @@
                      <div class="c-i-detail">
                        <div class="row">
                          <span class="row-one">客户名称</span>
-                         <span class="row-two">北京市客户</span>
+                         <span class="row-two">{{ci.nickName}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">真实姓名</span>
-                         <span class="row-two">王伟</span>
+                         <span class="row-two">{{ci.realName}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户电话</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.phone}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户邮箱</span>
-                         <span class="row-two">—— </span>
+                         <span class="row-two">{{ci.email}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户公司</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.company}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户地址</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.address}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户等级</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.level}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户来源</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.source}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户备注</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.remarks}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one r-o-tag">客户标签</span>
-                         <span class="row-two-tag">已上市</span>
-                         <span class="row-two-tag">潜在客户</span>
+                         <span v-for="oneTag in ci.tag" class="row-two-tag">{{oneTag}}</span>
+                         <!-- <span class="row-two-tag">潜在客户</span> -->
                        </div>
                      </div>
                    </div>
@@ -340,48 +340,30 @@
                     <el-input placeholder="搜索常用语" prefix-icon="el-icon-search"></el-input>
                   </div>
                   <div v-if="comNum == 0" class="commen-use person">
-                      <el-menu>
-                        <el-submenu index="1">
+                      <el-menu index="1">
+                        <el-submenu :key="cwsin" :index="'1-' + cwsin + 1" v-for="(cws, cwsin) in cwmy">
                           <template slot="title">
 
-                            <span>我的常用语分类一</span>
+                            <span>我的常用语分类{{cwsin+1}}</span>
                           </template>
-                          <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                          <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
+                          <el-menu-item v-for="(cw, csin) in cws.data" :index="csin + 1" :key="csin">{{cw.content}}</el-menu-item>
+                          <!-- <el-menu-item index="1-1">你好</el-menu-item> -->
                         </el-submenu>
                       </el-menu>
-                      <el-menu>
-                        <el-submenu index="2">
-                          <template slot="title">
 
-                            <span>我的常用语分类二</span>
-                          </template>
-                          <el-menu-item index="2-1">你好，请问有什么可以帮您？</el-menu-item>
-                          <el-menu-item index="2-2">你好，请问有什么可以帮您？</el-menu-item>
-                        </el-submenu>
-                      </el-menu>
                   </div>
                   <div v-else class="commen-use public">
-                    <el-menu>
-                      <el-submenu>
+                    <el-menu index="2">
+                      <el-submenu v-for="(pubcws, pubcwsin) in pubcwmy" :index="'2-' +pubcwsin+1" :key="pubcwsin">
                         <template slot="title">
-
-                          <span>公共常用语分类一</span>
+                          <span>公共常用语分类{{pubcwsin+1}}</span>
                         </template>
-                        <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                        <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
-                      </el-submenu>
-                    </el-menu>
-                    <el-menu>
-                      <el-submenu>
-                        <template slot="title">
+                        <el-menu-item v-for="(pubcw, pubcsin) in pubcws.data" :index="pubcsin+2" :key="pubcsin">{{pubcw.content}}</el-menu-item>
 
-                          <span>公共常用语分类二</span>
-                        </template>
-                        <el-menu-item index="1-1">你好，请问有什么可以帮您？</el-menu-item>
-                        <el-menu-item index="1-2">你好，请问有什么可以帮您？</el-menu-item>
                       </el-submenu>
+
                     </el-menu>
+
                   </div>
 
                 </div>
@@ -410,7 +392,7 @@
                       </div>
                       <div class="row">
                         <span class="row-one">抄送人 </span>
-                        <span class="row-two">王涛，吴敏儿</span>
+                        <span class="row-two"> 王涛，吴敏儿</span>
                       </div>
                       <div class="row">
                         <span class="row-one">优先级 </span>
@@ -609,7 +591,7 @@
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.email" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户公司" :label-width="woFormLabelWidth" prop="company">
-                <label slot="label">&nbsp;&nbsp;抄送人</label>
+                <label slot="label">&nbsp;&nbsp;客户公司</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.company" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户地址" :label-width="woFormLabelWidth" prop="address">
@@ -619,23 +601,23 @@
               <el-form-item class="wo-form-item" label="客服等级" :label-width="woFormLabelWidth" prop="level">
                 <label slot="label">&nbsp;&nbsp;客服等级</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.level" placeholder="请选择">
-                  <el-option label="普通客户" value="#1"></el-option>
-                  <el-option label="VIP客户" value="#2"></el-option>
-                  <el-option label="潜在客户" value="#3"></el-option>
+                  <el-option label="普通客户" value="普通客户"></el-option>
+                  <el-option label="VIP客户" value="VIP客户"></el-option>
+                  <el-option label="潜在客户" value="潜在客户"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户来源" :label-width="woFormLabelWidth" prop="source">
                 <label slot="label">&nbsp;&nbsp;客户来源</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.source" placeholder="请选择">
-                  <el-option label="客户录入" value="#1"></el-option>
-                  <el-option label="网页介入" value="#2"></el-option>
+                  <el-option label="客户录入" value="客户录入"></el-option>
+                  <el-option label="网页介入" value="网页介入"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="选择标签" :label-width="woFormLabelWidth" prop="tag">
                 <label slot="label">&nbsp;&nbsp;选择标签</label>
                 <el-checkbox-group class="wo-form-item-in" v-model="customerInfoForm.tag">
-                  <el-checkbox label="latent" name="latent"><span class="row-two-tag">潜在客户</span></el-checkbox>
-                  <el-checkbox label="compa" name="latent"><span class="row-two-tag">上市公司</span></el-checkbox>
+                  <el-checkbox label="潜在客户" name="latent"><span class="row-two-tag">潜在客户</span></el-checkbox>
+                  <el-checkbox label="上市公司" name="latent"><span class="row-two-tag">上市公司</span></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户备注" :label-width="woFormLabelWidth" prop="remarks">
@@ -644,7 +626,7 @@
               </el-form-item>
             </el-form>
             <div class="wo-form-button">
-              <el-button class="wo-f-b-el" @click="resetForm('customerInfoForm')">清空</el-button>
+              <el-button class="wo-f-b-el" @click="resetForm('customerInfoForm')">重置</el-button>
               <el-button class="wo-f-b-el" @click="cancelForm('customerInfoVisible')">取消</el-button>
               <el-button class="wo-f-b-el" type="primary" @click="submitForm('customerInfoForm', 'customerInfoVisible')">确定</el-button>
             </div>
@@ -665,8 +647,38 @@
 <script>
 export default {
     name: 'Dialog',
+	// props: ["type", "sessionList"],
+    // props: ["cws"],
     data(){
         return {
+            cwmy: [
+
+            ],
+            pubcwmy: [
+
+            ],
+            wo: [
+
+            ],
+            ci: {
+              nickName: "北京客户",
+              realName: "王伟",
+              phone: "13555642235",
+              email: "1280124514@qq.com",
+              company: "伟家公司",
+              address: "北京朝阳",
+              level: "普通客户",
+              source: "访客转化",
+              tag: [
+                "上市公司",
+                "潜在客户"
+              ],
+              remarks: "",
+              type: [],
+            },
+            // cwlib: [
+
+            // ],
             isActive: 0,
             message: "hello",
             TActive: 0,
@@ -717,15 +729,16 @@ export default {
               reason: "",
             },
             customerInfoForm: {
-              nickName: "",
-              realName: "",
-              phone: "",
-              email: "",
-              company: "",
-              address: "",
-              level: "",
-              source: "",
-              tag: [],
+              nickName: "北京客户",
+              realName: "王伟",
+              phone: "13555642235",
+              email: "1280124514@qq.com",
+              company: "伟家公司",
+              address: "北京朝阳",
+              level: "普通客户",
+              source: "访客转化",
+              tag: ["上市公司",
+                "潜在客户"],
               remarks: "",
               type: [],
             },
@@ -783,7 +796,75 @@ export default {
         }
     },
 
-   methods: {
+    created(){
+      this.getcw(1);
+      this.getcw(2);
+      // this.getHistoryWorkOrder();
+    },
+
+    methods: {
+      getcw(libs) {
+        this.$axios.
+        get('/commonword/onelib', {
+          params: {
+            lib: libs,
+          }
+        })
+        .then(resp => {
+            let {
+              data
+            } = resp;
+
+            var com_w= data.common_word;
+            console.log(com_w);
+            if(libs == 1){
+              this.cwmy = this.getbycut(com_w, 'type');
+            }
+            else{
+              this.pubcwmy = this.getbycut(com_w, 'type');
+            }
+            // console.log(this.cwmy);
+            // for(var i = 0; i < libcw.length; i++){
+            //   libcw[i] = this.getbycut(libcw[i], 'type');
+            //   console.log("libcw[i]");
+            //   console.log(libcw[i]);
+            // }
+            // console.log(libcw);
+            // this.sessions = data.result;
+          })
+          .catch(err=>{
+              console.log(err);
+              this.$message({
+                  message: '查询常用语',
+                  type: 'error'
+              });
+          })
+      },
+      getbycut(cws, col) {
+        // col = 'lib';
+        var map = {},
+            dest = [];
+        for(var i = 0; i < cws.length; i++){
+            var ai = cws[i];
+            if(!map[ai[col]]){
+                dest.push({
+                    [col]: ai[col],
+                    data: [ai]
+                });
+                map[ai[col]] = ai;
+            }else{
+                for(var j = 0; j < dest.length; j++){
+                    var dj = dest[j];
+                    if(dj[col] == ai[col]){
+                        dj.data.push(ai);
+                        break;
+                    }
+                }
+            }
+        }
+        // console.log(dest);
+        return dest;
+      },
       greet: function (index) {
 
         this.isActive = index;
@@ -828,6 +909,7 @@ export default {
 
       comPubOrPer: function (comIn) {
         this.comNum = comIn;
+
       },
 
       moremsg() {
@@ -863,9 +945,11 @@ export default {
       submitForm(formName, vis){
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$refs[formName].resetFields();
+            // this.$refs[formName].resetFields();
             this.visibleA[vis] = false;
-            // alert('submit!');
+            let tmp = JSON.stringify(this.customerInfoForm);
+            this.ci = JSON.parse(tmp);
+            console.log(this.ci);
             this.$message({
               type: 'success',
               message: '操作成功！'
@@ -875,6 +959,7 @@ export default {
             return false;
           }
         });
+        unbind('click');
       },
 
    }
