@@ -2,7 +2,9 @@
   <div class="container">
     <!-- 工单菜单 -->
     <!-- 此处的default-active仅适用于不刷新的情况，使用$router.path未达到预期 -->
-    <el-menu class="order-menu" default-active="/order/allOrder" router>
+    <el-menu class="order-menu"
+             :default-active="this.$route.path"
+             router>
       <el-menu-item-group>
         <template slot="title">工单</template>
         <el-menu-item class="orderMenuItem" index="/order/allOrder">全部工单(1000)</el-menu-item>
@@ -125,7 +127,6 @@
           visibleA: {
             workOrderVisible: false,
           },
-
           labelPosition: 'left',
           woFormLabelWidth: '138px',
           workOrderForm: {
@@ -170,15 +171,8 @@
           },
         }
     },
-    created: function(){
-      this.statusValue = this.statusOptions[0].value;
-      this.priorityValue = this.priorityOptions[0].value;
-      this.categoryValue = this.categoryOptions[0].value;
-      this.channelValue = this.channelOptions[0].value;
-      this.groupValue = this.groupOptions[0].value;
-      this.servicerValue = this.servicerOptions[0].value;
-    },
     methods:{
+
       createWorkOrder() {
         this.visibleA.workOrderVisible = true;
       },
