@@ -167,7 +167,25 @@
                  || index=='/statistics/checkInStats'
                  || index=='/statistics/accessStats'){
           this.title=title_list[7];
-        }else if(index=='/settings'){
+        }else if(index=='/settings'
+                 || index=='/settings/personInfo'
+                 || index=='/settings/settingsNotice'
+                 || index=='/settings/companyInfo'
+                 || index=='/settings/servicerManage'
+                 || index=='/settings/groupManage'
+                 || index=='/settings/roleManage'
+                 || index=='/settings/commonWords'
+                 || index=='/settings/autoReply'
+                 || index=='/settings/dialogRule'
+                 || index=='/settings/dialogComment'
+                 || index=='/settings/distributionRule'
+                 || index=='/settings/customerInfo'
+                 || index=='/settings/customerTag'
+                 || index=='/settings/blacklist'
+                 || index=='/settings/baseSettings'
+                 || index=='/settings/orderType'
+                 || index=='/settings/operationLog'
+                 || index=='/settings/messageNotice'){
           this.title=title_list[8];
         }else if(index=='/specificOrder/replyContent'
                  || index=='/specificOrder/operatingLog'){
