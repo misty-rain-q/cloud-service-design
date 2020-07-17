@@ -3,7 +3,7 @@
       <div class="d-aside">
         <div class="aside">
 
-          <div class="aside-t"><p>当前会话</p></div>
+          <div class="aside-t"><p>历史会话</p></div>
           <!--  :data="userList.slice((currentPage-1)*pagesize,currentPage*pagesize)" -->
           <div v-for="(item, index) in items" @click="greet(index)" v-bind:class="{ active: index == isActive }">
             <div class="user">
@@ -273,44 +273,44 @@
                      <div class="c-i-detail">
                        <div class="row">
                          <span class="row-one">客户名称</span>
-                         <span class="row-two">北京市客户</span>
+                         <span class="row-two">{{ci.nickName}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">真实姓名</span>
-                         <span class="row-two">王伟</span>
+                         <span class="row-two">{{ci.realName}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户电话</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.phone}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户邮箱</span>
-                         <span class="row-two">—— </span>
+                         <span class="row-two">{{ci.email}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户公司</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.company}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户地址</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.address}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户等级</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.level}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户来源</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.source}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one">客户备注</span>
-                         <span class="row-two">——</span>
+                         <span class="row-two">{{ci.remarks}}</span>
                        </div>
                        <div class="row">
                          <span class="row-one r-o-tag">客户标签</span>
-                         <span class="row-two-tag">已上市</span>
-                         <span class="row-two-tag">潜在客户</span>
+                         <span v-for="oneTag in ci.tag" class="row-two-tag">{{oneTag}}</span>
+                         <!-- <span class="row-two-tag">潜在客户</span> -->
                        </div>
                      </div>
                    </div>
@@ -585,45 +585,54 @@
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.nickName" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="真实姓名" :label-width="woFormLabelWidth" prop="realName">
+                <label slot="label">&nbsp;&nbsp;真实姓名</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.realName" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户电话" :label-width="woFormLabelWidth" prop="phone">
+                <label slot="label">&nbsp;&nbsp;客户电话</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.phone" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户邮箱" :label-width="woFormLabelWidth" prop="email">
+                <label slot="label">&nbsp;&nbsp;客户邮箱</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.email" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户公司" :label-width="woFormLabelWidth" prop="company">
+                <label slot="label">&nbsp;&nbsp;客户公司</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.company" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户地址" :label-width="woFormLabelWidth" prop="address">
+                <label slot="label">&nbsp;&nbsp;客户地址</label>
                 <el-input class="wo-form-item-in" v-model="customerInfoForm.address" placeholder="请输入"></el-input>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客服等级" :label-width="woFormLabelWidth" prop="level">
+                <label slot="label">&nbsp;&nbsp;客服等级</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.level" placeholder="请选择">
-                  <el-option label="普通客户" value="#1"></el-option>
-                  <el-option label="VIP客户" value="#2"></el-option>
-                  <el-option label="潜在客户" value="#3"></el-option>
+                  <el-option label="普通客户" value="普通客户"></el-option>
+                  <el-option label="VIP客户" value="VIP客户"></el-option>
+                  <el-option label="潜在客户" value="潜在客户"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户来源" :label-width="woFormLabelWidth" prop="source">
+                <label slot="label">&nbsp;&nbsp;客户来源</label>
                 <el-select class="wo-form-item-in" v-model="customerInfoForm.source" placeholder="请选择">
-                  <el-option label="客户录入" value="#1"></el-option>
-                  <el-option label="网页介入" value="#2"></el-option>
+                  <el-option label="客户录入" value="客户录入"></el-option>
+                  <el-option label="网页介入" value="网页介入"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="wo-form-item" label="选择标签" :label-width="woFormLabelWidth" prop="tag">
+                <label slot="label">&nbsp;&nbsp;选择标签</label>
                 <el-checkbox-group class="wo-form-item-in" v-model="customerInfoForm.tag">
-                  <el-checkbox label="latent" name="latent"><span class="row-two-tag">潜在客户</span></el-checkbox>
-                  <el-checkbox label="compa" name="latent"><span class="row-two-tag">上市公司</span></el-checkbox>
+                  <el-checkbox label="潜在客户" name="latent"><span class="row-two-tag">潜在客户</span></el-checkbox>
+                  <el-checkbox label="上市公司" name="latent"><span class="row-two-tag">上市公司</span></el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
               <el-form-item class="wo-form-item" label="客户备注" :label-width="woFormLabelWidth" prop="remarks">
+                <label slot="label">&nbsp;&nbsp;客户备注</label>
                 <el-input type="textarea" width="314px" :rows="6" resize="none" class="ftextarea wo-form-item-in" v-model="customerInfoForm.remarks" placeholder="请输入原因"></el-input>
               </el-form-item>
             </el-form>
             <div class="wo-form-button">
-              <el-button class="wo-f-b-el" @click="resetForm('customerInfoForm')">清空</el-button>
+              <el-button class="wo-f-b-el" @click="resetForm('customerInfoForm')">重置</el-button>
               <el-button class="wo-f-b-el" @click="cancelForm('customerInfoVisible')">取消</el-button>
               <el-button class="wo-f-b-el" type="primary" @click="submitForm('customerInfoForm', 'customerInfoVisible')">确定</el-button>
             </div>
@@ -672,6 +681,22 @@ export default {
               // {name: 'usr19'},
               // {name: 'usr20'},
             ],
+            ci: {
+              nickName: "安徽客户",
+              realName: "王伟",
+              phone: "13555642235",
+              email: "1280124514@qq.com",
+              company: "伟家公司",
+              address: "安徽合肥",
+              level: "普通客户",
+              source: "访客转化",
+              tag: [
+                "上市公司",
+                "潜在客户"
+              ],
+              remarks: "",
+              type: [],
+            },
             total: 20,
             page: 1,
             pagesize: 5,
@@ -715,15 +740,16 @@ export default {
               reason: "",
             },
             customerInfoForm: {
-              nickName: "",
-              realName: "",
-              phone: "",
-              email: "",
-              company: "",
-              address: "",
-              level: "",
-              source: "",
-              tag: [],
+              nickName: "北京客户",
+              realName: "王伟",
+              phone: "13555642235",
+              email: "1280124514@qq.com",
+              company: "伟家公司",
+              address: "朝阳",
+              level: "普通客户",
+              source: "访客转化",
+              tag: ["上市公司",
+                "潜在客户"],
               remarks: "",
               type: [],
             },
@@ -867,8 +893,10 @@ export default {
       submitForm(formName, vis){
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$refs[formName].resetFields();
+            // this.$refs[formName].resetFields();
             this.visibleA[vis] = false;
+            let tmp = JSON.stringify(this.customerInfoForm);
+            this.ci = JSON.parse(tmp);
             // alert('submit!');
             this.$message({
               type: 'success',

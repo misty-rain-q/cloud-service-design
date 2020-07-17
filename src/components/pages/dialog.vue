@@ -534,7 +534,7 @@ export default {
 
             ],
             ci: {
-              nickName: "北京客户",
+              nickName: "安徽客户",
               realName: "王伟",
               phone: "13555642235",
               email: "1280124514@qq.com",

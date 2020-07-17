@@ -114,7 +114,7 @@
       <el-button type="primary" @click="save" class="btn">保存</el-button>
       <br/><br/><br/><br/><br/><br/><br/>
     </div>
-  </el-scrollbar>   
+  </el-scrollbar>
   </div>
 </template>
 
@@ -136,7 +136,7 @@ export default {
         newPassword: null,
         confirmPassword: null,
       }
-      
+
     },
     methods: {
       save(){
@@ -161,16 +161,16 @@ export default {
               .put('/servicer/'+this.servicerId,data)
               .then(response=>{
                 console.log(response)
-                this.$router.go(0);
                 this.$message({
                   type: 'success',
                   message: '已成功更新您的个人信息',
                 });
+                this.$router.go(0);
               })
               .catch(err=>{
                 console.log(err);
               })
-        
+
       },
       handleRemove(file) {
         console.log(file);
@@ -207,7 +207,7 @@ export default {
   display: inline;
 }
 .info-title{
-  
+
 }
 .form{
   padding-left:50px;

@@ -122,6 +122,7 @@
       }
     },
     watch: {
+      "$router": "getTitle",
       "$route": "getTitle"
     },
     computed: {
@@ -131,27 +132,7 @@
       this.getTitle();
     },
     created(){
-      let jsUser=JSON.parse( localStorage.getItem("user") ).result;
-      console.log("Base")
-      console.log(jsUser)
-      // 更新base界面(主要是右上角客户昵称)的客服信息
-      this.$axios
-          .get('/servicer/'+jsUser.customerServiceId)
-          .then(response=>{
-            console.log("重新请求")
-            console.log(response)
-            if(response.data.success){
-              localStorage.setItem("user",JSON.stringify(response.data));
-            }
-          })
-          .catch(err=>{
-            console.log(err)
-          })
-      jsUser=JSON.parse(localStorage.getItem("user")).result;
-      console.log(jsUser);
-      this.userName=jsUser.nickName;
-      this.avatarUrl=jsUser.avatar;
-      console.log(this.avatarUrl);
+
     },
     methods: {
       getTitle(){
@@ -159,7 +140,7 @@
         let index=this.$route.path;
         let first = '/'+index.split('/')[1];
         // console.log(first);
-        
+
         if(index=='/index'){
           this.title=title_list[1];
         }else if(index=='/dialog'){
@@ -211,6 +192,7 @@
           this.title=title_list[10];
         }
         this.activePage = first;
+        this.updateInfo();
 
       },
       logo_click(){
@@ -225,13 +207,37 @@
           type: 'success'
         });
 
-      }
+      },
+      updateInfo(){
+        let jsUser=JSON.parse( localStorage.getItem("user") ).result;
+        console.log("Base")
+        console.log(jsUser)
+        // 更新base界面(主要是右上角客户昵称)的客服信息
+        this.$axios
+            .get('/servicer/'+jsUser.customerServiceId)
+            .then(response=>{
+              console.log("重新请求")
+              console.log(response)
+              if(response.data.success){
+                localStorage.setItem("user",JSON.stringify(response.data));
+              }
+            })
+            .catch(err=>{
+              console.log(err)
+            })
+        jsUser=JSON.parse(localStorage.getItem("user")).result;
+        console.log(jsUser);
+        this.userName=jsUser.nickName;
+        this.avatarUrl=jsUser.avatar;
+        console.log(this.avatarUrl);
     },
     update(){
-      
-    }
 
-  }
+    },
+
+  },
+
+ }
 </script>
 
 <style scoped>
